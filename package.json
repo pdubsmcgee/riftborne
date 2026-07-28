@@ -1,0 +1,42 @@
+{
+  "name": "riftborne-command",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c yellow,cyan \"tsx watch server/index.ts\" \"vite --host 127.0.0.1\"",
+    "app:open": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/start-app.ps1",
+    "app:stop": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/stop-app.ps1",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.server.json --noEmit && tsc -p tsconfig.test.json --noEmit",
+    "build": "npm run typecheck && tsc -p tsconfig.server.json && vite build",
+    "start": "node dist-server/server/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:live": "tsx scripts/live-smoke.ts",
+    "sync:once": "tsx scripts/sync-once.ts",
+    "analysis:rebuild": "tsx scripts/rebuild-analysis.ts",
+    "env:create": "tsx scripts/create-env.ts",
+    "seed:knowledge": "tsx scripts/seed-knowledge.ts",
+    "check:secrets": "tsx scripts/check-secrets.ts"
+  },
+  "dependencies": {
+    "@fastify/static": "^10.1.0",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.6.2",
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.1",
+    "concurrently": "^9.2.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2",
+    "vitest": "^4.0.10"
+  }
+}
