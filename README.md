@@ -6,6 +6,17 @@ A private, local-first guide and strategic dashboard for Riftborne. It indexes v
 
 Start with **[The Riftborne Field Manual](GUIDE.md)** for mechanics, formulas, culture playstyles, opening plans, multiplayer organization, objective strategy, and a dedicated hidden-mechanics/meta section. It targets patch 11.73 and labels patch-sensitive conflicts rather than hiding them.
 
+## Public wiki
+
+The searchable, mobile-friendly edition is live at **[riftbornewiki.317society.com](https://riftbornewiki.317society.com)**.
+
+```powershell
+npm.cmd run build:wiki
+npm.cmd run preview:wiki
+```
+
+The wiki is generated directly from `GUIDE.md`, so the public reference and the repository's field manual stay in sync.
+
 ## Everyday use
 
 Double-click **Open Riftborne Command.cmd**. It starts the local service invisibly, waits until it is ready, and opens the dashboard in your default browser. Opening it again only opens another browser tab; it does not start a duplicate server.

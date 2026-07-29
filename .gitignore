@@ -1,6 +1,8 @@
 node_modules/
 dist/
 dist-server/
+dist-wiki/
+.wrangler/
 .env
 envseed.txt
 data/*.db
