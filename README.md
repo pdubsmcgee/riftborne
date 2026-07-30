@@ -15,7 +15,16 @@ npm.cmd run build:wiki
 npm.cmd run preview:wiki
 ```
 
-The wiki is generated directly from `GUIDE.md`, so the public reference and the repository's field manual stay in sync.
+The Astro wiki uses the focused Markdown articles in `wiki/content/articles/` as its canonical knowledge source. It generates permanent article and category routes, an A–Z index, patch-aware metadata, Pagefind full-text search, and a sitemap.
+
+After changing wiki content:
+
+```powershell
+npm.cmd run guide:generate
+npm.cmd run build:wiki
+```
+
+`guide:generate` rebuilds `GUIDE.md` from the article collection. `build:wiki` rejects invalid metadata, broken related-page references, stale guide output, template errors, or an incomplete search build.
 
 ## Everyday use
 

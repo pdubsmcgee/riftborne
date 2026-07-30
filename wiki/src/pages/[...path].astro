@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+import { articlePath } from '../data/wiki';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((article) => ({
+    params: { path: articlePath(article.data).replace(/^\/|\/$/g, '') },
+    props: { article, articles }
+  }));
+}
+
+const { article, articles } = Astro.props;
+const { Content, headings } = await render(article);
+---
+<ArticleLayout article={article} articles={articles} headings={headings}>
+  <Content />
+</ArticleLayout>

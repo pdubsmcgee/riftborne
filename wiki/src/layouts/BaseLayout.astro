@@ -1,0 +1,154 @@
+---
+import { getCollection } from 'astro:content';
+import { CATEGORIES, LEGACY_ROUTES, SITE, articlePath, categorySlug } from '../data/wiki';
+import '../styles/wiki.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  pageClass?: string;
+}
+
+const {
+  title = SITE.name,
+  description = SITE.description,
+  canonicalPath = Astro.url.pathname,
+  pageClass = ''
+} = Astro.props;
+const articles = (await getCollection('articles')).sort((a, b) => a.data.order - b.data.order);
+const canonical = new URL(canonicalPath, SITE.url);
+const pageTitle = title === SITE.name ? title : `${title} — ${SITE.name}`;
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#111315" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.toString()} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href={canonical.toString()} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{pageTitle}</title>
+    <script is:inline>
+      (() => {
+        const saved = localStorage.getItem('riftborne-wiki-theme');
+        document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
+      })();
+    </script>
+  </head>
+  <body class={pageClass}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <button class="icon-button menu-button" type="button" data-menu-toggle aria-label="Open navigation" aria-expanded="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a class="brand" href="/" aria-label="Riftborne Wiki home">
+        <span class="brand-mark" aria-hidden="true"><i></i><b></b></span>
+        <span><strong>Riftborne</strong><small>Independent Wiki</small></span>
+      </a>
+      <form class="header-search" action="/search/" method="get" role="search">
+        <button class="search-icon" type="submit" aria-label="Open wiki search">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>
+        </button>
+        <label class="sr-only" for="global-search">Search Riftborne Wiki</label>
+        <input id="global-search" name="q" type="search" placeholder="Search the wiki" autocomplete="off" />
+        <kbd>/</kbd>
+      </form>
+      <nav class="header-actions" aria-label="Site actions">
+        <a href="/a-z/">A–Z</a>
+        <a href="/random/">Random</a>
+        <button class="icon-button" type="button" data-theme-toggle aria-label="Switch color theme">
+          <svg class="theme-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 15.5A8 8 0 0 1 8.5 4 8 8 0 1 0 20 15.5Z"/></svg>
+        </button>
+      </nav>
+    </header>
+
+    <aside class="site-sidebar" data-sidebar>
+      <div class="sidebar-head">
+        <span>Contents</span>
+        <button class="icon-button" type="button" data-menu-close aria-label="Close navigation">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <nav aria-label="Wiki categories">
+        <a class="sidebar-home" href="/">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m4 10 8-6 8 6v10H4Z"/><path d="M9 20v-6h6v6"/></svg>
+          Main page
+        </a>
+        {CATEGORIES.map((category) => {
+          const members = articles.filter((article) => article.data.category === category.name);
+          return <details open={['Getting started', 'Strategy'].includes(category.name)}>
+            <summary>
+              <span>{category.name}</span>
+              <small>{members.length}</small>
+            </summary>
+            <div>
+              <a class="category-overview" href={`/category/${category.slug}/`}>Category overview</a>
+              {members.slice(0, 8).map((article) => <a href={articlePath(article.data)}>{article.data.title}</a>)}
+              {members.length > 8 && <a class="more-link" href={`/category/${category.slug}/`}>View all {members.length}</a>}
+            </div>
+          </details>;
+        })}
+      </nav>
+      <div class="sidebar-meta">
+        <span>Reference patch</span>
+        <strong>{SITE.patch}</strong>
+        <a href="/wiki/sources-and-confidence/">Sources and confidence</a>
+      </div>
+    </aside>
+    <button class="sidebar-scrim" type="button" data-menu-close aria-label="Close navigation"></button>
+
+    <main id="main-content" class="site-main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p><strong>Riftborne Wiki</strong> is an independent, community-maintained reference and is not affiliated with the game’s developer.</p>
+      <nav aria-label="Footer">
+        <a href="/wiki/sources-and-confidence/">Sources</a>
+        <a href={SITE.repository}>GitHub</a>
+        <a href={`${SITE.repository}/issues/new`}>Report an error</a>
+      </nav>
+    </footer>
+
+    <script define:vars={{ legacyRoutes: LEGACY_ROUTES }}>
+      const menuToggle = document.querySelector('[data-menu-toggle]');
+      const sidebar = document.querySelector('[data-sidebar]');
+      const closeButtons = document.querySelectorAll('[data-menu-close]');
+      const setMenu = (open) => {
+        sidebar?.classList.toggle('is-open', open);
+        document.body.classList.toggle('menu-open', open);
+        menuToggle?.setAttribute('aria-expanded', String(open));
+      };
+      menuToggle?.addEventListener('click', () => setMenu(!sidebar?.classList.contains('is-open')));
+      closeButtons.forEach((button) => button.addEventListener('click', () => setMenu(false)));
+
+      document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('riftborne-wiki-theme', next);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === '/' && !(event.target instanceof HTMLInputElement) && !(event.target instanceof HTMLTextAreaElement)) {
+          event.preventDefault();
+          document.querySelector('#global-search')?.focus();
+        }
+        if (event.key === 'Escape') setMenu(false);
+      });
+
+      if (location.pathname === '/' && location.hash.length > 1) {
+        const legacy = location.hash.slice(1).split('/')[0];
+        const destination = legacyRoutes[legacy];
+        if (destination) location.replace(destination);
+      }
+    </script>
+  </body>
+</html>

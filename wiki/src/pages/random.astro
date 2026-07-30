@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { articlePath } from '../data/wiki';
+const routes = (await getCollection('articles')).map((article) => articlePath(article.data));
+---
+<BaseLayout title="Random article" description="Open a random Riftborne Wiki article." canonicalPath="/random/" pageClass="utility-page">
+  <div class="utility-message">
+    <span class="eyebrow">Random article</span>
+    <h1>Choosing a page…</h1>
+    <p>If the redirect does not begin, use the button below.</p>
+    <button type="button" data-random>Open a random article</button>
+  </div>
+  <script define:vars={{ routes }}>
+    const choose = () => routes[Math.floor(Math.random() * routes.length)];
+    const button = document.querySelector('[data-random]');
+    button?.addEventListener('click', () => location.assign(choose()));
+    location.replace(choose());
+  </script>
+</BaseLayout>

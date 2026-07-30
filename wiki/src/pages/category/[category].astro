@@ -1,0 +1,40 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { CATEGORIES, articlePath } from '../../data/wiki';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categoryIntros');
+  return categories.map((category) => ({ params: { category: category.data.slug }, props: { category } }));
+}
+
+const { category } = Astro.props;
+const articles = (await getCollection('articles'))
+  .filter((article) => article.data.category === category.data.category)
+  .sort((a, b) => a.data.order - b.data.order);
+const definition = CATEGORIES.find((item) => item.slug === category.data.slug);
+const { Content } = await render(category);
+---
+<BaseLayout title={`Category: ${category.data.title}`} description={category.data.summary} canonicalPath={`/category/${category.data.slug}/`} pageClass="category-page">
+  <div class="content-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Main page</a><span>›</span><span>Categories</span><span>›</span><span>{category.data.title}</span></nav>
+    <header class="category-heading">
+      <span>Category</span>
+      <h1>{category.data.title}</h1>
+      <p>{definition?.description ?? category.data.summary}</p>
+    </header>
+    <div class="category-intro"><Content /></div>
+    <section class="article-directory" aria-labelledby="directory-title">
+      <div class="section-heading"><h2 id="directory-title">Articles in this category</h2><span>{articles.length} pages</span></div>
+      <ol>
+        {articles.map((article) => <li>
+          <a href={articlePath(article.data)}>
+            <strong>{article.data.title}</strong>
+            <span>{article.data.summary}</span>
+            <small>{article.data.verification.replace('-', ' ')}</small>
+          </a>
+        </li>)}
+      </ol>
+    </section>
+  </div>
+</BaseLayout>

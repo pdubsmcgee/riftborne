@@ -1,0 +1,113 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { SITE, SOURCES, articlePath, categorySlug } from '../data/wiki';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+  articles: CollectionEntry<'articles'>[];
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { article, articles, headings } = Astro.props;
+const data = article.data;
+const path = articlePath(data);
+const sorted = [...articles].sort((a, b) => a.data.order - b.data.order);
+const index = sorted.findIndex((entry) => entry.id === article.id);
+const previous = index > 0 ? sorted[index - 1] : undefined;
+const next = index < sorted.length - 1 ? sorted[index + 1] : undefined;
+const related = data.relatedPages
+  .map((slug) => articles.find((entry) => entry.data.slug === slug))
+  .filter((entry): entry is CollectionEntry<'articles'> => Boolean(entry));
+const sourcePath = `wiki/content/articles/${article.id}.md`;
+const editUrl = `${SITE.repository}/edit/main/${sourcePath}`;
+const historyUrl = `${SITE.repository}/commits/main/${sourcePath}`;
+const issueUrl = `${SITE.repository}/issues/new?title=${encodeURIComponent(`Wiki correction: ${data.title}`)}&body=${encodeURIComponent(`Page: ${SITE.url}${path}\n\nDescribe the correction and include a source if possible:\n`)}`;
+const toc = headings.filter((heading) => heading.depth <= 3);
+---
+<BaseLayout title={data.title} description={data.summary} canonicalPath={path} pageClass="article-page">
+  <div class="article-wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Main page</a><span aria-hidden="true">›</span>
+      <a href={`/category/${categorySlug(data.category)}/`}>{data.category}</a><span aria-hidden="true">›</span>
+      <span aria-current="page">{data.title}</span>
+    </nav>
+
+    <div class="article-grid">
+      <article class="wiki-article" data-pagefind-body data-pagefind-meta={`category:${data.category}`}>
+        {data.aliases.length > 0 && <span class="search-index-terms" aria-hidden="true">{data.aliases.join(' · ')}</span>}
+        <header class="article-heading">
+          <div class="eyebrow">{data.pageType === 'strategy' ? 'Strategy analysis' : data.category}</div>
+          <h1 data-pagefind-meta="title">{data.title}</h1>
+          <div class="article-status">
+            <span class={`status status-${data.verification}`}>{data.verification.replace('-', ' ')}</span>
+            <span>Patch {data.patch}</span>
+            <span>Reviewed <time datetime={data.lastReviewed}>{data.lastReviewed}</time></span>
+          </div>
+        </header>
+
+        {data.infobox && <aside class="infobox" aria-label={`${data.title} summary`}>
+          <h2>{data.title}</h2>
+          <dl>
+            {Object.entries(data.infobox).map(([term, value]) => <><dt>{term}</dt><dd>{value}</dd></>)}
+          </dl>
+        </aside>}
+
+        {data.media && <figure class="article-media">
+          <img src={data.media.src} alt={data.media.alt} />
+          {data.media.caption && <figcaption>{data.media.caption}</figcaption>}
+        </figure>}
+
+        <div class="article-content"><slot /></div>
+
+        <section id="references" class="references" aria-labelledby="references-title">
+          <h2 id="references-title">References</h2>
+          <ol>
+            {data.sources.map((sourceId) => {
+              const source = SOURCES[sourceId];
+              return <li>
+                {source.href ? <a href={source.href} rel="noreferrer">{source.title}</a> : <strong>{source.title}</strong>}
+                <span>{source.note}</span>
+              </li>;
+            })}
+          </ol>
+        </section>
+
+        {related.length > 0 && <section class="related-pages" aria-labelledby="related-title">
+          <h2 id="related-title">See also</h2>
+          <ul>{related.map((entry) => <li><a href={articlePath(entry.data)}>{entry.data.title}</a><span>{entry.data.summary}</span></li>)}</ul>
+        </section>}
+
+        <nav class="article-pagination" aria-label="Article pagination">
+          {previous ? <a href={articlePath(previous.data)}><small>Previous</small><strong>{previous.data.title}</strong></a> : <span />}
+          {next && <a class="next" href={articlePath(next.data)}><small>Next</small><strong>{next.data.title}</strong></a>}
+        </nav>
+      </article>
+
+      <aside class="article-rail">
+        {toc.length > 0 && <nav class="page-toc" aria-label="On this page">
+          <strong>On this page</strong>
+          {toc.map((heading) => <a class={`toc-depth-${heading.depth}`} href={`#${heading.slug}`}>{heading.text}</a>)}
+        </nav>}
+        <nav class="page-tools" aria-label="Page tools">
+          <strong>Page tools</strong>
+          <a href={editUrl}>Edit on GitHub</a>
+          <a href={historyUrl}>View history</a>
+          <a href={issueUrl}>Report an error</a>
+          <button type="button" data-copy-link>Copy permanent link</button>
+        </nav>
+      </aside>
+    </div>
+  </div>
+  <script>
+    document.querySelector('[data-copy-link]')?.addEventListener('click', async (event) => {
+      await navigator.clipboard.writeText(location.href);
+      const button = event.currentTarget;
+      if (button instanceof HTMLButtonElement) {
+        const original = button.textContent;
+        button.textContent = 'Link copied';
+        setTimeout(() => { button.textContent = original; }, 1400);
+      }
+    });
+  </script>
+</BaseLayout>

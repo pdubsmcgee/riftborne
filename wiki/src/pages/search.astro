@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Search" description="Search Riftborne Wiki articles, headings, formulas, aliases, and tables." canonicalPath="/search/" pageClass="search-page">
+  <div class="content-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Main page</a><span>›</span><span>Search</span></nav>
+    <header class="plain-heading"><span>Full-text index</span><h1>Search</h1><p>Results include article titles, aliases, headings, formulas, tables, and body text.</p></header>
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <div id="pagefind-search" class="pagefind-host" aria-live="polite"></div>
+    <noscript><p>Search requires JavaScript. Browse the <a href="/a-z/">A–Z index</a> instead.</p></noscript>
+    <script is:inline src="/pagefind/pagefind-ui.js"></script>
+    <script is:inline>
+      window.addEventListener('DOMContentLoaded', () => {
+        const search = new PagefindUI({
+          element: '#pagefind-search',
+          showSubResults: true,
+          showImages: false,
+          resetStyles: false,
+          autofocus: true,
+          translations: { placeholder: 'Search the Riftborne Wiki' }
+        });
+        const query = new URLSearchParams(location.search).get('q');
+        if (query) search.triggerSearch(query);
+      });
+    </script>
+  </div>
+</BaseLayout>

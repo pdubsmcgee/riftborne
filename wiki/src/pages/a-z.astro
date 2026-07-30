@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { articlePath } from '../data/wiki';
+const articles = (await getCollection('articles')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const groups = Object.entries(Object.groupBy(articles, (article) => article.data.title[0].toUpperCase()));
+---
+<BaseLayout title="A–Z article index" description="Every Riftborne Wiki article in alphabetical order." canonicalPath="/a-z/" pageClass="index-page">
+  <div class="content-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Main page</a><span>›</span><span>A–Z</span></nav>
+    <header class="plain-heading"><span>Article index</span><h1>A–Z</h1><p>All {articles.length} reference and strategy pages.</p></header>
+    <nav class="letter-nav" aria-label="Alphabet index">
+      {groups.map(([letter]) => <a href={`#letter-${letter.toLowerCase()}`}>{letter}</a>)}
+    </nav>
+    <div class="alphabet-directory">
+      {groups.map(([letter, members]) => <section id={`letter-${letter.toLowerCase()}`}>
+        <h2>{letter}</h2>
+        <ul>{members?.map((article) => <li><a href={articlePath(article.data)}><strong>{article.data.title}</strong><span>{article.data.summary}</span><small>{article.data.category}</small></a></li>)}</ul>
+      </section>)}
+    </div>
+  </div>
+</BaseLayout>

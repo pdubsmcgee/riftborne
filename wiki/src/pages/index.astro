@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CATEGORIES, SITE, articlePath } from '../data/wiki';
+
+const articles = (await getCollection('articles')).sort((a, b) => a.data.order - b.data.order);
+const starters = ['riftborne-overview', 'opening-priorities', 'resources', 'fleet-composition']
+  .map((slug) => articles.find((article) => article.data.slug === slug))
+  .filter(Boolean);
+const essential = ['combat-power', 'shield-integrity', 'objectives-and-victory', 'official-multiplayer', 'advanced-tactics-and-edge-cases']
+  .map((slug) => articles.find((article) => article.data.slug === slug))
+  .filter(Boolean);
+const recentlyReviewed = [...articles]
+  .sort((a, b) => b.data.lastReviewed.localeCompare(a.data.lastReviewed) || b.data.order - a.data.order)
+  .slice(0, 6);
+---
+<BaseLayout description={SITE.description} pageClass="home-page">
+  <div class="home-wrap">
+    <section class="wiki-intro">
+      <div>
+        <span class="eyebrow">Independent reference · Patch {SITE.patch}</span>
+        <h1>Riftborne Wiki</h1>
+        <p>Mechanics, formulas, strategy, and multiplayer knowledge organized as a searchable, patch-aware reference.</p>
+      </div>
+      <form class="portal-search" action="/search/" method="get" role="search">
+        <label for="portal-query">Search {articles.length} articles</label>
+        <div><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><input id="portal-query" name="q" type="search" placeholder="Search ships, buildings, formulas, or tactics" /><button>Search</button></div>
+      </form>
+    </section>
+
+    <section class="notice-bar" aria-label="Patch status">
+      <strong>Current reference: patch {SITE.patch}</strong>
+      <span>Installed build reviewed {SITE.reviewed}</span>
+      <a href="/wiki/sources-and-confidence/">How verification works</a>
+    </section>
+
+    <section class="portal-section start-section">
+      <div class="section-heading">
+        <div><span>New commanders</span><h2>Start here</h2></div>
+        <a href="/category/getting-started/">All beginner pages</a>
+      </div>
+      <ol class="start-list">
+        {starters.map((article, index) => article && <li>
+          <a href={articlePath(article.data)}>
+            <small>{String(index + 1).padStart(2, '0')}</small>
+            <div><strong>{article.data.title}</strong><span>{article.data.summary}</span></div>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg>
+          </a>
+        </li>)}
+      </ol>
+    </section>
+
+    <section class="portal-section">
+      <div class="section-heading">
+        <div><span>Browse the wiki</span><h2>Topics</h2></div>
+        <a href="/a-z/">A–Z article index</a>
+      </div>
+      <div class="topic-grid">
+        {CATEGORIES.map((category) => {
+          const count = articles.filter((article) => article.data.category === category.name).length;
+          return <a href={`/category/${category.slug}/`}>
+            <span class="topic-symbol" aria-hidden="true">{category.name.slice(0, 1)}</span>
+            <strong>{category.name}</strong>
+            <p>{category.description}</p>
+            <small>{count} {count === 1 ? 'article' : 'articles'}</small>
+          </a>;
+        })}
+      </div>
+    </section>
+
+    <div class="portal-columns">
+      <section class="portal-section compact">
+        <div class="section-heading"><div><span>Core reference</span><h2>Frequently needed</h2></div></div>
+        <ul class="link-index">
+          {essential.map((article) => article && <li><a href={articlePath(article.data)}><strong>{article.data.title}</strong><span>{article.data.category}</span></a></li>)}
+        </ul>
+      </section>
+      <section class="portal-section compact">
+        <div class="section-heading"><div><span>Maintenance</span><h2>Recently reviewed</h2></div></div>
+        <ul class="link-index">
+          {recentlyReviewed.map((article) => <li><a href={articlePath(article.data)}><strong>{article.data.title}</strong><time datetime={article.data.lastReviewed}>{article.data.lastReviewed}</time></a></li>)}
+        </ul>
+      </section>
+    </div>
+
+    <section class="contribute-strip">
+      <div><span>Curated on GitHub</span><h2>Found an error or missing interaction?</h2><p>Corrections are reviewed against the active Codex, installed patch data, and primary documentation.</p></div>
+      <a href={`${SITE.repository}/issues/new`}>Report a correction</a>
+    </section>
+  </div>
+</BaseLayout>
