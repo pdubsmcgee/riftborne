@@ -11,7 +11,9 @@ verification: confirmed
 lastReviewed: '2026-07-30'
 order: 67
 aliases: []
-relatedPages: []
+relatedPages:
+  - live-world-values
+  - combat-simulator
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
 ruleset: both

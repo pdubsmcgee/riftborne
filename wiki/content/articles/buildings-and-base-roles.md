@@ -33,3 +33,15 @@ Current building names are culture-specific. A role should therefore be identifi
 Additional copies and maximum levels are not uniform across every structure. The construction screen states whether another copy is available and what prerequisite unlocks it. Use that screen for the active campaign rather than assuming that all structures share one cap.
 
 Specialization remains a strategic choice: production colonies protect continuous output, shipbuilding colonies protect queues and Astra, logistics colonies shorten supply paths, and fortified colonies combine stationed ships with current defensive infrastructure.
+
+## Read effects, not inherited labels
+
+The same functional role has different culture-specific names. Identify production, capacity, logistics, defense, static attack, shipbuilding, siege, or special effects before comparing cultures.
+
+## Design around the job
+
+An economy base protects output and capacity horizon. A launch base protects queues, Astra runway, and route coverage. A fortress protects stationed defense and response access. An objective base protects the exact prerequisites shown by its current site.
+
+## Revisit specialization
+
+As the front moves, review obsolete structures, vulnerable stockpiles, queue use, and whether the base still shortens a route that matters.

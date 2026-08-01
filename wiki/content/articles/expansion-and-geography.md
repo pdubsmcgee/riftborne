@@ -13,6 +13,8 @@ order: 18
 aliases: []
 relatedPages:
   - how-to-value-a-tile
+  - settlement-slots
+  - outpost-types
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
 ruleset: core

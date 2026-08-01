@@ -30,3 +30,15 @@ mechanicDependencies: []
 Resource-building increments are campaign inputs. The current executable applies the configured increment to the matching production building, but a wiki-wide coefficient would be wrong for worlds that change that setting. [Evidence](#evidence-runtime-economy-1175)
 
 Use the active colony preview for current hourly production and the projected change shown for an upgrade. Comparisons between worlds must state the campaign settings used.
+
+## Safe comparison method
+
+Use the upgrade preview on the active colony. Record current production, projected production, level, world identifier, and capture time. Repeat the same method for the comparison colony instead of applying a coefficient copied from another campaign.
+
+## Capacity consequence
+
+Production upgrades shorten the time until that resource reaches its cap. An upgrade that looks efficient can still waste output if the matching capacity horizon or spending plan is not adjusted.
+
+## Publishing rule
+
+A universal formula belongs in the wiki only when it is exposed by current build evidence and cannot be overridden by the world. Otherwise the article documents the method, not a borrowed number.

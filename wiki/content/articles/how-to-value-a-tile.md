@@ -37,3 +37,24 @@ Rank a target on four axes:
 4. **Exposure:** how many hostile launch bases can reach it before your faction can?
 
 A modest tile inside a reinforcement triangle is often worth more than a spectacular tile hanging alone in enemy space.
+
+## Why it works
+
+The best tile is the one that improves the empire’s network. Raw yield matters, but reach, support, and exposure determine whether that yield remains usable during war.
+
+## Execution
+
+- Record the tile’s displayed effects and allowed settlement type.
+- Measure routes from current production bases and allies.
+- Count hostile launch options inside the response window.
+- State the tile’s role before spending the colonization hull.
+
+## Risks and counterplay
+
+- A high-yield isolated tile can become a permanent escort burden.
+- Visual proximity is unreliable on a wrapped map.
+- The wrong settlement type can block the infrastructure the plan expects.
+
+## Assumptions and ruleset
+
+This is strategic analysis, not a guaranteed outcome. It assumes the linked mechanic pages still match the active build and that current-world roster, modifiers, travel times, intelligence age, and opponent response have been checked before commitment.

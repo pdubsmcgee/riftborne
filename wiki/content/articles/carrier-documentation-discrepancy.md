@@ -26,3 +26,15 @@ mechanicDependencies: []
 Carrier effects are roster-dependent. The active multiplayer operator can supply a custom or detached ship roster, so a carrier coefficient copied from another campaign is not reliable. [Evidence](#evidence-live-world-1175)
 
 Use the current Codex roster and combat preview for the active world. This wiki does not publish a universal carrier percentage until the value is exposed by a current, ruleset-specific source.
+
+## Why a universal value is unsafe
+
+Carrier strength depends on the carrier entry, the ships receiving its effect, and the active combat context. A custom roster can change any of those inputs while leaving the hull’s general role intact.
+
+## How to document a carrier test
+
+Record the world identifier, capture time, carrier hull and count, supported fleet, both cultures, target composition, infrastructure, directives, SPUs, mission, simulator seed, and number of runs. Compare the same fixture with and without the carrier rather than quoting the resulting aggregate power alone.
+
+## Practical decision
+
+Use a carrier when its measured marginal result is worth its cost, speed effect on the fleet, upkeep, and opportunity cost. Re-run the comparison after a roster or world-setting change.

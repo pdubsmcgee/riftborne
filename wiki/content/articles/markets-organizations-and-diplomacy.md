@@ -32,3 +32,15 @@ Markets, organizations, contracts, and diplomacy are multiplayer systems whose a
 Use the current transaction confirmation screen for exchange quantities, reserved resources, cargo requirements, fees, shares, loans, and contract terms. This wiki does not publish universal prices or timers where the operator can change the world configuration.
 
 Strategically, treat logistics and diplomacy as combat support: confirm who can ship resources, who can reinforce, which missions the current stance permits, and what public action will reveal to rivals.
+
+## Markets
+
+Treat every offer as a logistics commitment. Confirm what becomes reserved, what must travel, when value arrives, and what emergency cargo remains free. Price alone does not describe operational cost.
+
+## Organizations and contracts
+
+Read the active confirmation screens before accepting obligations. Shares, loans, fees, permissions, and timers are world-state facts and should be recorded with the transaction.
+
+## Diplomacy
+
+Before a coordinated mission, confirm the current relationship, who can change it, and whether every participant sees the same plan.

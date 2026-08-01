@@ -36,3 +36,15 @@ Solis Battery is the Astraean static attack building. It adds flat attack agains
 Its effect is culture-dependent. The active Codex and combat simulator should be used for a specific level and world; this page deliberately avoids copying a value from defensive infrastructure or converting its level into an unsupported fleet-power total.
 
 The Varkon and Veil structures in the same role are Warbattery and Duskbattery. [Evidence](#evidence-building-names-1175)
+
+## Role in defense
+
+Solis Battery contributes attack against both light and heavy hulls while it stands and a stationed garrison is present. It strengthens the exchange but does not replace the garrison, create cargo, or provide siege capability.
+
+## Distinguish it from Solis Aegis
+
+Solis Aegis is the Astraean defensive-structure role and participates in integrity mechanics. Solis Battery is static attack infrastructure. Comparing a Battery level directly with integrity or calling it a shield produces an invalid forecast.
+
+## Evaluating a level
+
+Use the Codex and simulator with exact Battery level, stationed fleet, enemy mix, and active-world modifiers. Publish the result only with those inputs and roster provenance. [Evidence](#evidence-runtime-combat-1175)

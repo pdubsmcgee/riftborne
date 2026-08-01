@@ -31,3 +31,24 @@ Varkon window stack is a strategy pattern derived from documented Riftborne mech
 
 
 Concentrate current Varkon bonuses, fresh intelligence, allied arrival times, and multiple launches inside the same response window. Treat any ability name, duration, and cooldown as a live Codex value rather than a permanent rule.
+
+## Why it works
+
+Concentrating several verified advantages inside one response window can produce more value than using each as soon as it becomes available.
+
+## Execution
+
+- Confirm every active bonus and duration in the current Codex.
+- Refresh target intelligence.
+- Synchronize allied arrivals by displayed travel time.
+- Define which launch proceeds if one participant misses the window.
+
+## Risks and counterplay
+
+- Waiting may surrender an earlier opportunity.
+- A stale input can invalidate the stack.
+- Concentrated fleets leave origin colonies exposed.
+
+## Assumptions and ruleset
+
+This is strategic analysis, not a guaranteed outcome. Verify the linked mechanics and the active world’s roster, modifiers, travel times, intelligence age, and opponent response before committing.

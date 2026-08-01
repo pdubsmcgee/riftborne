@@ -34,3 +34,15 @@ Fleet power is a context-sensitive preview rather than a fixed conversion from h
 A displayed value such as **3,200 power has no universal ship count**. It can describe materially different fleets because hull lines, culture, roster settings, infrastructure, directives, SPUs, tactics, mission type, and the opposing composition all affect the estimate.
 
 Use the in-game combat simulator with the exact active-world roster. Record both sides, infrastructure, modifiers, and mission type whenever quoting a power result.
+
+## What the number can do
+
+Fleet power is useful for comparing fully specified scenarios inside the same roster and ruleset. It can help identify whether a composition change improves the preview against a particular target.
+
+## What the number cannot do
+
+It does not reveal ship count, replacement cost, cargo, travel time, siege survival, or strategic value. Two fleets with the same displayed power can solve different missions and perform differently against the same defender mix.
+
+## How to quote it responsibly
+
+Attach the roster provenance, cultures, ship counts, infrastructure, mission, target mix, modifiers, and capture time. Without those inputs, “3,200 power” is context rather than a reproducible combat claim.

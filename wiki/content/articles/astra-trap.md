@@ -35,3 +35,24 @@ Astra trap is a strategy pattern derived from documented Riftborne mechanics and
 Raid Astra shortly before a known upkeep deficit or incoming reinforcement. The loot may matter less than shortening the target’s displayed runway. Do not assume a universal attrition order or interval; both must be confirmed in the current runtime before the tactic is timed.
 
 **Counter:** preserve an Astra reserve, arrange emergency shipments, and alert allies before the runway becomes critical.
+
+## Why it works
+
+The tactic converts an economic raid into a timing attack. The meaningful target is not a fixed amount of Astra; it is the point at which the colony’s displayed runway becomes shorter than its resupply or reinforcement response.
+
+## Execution
+
+- Obtain a recent resource and garrison observation.
+- Estimate the runway again with any incoming ships included.
+- Compare a raid, blockade pressure, and a direct attack before choosing the lowest-cost way to create the deficit.
+- Schedule the follow-up only after the first result is known.
+
+## Risks and counterplay
+
+- A shipment can erase the deficit before it matters.
+- A stale upkeep estimate can make the entire sequence irrelevant.
+- Repeated raids may disclose the real follow-up target.
+
+## Assumptions and ruleset
+
+This is strategic analysis, not a guaranteed outcome. It assumes the linked mechanic pages still match the active build and that current-world roster, modifiers, travel times, intelligence age, and opponent response have been checked before commitment.

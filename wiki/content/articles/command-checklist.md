@@ -39,3 +39,15 @@ At each meaningful login:
 6. Re-evaluate travel times, not just map distance.
 7. Ask what the empire should become over the next two to four launch windows.
 8. Tell allies anything that changes their decisions.
+
+## Why the order matters
+
+Inbound threats and faction messages come first because they can invalidate every queued plan. Astra and capacity follow because they determine whether assets survive and production continues. Only then should a commander optimize new construction or launches.
+
+## Handoff note
+
+Before leaving, record the next completion, next cap, critical arrival, objective change, and any decision an ally may need to make.
+
+## Periodic review
+
+Reassess base roles, response-time cells, objective route, and obsolete market commitments. Repetition is valuable only while the checklist reflects the current campaign.

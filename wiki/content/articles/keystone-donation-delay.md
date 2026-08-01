@@ -33,3 +33,24 @@ mechanicDependencies:
 Keystone funding timing is a faction strategy built around the current Valor path. [Evidence](#evidence-runtime-objectives-1175)
 
 Confirm the Keystone’s current vision capacity, pending contribution, Valor Conduit level, defensive coverage, and active-world victory panel before sending faction resources. Funding that outruns capacity or leaves the site undefended can create visible progress without durable advantage.
+
+## Why it works
+
+Objective funding creates value only when the site can hold and convert it. Delaying a contribution can preserve flexibility while defenses, capacity, or conduit construction catch up.
+
+## Execution
+
+- Read the live victory and Keystone panels.
+- Confirm ownership, current capacity, pending contributions, and defense.
+- Coordinate the contribution with the faction’s coverage window.
+- Recheck immediately before committing because objective information ages quickly.
+
+## Risks and counterplay
+
+- Excessive delay gives the opposing faction uncontested time.
+- Public coordination may reveal the timing window.
+- A contribution without defense can become progress for the next controller rather than your faction.
+
+## Assumptions and ruleset
+
+This is strategic analysis, not a guaranteed outcome. It assumes the linked mechanic pages still match the active build and that current-world roster, modifiers, travel times, intelligence age, and opponent response have been checked before commitment.

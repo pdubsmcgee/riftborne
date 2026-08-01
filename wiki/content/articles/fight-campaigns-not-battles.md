@@ -42,3 +42,24 @@ A multiplayer attack should answer:
 - What is the diplomatic cost?
 
 If those answers are missing, raid, spy, contract, or wait.
+
+## Why it works
+
+A favorable report can still be a strategic loss when replacement time, travel exposure, or the absence of siege leaves the map unchanged.
+
+## Execution
+
+- Write the desired map outcome before composing the fleet.
+- Price replacement and return exposure alongside the attack.
+- Assign defense for every launch base that will be weakened.
+- Define the follow-up action and the condition that cancels it.
+
+## Risks and counterplay
+
+- Tactical success can strand the fleet far from the next objective.
+- Allies may optimize for different outcomes unless the purpose is explicit.
+- Repeated commitment can turn sunk cost into campaign failure.
+
+## Assumptions and ruleset
+
+This is strategic analysis, not a guaranteed outcome. It assumes the linked mechanic pages still match the active build and that current-world roster, modifiers, travel times, intelligence age, and opponent response have been checked before commitment.

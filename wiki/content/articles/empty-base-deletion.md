@@ -33,3 +33,24 @@ Empty-base deletion is a strategy pattern derived from documented Riftborne mech
 
 
 Siege spends against building levels and removes a non-spawn base when everything reaches zero. If conquest is unnecessary, a focused demolition can erase the position and its reinforcement geometry.
+
+## Why it works
+
+A demolition campaign is about removing a position, not winning a single ship battle. The attack must preserve enough siege capability to convert fleet victory into building loss.
+
+## Execution
+
+- Decide whether removal is better than repeated raiding or containment.
+- Select the exact building target in the current simulator.
+- Protect siege behind the combat line.
+- Re-simulate after every report because the remaining structure changes the next attack.
+
+## Risks and counterplay
+
+- The defender can reinforce between waves.
+- A victory without surviving siege does not achieve the map objective.
+- Removing a base may open the tile or settlement capacity for a replacement elsewhere.
+
+## Assumptions and ruleset
+
+This is strategic analysis, not a guaranteed outcome. It assumes the linked mechanic pages still match the active build and that current-world roster, modifiers, travel times, intelligence age, and opponent response have been checked before commitment.

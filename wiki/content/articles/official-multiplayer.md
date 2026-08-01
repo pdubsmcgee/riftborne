@@ -36,3 +36,24 @@ Official multiplayer rewards coordinated logistics, current intelligence, respon
 The official world is real-time, so single-player time-advance tactics do not transfer. Its roster, modifiers, population, faction structure, and objective state are live-world values; capture them with a world identifier and timestamp before using them in a plan. [Evidence](#evidence-live-world-1175)
 
 The best approach is operational:
+
+## Why it works
+
+Persistent multiplayer rewards plans that survive real absence, asynchronous allies, and opponent reaction. The strongest plan is legible enough for allies to continue without its author online.
+
+## Execution
+
+- Record the active world identifier and settings used.
+- Organize coverage by response time and active period.
+- Timestamp intelligence and objective observations.
+- Leave concise launch, resupply, and abort conditions.
+
+## Risks and counterplay
+
+- Single-player pacing assumptions do not transfer.
+- Operator-controlled values can invalidate copied build orders.
+- A plan requiring everyone online simultaneously is fragile.
+
+## Assumptions and ruleset
+
+This is strategic analysis, not a guaranteed outcome. Verify the linked mechanics and the active world’s roster, modifiers, travel times, intelligence age, and opponent response before committing.

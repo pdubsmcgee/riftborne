@@ -33,3 +33,24 @@ Separate public plans from launch orders is a strategy pattern derived from docu
 
 
 Maintain a broad faction plan (“secure western Inner Keystone”), but share exact fleet composition and launch time only with participants. Assume enemy spy snapshots and social leakage exist.
+
+## Why it works
+
+A faction needs shared intent but does not need every operational detail exposed to every observer. Separating objective from execution reduces the value of social leakage.
+
+## Execution
+
+- Publish the broad objective and support needs.
+- Keep exact composition, route, and launch time with participants.
+- Give nonparticipants clear defensive or logistics tasks.
+- Reveal more only when coordination benefit exceeds information risk.
+
+## Risks and counterplay
+
+- Too much secrecy causes duplicated action.
+- A small planning group can become a single point of failure.
+- In-game observations may reveal the operation anyway.
+
+## Assumptions and ruleset
+
+This is strategic analysis, not a guaranteed outcome. Verify the linked mechanics and the active world’s roster, modifiers, travel times, intelligence age, and opponent response before committing.

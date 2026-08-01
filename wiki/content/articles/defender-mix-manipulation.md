@@ -31,3 +31,24 @@ Defender-mix manipulation is a strategy pattern derived from documented Riftborn
 
 
 Power weights anti-light/anti-heavy values against fleet composition. Feeding or removing a screen changes the opponent’s weighted efficiency. Scout compositions, then counter the share—not the ship count.
+
+## Why it works
+
+Combat estimates react to the opposing light/heavy mix. The useful question is therefore which target share the defender presents, not merely how many hulls it owns.
+
+## Execution
+
+- Record the defender’s current light and heavy shares.
+- Preview more than one attacking mix.
+- Account for infrastructure and reinforcements separately.
+- Use a small first action only when its strategic purpose justifies revealing intent.
+
+## Risks and counterplay
+
+- A refreshed garrison can reverse the preferred matchup.
+- Displayed aggregate power can conceal a poor target-class fit.
+- Sacrificial setup waves may cost more than the efficiency gained.
+
+## Assumptions and ruleset
+
+This is strategic analysis, not a guaranteed outcome. It assumes the linked mechanic pages still match the active build and that current-world roster, modifiers, travel times, intelligence age, and opponent response have been checked before commitment.

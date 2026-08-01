@@ -29,3 +29,24 @@ Wrapped-edge backdoor is a strategy pattern derived from documented Riftborne me
 
 
 Players read a rectangular map emotionally even though it is toroidal. Expand and launch across the seam; measure both routes.
+
+## Why it works
+
+The galaxy wraps, so a displayed edge is a seam rather than a wall. Players who plan only through the center can leave a shorter route unobserved.
+
+## Execution
+
+- Measure both wrapped directions in the movement preview.
+- Map friendly and hostile arrival times across the seam.
+- Use the route for expansion, reconnaissance, or reinforcement only when support can follow.
+- Repeat the calculation for the actual hull mix.
+
+## Risks and counterplay
+
+- The same shortcut is available to the opponent.
+- A seam outpost can be isolated from conventional support.
+- Visual map intuition should never replace the displayed travel time.
+
+## Assumptions and ruleset
+
+This is strategic analysis, not a guaranteed outcome. It assumes the linked mechanic pages still match the active build and that current-world roster, modifiers, travel times, intelligence age, and opponent response have been checked before commitment.

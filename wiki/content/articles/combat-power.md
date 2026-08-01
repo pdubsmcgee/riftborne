@@ -16,6 +16,7 @@ aliases:
   - 3200 power
 relatedPages:
   - carrier-documentation-discrepancy
+  - combat-simulator
 legacyHash: combat-without-the-fog-machine
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
@@ -36,3 +37,15 @@ The active roster, attacker and defender cultures, light/heavy mix, infrastructu
 The 11.75 built-in simulator was run with seed 1175 for 200 trials per culture pairing. The profile used 15 attacking light fighters against 10 defending destroyers with level-5 central infrastructure. In all nine culture pairings, the defender won every run and the attacking force was lost. [Evidence](#evidence-combat-matrix-1175)
 
 This result proves only that recorded fixture. It should not be generalized to a custom multiplayer roster or a different building, directive, SPU, or tactics configuration.
+
+## Composition sensitivity
+
+The estimate changes with the opposing light/heavy share and current modifiers. A force can look strong in one fixture and weak in another without changing ship count.
+
+## Reproducible comparison
+
+Keep every input fixed, change one variable, and use recorded seeds. Store exact fleets, cultures, infrastructure, mission, target, modifiers, roster provenance, and build.
+
+## Strategic interpretation
+
+Combat output does not include cargo value, siege objective, travel exposure, replacement time, or defense left behind. Those belong beside the simulator result, not inside a universal conversion.

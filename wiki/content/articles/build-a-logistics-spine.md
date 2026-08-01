@@ -33,3 +33,24 @@ Build a logistics spine is a strategy pattern derived from documented Riftborne 
 
 
 Use backline production, forward launch hubs, and fortified transfer nodes. Keep slow siege behind the line until the target is confirmed. Pre-position cargo and Astra before the war, because market travel after the alarm is often too late.
+
+## Why it works
+
+A logistics spine reduces the number of long, fragile movements required to keep a front supplied. It is a network of production bases, transfer points, and launch bases chosen by actual travel time.
+
+## Execution
+
+- Identify the front’s likely launch and fallback points.
+- Place cargo and Astra behind the exposed edge, not on it.
+- Move siege only after intelligence establishes a structural target.
+- Give each node a named owner and resupply condition.
+
+## Risks and counterplay
+
+- A single obvious transfer node becomes a high-value target.
+- Forward stockpiles create losses if the front collapses.
+- Combining every fleet at one hub can leave the rear undefended.
+
+## Assumptions and ruleset
+
+This is strategic analysis, not a guaranteed outcome. It assumes the linked mechanic pages still match the active build and that current-world roster, modifiers, travel times, intelligence age, and opponent response have been checked before commitment.

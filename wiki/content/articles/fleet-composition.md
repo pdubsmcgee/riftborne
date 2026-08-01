@@ -39,3 +39,15 @@ A practical force has:
 - current intelligence.
 
 Never merge the colony ship, siege train, cargo train, and reaction fleet merely because the interface permits it. Their slowest hull and different objectives make the combined fleet worse at every job.
+
+## Build from the mission backward
+
+Start with the result: defend, intercept, raid, destroy infrastructure, colonize, scout, or reinforce. Then add only the roles needed to produce that result. A fleet built from every available hull often inherits the slowest travel profile while preserving none of the support roles efficiently.
+
+## Compare alternatives
+
+Preview at least two light/heavy mixes against the observed target. For raids, repeat the comparison with expected surviving cargo. For attacks, test whether enough siege survives to affect the chosen building. For defense, verify that the ships will be stationed and that the destination can sustain their Astra demand.
+
+## Keep modules separable
+
+Reaction, cargo, siege, colonization, and intelligence groups should remain separate until the mission requires assembly.

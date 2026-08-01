@@ -37,3 +37,15 @@ Patch 11.75 presents two standard victory tracks:
 The active multiplayer operator owns world settings and may change campaign parameters, so the live victory panel is authoritative. [Evidence](#evidence-runtime-objectives-1175)
 
 Between those objectives, good play means maintaining capacity headroom, protecting Astra-supported garrisons, keeping useful queues active, shortening response paths, and refreshing intelligence before committing a fleet.
+
+## Three layers of play
+
+The economy layer creates resources and queues. The operational layer converts them into movement, intelligence, defense, and replacement. The objective layer converts sustained map control into victory progress. Weakness in any layer eventually limits the others.
+
+## Information horizon
+
+Distinguish current UI facts, recent observations, and forecasts. Longer plans need checkpoints where live state replaces assumptions.
+
+## Multiplayer consequence
+
+Persistent time makes coverage and handoffs strategic resources. Clear response ownership can outperform larger assets that arrive separately or too late.

@@ -33,3 +33,15 @@ Siege is the building-damage stage of a successful attack. Surviving siege capab
 Siege is not interchangeable with raid cargo or ordinary combat power. A fleet that wins the ship battle can still fail to achieve its structural objective if too little siege capability survives.
 
 Use the current simulator with the exact target building and infrastructure. World-specific building costs and modifiers make a universal “siege per level” table unreliable.
+
+## Structural objective
+
+Select the building because its removal changes the defender’s next decision: production, capacity, logistics, defense, static attack, shipbuilding, siege support, or objective progress. “Any damage” is not a sufficient campaign objective.
+
+## Fleet construction
+
+The combat line must survive long enough for siege capability to remain after the ship battle. Compare alternate compositions in the current simulator and specify the target building. More siege at launch is not automatically better if the supporting fleet collapses.
+
+## Multi-wave planning
+
+Rebuild the fixture after every impact. Integrity, stationed ships, building levels, resources, and reinforcements can all change before the next wave.

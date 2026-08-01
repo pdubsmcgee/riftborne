@@ -38,3 +38,15 @@ Aegis Vanguard is the Fighter directive path. It contains ten stages that progre
 Level 5, **Shock Spearhead**, requires a victory over a defending fleet with more than 10,000 power. The installed directive data describes intermediate stages as guidance and progression milestones rather than separate combat bonuses.
 
 Completing all ten stages grants the permanent Aegis Vanguard capstone: **+8% fleet attack**. A reference to “Aegis level 5” therefore identifies directive progress, not a 5% or half-strength version of the final buff.
+
+## Interpreting directive progress
+
+A stage number identifies progress through the path. It must not be converted into a proportional combat bonus unless the current directive table grants one at that stage.
+
+## Planning the requirement
+
+Use the active preview to identify a defender satisfying the stage requirement, then judge the battle on strategic value as well as eligibility. Spending an irreplaceable force solely for directive progress can be a poor trade.
+
+## After completion
+
+Re-run fleet comparisons with the completed effect present and label directive state whenever publishing a power result. [Evidence](#evidence-runtime-combat-1175)

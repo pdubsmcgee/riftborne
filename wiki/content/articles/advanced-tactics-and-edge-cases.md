@@ -47,3 +47,13 @@ Advanced tactics use documented interactions and edge cases to create advantages
 
 
 These tactics follow from confirmed rules. “Cheese” means exploiting incentives and timing, not abusing bugs or unauthorized access.
+
+## How to use this section
+
+Every strategy page identifies the verified mechanic it depends on, the assumptions required for the idea to work, and the most direct counterplay. “Advanced” does not mean universally stronger; it means the tactic extracts value from timing, information, fleet separation, or an opponent’s planning habits.
+
+## Evaluation rule
+
+Before using a tactic, verify its prerequisite page, substitute the active world’s roster and modifiers, and define an abort condition. If the tactic depends on a stale report or an unsupported numerical conversion, it is not ready to launch.
+
+The most transferable ideas in this section concern response-time organization, mission-specific fleets, objective information, and logistics.

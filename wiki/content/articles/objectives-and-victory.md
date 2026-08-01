@@ -13,6 +13,8 @@ order: 36
 aliases: []
 relatedPages:
   - choosing-a-victory-route
+  - origin-wormhole
+  - valor-victory
 legacyHash: objectives-and-the-late-game
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
