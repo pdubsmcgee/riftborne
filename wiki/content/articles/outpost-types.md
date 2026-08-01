@@ -16,6 +16,8 @@ relatedPages:
   - settlement-slots
   - rare-metals-and-spus
   - how-to-value-a-tile
+  - mining-outposts
+  - settlement-procedure
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
 ruleset: core
@@ -47,3 +49,9 @@ The target tile constrains what can be founded, so settlement type is not merely
 ## Loss and replacement
 
 Any of these outposts stops counting for its former owner after ownership is lost. The freed capacity remains attached to the founding colony, not to the tile or the conquering player.
+
+## Before committing a colonization hull
+
+Confirm the exact settlement option shown on the target, the selected founding origin, that origin's available capacity, pending colonization fleets, displayed cost, and travel time. The type is constrained by the tile, while the slot is constrained by the origin.
+
+See [Founding a colony or outpost](/wiki/settlement-procedure/) for the full procedure and [Rare-metal mining outposts](/wiki/mining-outposts/) for the SPU-specific workflow.

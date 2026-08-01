@@ -1,0 +1,20 @@
+---
+interface Props {
+  status: 'confirmed' | 'patch-sensitive' | 'observed' | 'inferred' | 'strategy' | 'needs-verification';
+  title?: string;
+}
+
+const { status, title } = Astro.props;
+const labels = {
+  confirmed: 'Confirmed',
+  'patch-sensitive': 'Patch-sensitive',
+  observed: 'Observed',
+  inferred: 'Inferred',
+  strategy: 'Strategy analysis',
+  'needs-verification': 'Needs verification'
+};
+---
+<aside class={`reference-callout reference-callout-${status}`} role="note">
+  <strong>{title ?? labels[status]}</strong>
+  <div><slot /></div>
+</aside>

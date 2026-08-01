@@ -15,6 +15,8 @@ aliases:
 relatedPages:
   - expansion-and-geography
   - outpost-types
+  - settlement-procedure
+  - troubleshooting-colonization
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
 ruleset: core
@@ -40,6 +42,18 @@ Losing the founding colony is different: its capacity does not migrate to anothe
 
 A colonization fleet already traveling from the origin counts while pending. This prevents the same capacity from being promised to multiple destinations. Recheck the origin after a launch is cancelled, resolved, or destroyed rather than assuming the slot display has already changed.
 
-## Multiplayer use
+## Quick answers
+
+**Does a conquered outpost consume the former owner's slot forever?** No. Once it is no longer in that player's qualifying owned settlements, it stops occupying the slot associated with its founding colony. [Evidence](#evidence-runtime-settlement-slots-1175)
+
+**Can a different colony automatically use the freed capacity?** No. Capacity belongs to the founding origin; another colony must have its own available slot.
+
+**Can I queue a replacement while the original colonization fleet is unresolved?** A pending colonization fleet counts against the origin, so the live slot panel must show availability before another launch.
+
+**What if the founding colony was lost?** Its capacity does not migrate. Select another surviving colony and inspect its independently unlocked capacity.
+
+For the full launch workflow, see [Founding a colony or outpost](/wiki/settlement-procedure/). If the action remains unavailable, follow [Troubleshooting colonization and outposts](/wiki/troubleshooting-colonization/).
+
+## Live-world confirmation
 
 After losing an outpost, verify ownership and the origin’s slot panel before building a replacement plan. The safest statement is “the slot should be available under the current rule”; the live launch screen remains authoritative for the exact world state.

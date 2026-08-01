@@ -52,7 +52,6 @@ function displayDate(value: string | null | undefined) {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(date);
 }
-function number(value: unknown) { const n = Number(value); return Number.isFinite(n) ? n : 0; }
 function reportTitle(report: ReportSummary) { return str(report.title || report.type || report.mission || report.missionType) || 'Battle report'; }
 function reportPlayers(report: ReportSummary) { return [report.attackerName || report.attacker, report.defenderName || report.defender].map(str).filter(Boolean).join(' -> ') || 'Participants classified'; }
 

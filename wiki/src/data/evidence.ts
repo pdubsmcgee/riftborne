@@ -11,7 +11,7 @@ export interface EvidenceRecord {
   kind: EvidenceKind;
   patch: '11.75';
   build: 'a7b5c7c';
-  verifiedAt: '2026-07-30';
+  verifiedAt: string;
   ruleset: 'core' | 'live-world' | 'both';
   transcript: string;
   method: string;
@@ -106,6 +106,28 @@ export const EVIDENCE: Record<string, EvidenceRecord> = {
     ruleset: 'core',
     transcript: 'Outpost availability counts only qualifying outposts currently owned and colonization fleets currently pending from the founding colony. A former outpost no longer in that owner’s base list, or one with no remaining building levels, does not occupy a slot.',
     method: 'Read-only inspection of SettlementRules.HasAvailableOutpostSlotForKind, CountFoundedOutpostsFromOrigin, CountPendingOutpostsFromOrigin, and OccupiesSettlementSlot.'
+  },
+  'runtime-organizations-1175': {
+    id: 'runtime-organizations-1175',
+    title: 'Current organization domain and accounting surfaces',
+    kind: 'current-client',
+    patch: '11.75',
+    build: 'a7b5c7c',
+    verifiedAt: '2026-08-01',
+    ruleset: 'core',
+    transcript: 'The current client contains organization identity and ownership records, shareholder and share-market snapshots, capital history, parent/subsidiary relationships, contracts, loans, defaults, credit ratings, dividends, buybacks, earnings, catalysts, and reinvestment surfaces. This inventory establishes that the systems exist; it does not establish formulas or live values.',
+    method: 'Read-only type and member inventory of OrganizationSystem, OrganizationStatsSystem, CreditRatingSystem, and organization domain records in the installed client.'
+  },
+  'organization-ui-1175': {
+    id: 'organization-ui-1175',
+    title: 'Current organization and finance screens',
+    kind: 'current-ui',
+    patch: '11.75',
+    build: 'a7b5c7c',
+    verifiedAt: '2026-08-01',
+    ruleset: 'live-world',
+    transcript: 'The current CLI exposes organization hub, owner, summary, shareholder, share-market, capital-history, global-loan, lender, borrower, repayment, loan-book, and contract screens. Exact labels, permissions, formulas, balances, and confirmation behavior remain live-state observations until captured from the active screen.',
+    method: 'Read-only inventory of the installed CLI HUD screen types; no player account or strategic state captured.'
   },
   'runtime-combat-1175': {
     id: 'runtime-combat-1175',

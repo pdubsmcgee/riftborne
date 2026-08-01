@@ -28,6 +28,18 @@ const sharedSchema = z.object({
     src: z.string(),
     alt: z.string(),
     caption: z.string().optional()
+  }).optional(),
+  fieldGuide: z.object({
+    title: z.string(),
+    caption: z.string().optional(),
+    rows: z.array(z.object({
+      field: z.string(),
+      meaning: z.string(),
+      changes: z.string(),
+      why: z.string(),
+      status: z.enum(['confirmed', 'observed', 'patch-sensitive', 'needs verification']),
+      evidenceIds: z.array(z.string()).min(1)
+    })).min(1)
   }).optional()
 });
 

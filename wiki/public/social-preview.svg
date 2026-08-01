@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Riftborne Wiki</title>
+  <desc id="desc">Independent patch-aware game reference for Riftborne 11.75.</desc>
+  <rect width="1200" height="630" fill="#101214"/>
+  <path d="M0 474h1200M0 510h1200M870 0v630M930 0v630" stroke="#24292e"/>
+  <circle cx="958" cy="195" r="122" fill="none" stroke="#d5a24c" stroke-width="3"/>
+  <path d="M854 250l208-110" stroke="#d5a24c" stroke-width="2"/>
+  <circle cx="1048" cy="145" r="12" fill="#d5a24c"/>
+  <text x="96" y="186" fill="#d5a24c" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="5">INDEPENDENT REFERENCE</text>
+  <text x="90" y="315" fill="#e7e5df" font-family="Georgia,serif" font-size="94">Riftborne Wiki</text>
+  <text x="96" y="380" fill="#929690" font-family="Segoe UI,Arial,sans-serif" font-size="30">Mechanics, field guides, and practical strategy</text>
+  <text x="96" y="548" fill="#e7e5df" font-family="Consolas,monospace" font-size="24">PATCH 11.75  ·  BUILD a7b5c7c</text>
+</svg>

@@ -98,6 +98,45 @@ Three strategic shapes are coherent, but their exact build order depends on the 
 
 The bad opening is not a specific build order. It is buying whatever happens to be affordable without deciding what the base is becoming.
 
+### Controls and menu map
+
+Canonical page: [/wiki/controls-and-menu-map/](https://riftbornewiki.317society.com/wiki/controls-and-menu-map/)
+
+Riftborne groups actions by the object being managed: the selected colony, the wider empire, military movement, intelligence, and system communication. Read the on-screen menu because it is the authoritative map for the current screen.
+
+```text
+Selected colony
+|- Infrastructure: buildings and construction queues
+|- Shipyards: ship training and available hulls
+`- Logistics: colony-specific movement and support
+
+Empire
+|- Colonies and outposts
+|- Factions and diplomacy
+`- Economy and market systems
+
+Military and intelligence
+|- Garrisons and fleet state
+|- Combat logs and tactical actions
+|- Star map and Codex
+`- Notifications, directives, and statistics
+```
+
+## Task map
+
+| Task | Start from | Confirm before acting |
+|---|---|---|
+| Build or inspect infrastructure | Selected colony's infrastructure screen | Colony, building, queue position, and cost |
+| Train ships | Selected colony's shipyard screen | Colony, hull, quantity, queue, and upkeep consequence |
+| Move or inspect fleets | Garrison, fleet list, or star map | Origin, destination, participants, mission, and arrival |
+| Find a prerequisite or current effect | Codex and selected action preview | Culture, current level, requirement, and build |
+| Review progression | Directives screen | Path, current stage, requirement, and completion state |
+| Diagnose an event | Notifications and combat logs | Time, location, participants, and outcome |
+
+## Needs verification
+
+This article intentionally omits a universal key table until the current interface bindings are captured without ambiguity. Menu letters and contextual actions should be copied only from a complete current screen, not from an older guide. [Evidence](#evidence-client-build-1175)
+
 ## Economy
 
 ### Resources
@@ -169,6 +208,27 @@ Before sending ships to an ally, ask for the destination’s current Astra amoun
 
 Reduce stationed demand, increase or redirect Astra supply, arrange a shipment, or shorten the period the fleet must remain. Exact attrition timing is intentionally omitted because the current roster and world settings can alter the result. [Evidence](#evidence-live-world-1175)
 
+## Recovery sequence
+
+1. Reopen the affected colony and record current Astra, capacity, and hourly trend.
+2. Identify newly stationed or returning fleets that changed demand.
+3. Check incoming supply and the time until it arrives.
+4. Compare that arrival with the displayed runway; do not rely on a remembered balance.
+5. Reduce stationed demand or increase supply before beginning optional construction.
+6. Reopen the resource panel after each major change and confirm that the trend moved as expected.
+
+## Common mistakes
+
+- Treating capacity as production: a larger Astra cap does not itself correct a negative hourly trend.
+- Sending more defenders without checking the destination's demand.
+- Counting an incoming shipment as already available.
+- Assuming a loss interval copied from another world is current.
+- Starting another Astra-consuming commitment during recovery without rereading the trend.
+
+## Needs verification
+
+The exact ordering of ship losses, grace periods, and any world-specific starvation modifier requires current runtime evidence. A useful capture includes the colony's Astra panel, full stationed roster, active modifiers, world, build, and timestamps before and after the transition.
+
 ### Production scaling caveat
 
 Canonical page: [/wiki/production-scaling-caveat/](https://riftbornewiki.317society.com/wiki/production-scaling-caveat/)
@@ -203,6 +263,23 @@ For planning, compare an SPU’s displayed marginal effect with the fleet or col
 
 A rare-metal site is the production source; an SPU is an installed improvement with a displayed target and effect. Owning a site does not automatically mean the resulting augmentation belongs on the nearest or largest fleet.
 
+## Workflow
+
+```text
+Eligible rare-metal site
+        |
+        v
+Mining outpost and site actions
+        |
+        v
+Rare-metal/SPU inventory -> crafting or transmutation
+        |
+        v
+Delivery state -> eligible recipient -> installed effect
+```
+
+At every arrow, open the current screen and confirm what moved, what remains committed, and which recipient is named. This prevents materials in progress from being mistaken for available inventory and completed items from being mistaken for installed effects.
+
 ## Allocation questions
 
 Which fleet or colony uses the affected system most often? Does the improvement help the current objective? Is the recipient likely to remain active and supplied? Would a lower apparent bonus create more immediate tempo elsewhere?
@@ -210,6 +287,126 @@ Which fleet or colony uses the affected system most often? Does the improvement 
 ## Evidence boundary
 
 The installed table confirms the available effect categories. Recipes, chance, delivery schedule, tier, and the final installed value must come from the current site and SPU screens before they are treated as facts. [Evidence](#evidence-current-data-1175)
+
+## Related procedures
+
+- [Noctium and Noctmarks](/wiki/noctium-and-noctmarks/) separates the terms from ordinary colony resources.
+- [Rare-metal mining outposts](/wiki/mining-outposts/) covers founding, origin capacity, and replacement after loss.
+- [SPU crafting and delivery](/wiki/spu-crafting-and-delivery/) provides a commitment checklist.
+- [SPU installation and stacking](/wiki/spu-installation-and-stacking/) explains how to verify an active effect without assuming stacking rules.
+
+### Noctium and Noctmarks
+
+Canonical page: [/wiki/noctium-and-noctmarks/](https://riftbornewiki.317society.com/wiki/noctium-and-noctmarks/)
+
+Noctium and Noctmarks appear in the rare-metal and SPU workflow. They are not a fifth and sixth colony resource: the colony resource panel continues to track Vulkron, Aurelite, Deuterium, and Astra. [Evidence](#evidence-current-data-1175)
+
+## Read the source screen first
+
+Use the rare-metal site and SPU screens to determine which quantity a current action consumes or produces. Do not substitute one term for the other merely because both appear in the same workflow.
+
+| Question | Where to check | Why it matters |
+|---|---|---|
+| What do I currently own? | Rare-metal or SPU inventory | Prevents planning from an old remembered balance. |
+| What does this action consume? | Action preview or confirmation panel | Confirms the required quantity before commitment. |
+| Is something in progress? | Site status and delivery state | Separates inventory from material already committed. |
+| Where will the result arrive? | Delivery or destination field | Prevents creating an improvement for the wrong recipient. |
+
+## Needs verification
+
+Patch-wide conversion ratios, award schedules, inventory limits, and transfer rules are not published here. Record the world identifier and capture time when reporting any of them because the live campaign can supply its own configuration. [Evidence](#evidence-live-world-1175)
+
+## Practical rule
+
+Describe a transaction as a complete sentence: what leaves which inventory, what is created, where it is delivered, and when it becomes usable. That wording catches most misunderstandings before an irreversible action.
+
+### SPU crafting and delivery
+
+Canonical page: [/wiki/spu-crafting-and-delivery/](https://riftbornewiki.317society.com/wiki/spu-crafting-and-delivery/)
+
+SPU crafting converts rare-metal-system inputs into an augmentation intended for a displayed target or inventory. The current data confirms many possible effect categories, but the active screen remains authoritative for the recipe and result. [Evidence](#evidence-current-data-1175)
+
+## Safe crafting procedure
+
+1. Open the relevant rare-metal or SPU screen.
+2. Record the selected recipe or result category.
+3. Read every required input and compare it with uncommitted inventory.
+4. Confirm the recipient or delivery destination.
+5. Read the estimated completion or delivery state.
+6. Commit only after the preview matches the intended use.
+7. Return after completion and verify where the item or effect appears.
+
+## Inventory states that look similar
+
+Materials on hand, materials committed to an action, a completed but undelivered result, and an installed effect are different states. When an expected item seems missing, check the current action, delivery destination, and recipient before reporting a loss.
+
+## Worked decision
+
+Suppose one result affects travel and another affects a ship class. The useful comparison is not which label looks stronger; it is which eligible recipient will use the effect during the next objective window. Keep the conclusion strategic until the current screen supplies the exact values.
+
+## Needs verification
+
+Universal recipes, odds, completion times, cancellation refunds, and delivery delays are not established by the available core evidence. Capture the complete confirmation panel if these details are needed for a future verified table. [Evidence](#evidence-live-world-1175)
+
+### SPU installation and stacking
+
+Canonical page: [/wiki/spu-installation-and-stacking/](https://riftbornewiki.317society.com/wiki/spu-installation-and-stacking/)
+
+An SPU becomes strategically useful when its effect is installed on an eligible recipient and the current interface shows that effect as active. The data exposes targets across fleet, colony, economy, capacity, research, travel, cargo, combat, and intelligence systems. [Evidence](#evidence-current-data-1175)
+
+## Installation checklist
+
+- Verify the SPU's effect category and eligible target.
+- Select the intended recipient rather than the nearest available one.
+- Read the before and after values when the interface provides them.
+- Confirm the installation action and then reopen the recipient.
+- Record the world and time for any numerical comparison.
+
+## Stacking
+
+Do not assume that two apparently similar effects add, multiply, replace one another, or share a cap. The safe test is to record the displayed value before installation, install one effect, reopen the screen, and record the displayed value again. Repeat only if the interface permits another installation.
+
+> **Needs verification:** patch-wide stacking order, duplicate-effect limits, removal rules, and refund behavior require a reproducible UI or runtime observation. They are intentionally not presented as universal mechanics.
+
+## Choosing a recipient
+
+Prioritize actual use over headline magnitude. A travel effect belongs where it changes relevant arrivals; a cargo effect belongs where surviving raiders or haulers use it; an economy effect belongs on a colony that will remain productive. Installation on an inactive or doomed asset produces little immediate tempo even when the displayed bonus is large.
+
+## Reporting an installed effect
+
+Include the SPU name, effect text, recipient, prior value, resulting value, world identifier, capture time, and any other active modifier. Without that context, a screenshot of one number cannot establish stacking behavior. [Evidence](#evidence-live-world-1175)
+
+### Marketplace offers, reserved cargo, and liquidity
+
+Canonical page: [/wiki/marketplace-cargo-and-liquidity/](https://riftbornewiki.317society.com/wiki/marketplace-cargo-and-liquidity/)
+
+A market screen can show an intention to trade without guaranteeing that the full quantity can execute immediately. Read price, quantity, cargo state, counterparty availability, and delivery state separately. [Evidence](#evidence-live-world-1175)
+
+## Five quantities to separate
+
+| Quantity | Meaning to verify |
+|---|---|
+| Colony inventory | Resource currently stored at the selected colony |
+| Available cargo | Capacity currently usable for a new movement or trade |
+| Reserved or committed cargo | Capacity already attached to another order or movement |
+| Listed quantity | Amount advertised by an offer |
+| Executable quantity | Amount the current confirmation preview will actually accept |
+
+## When cargo appears reserved
+
+Inspect active offers, pending transactions, fleets in transit, and the selected origin. Cancel or change nothing until the interface identifies which commitment owns the cargo. After a transaction resolves, reopen the relevant screens rather than relying on a stale summary.
+
+## When an offer will not fill
+
+Check that the offer is still active, the opposite side exists at an acceptable price, the selected colony holds the resource, sufficient uncommitted cargo exists, and the route or diplomatic state permits the action. A visible listing is not proof of immediate liquidity.
+
+## Reporting a market problem
+
+Record the world, capture time, selected colony, resource, side of the trade, displayed price and quantity, available and reserved cargo, confirmation message, and relevant pending movements. Remove player identity before publishing the transcript.
+
+## Needs verification
+
+Universal matching priority, partial-fill rules, cancellation treatment, fees, and delivery timing are not established by the current core evidence. Treat them as live-world observations until reproduced. [Evidence](#evidence-live-world-1175)
 
 ## Expansion and buildings
 
@@ -238,6 +435,32 @@ Buildings determine a colony’s production, capacity, logistics, military outpu
 Current building names are culture-specific. A role should therefore be identified by its displayed effect, not by carrying terminology from another culture into the article.
 
 Additional copies and maximum levels are not uniform across every structure. The construction screen states whether another copy is available and what prerequisite unlocks it. Use that screen for the active campaign rather than assuming that all structures share one cap.
+
+## Verified culture equivalents
+
+| Functional role | Astraean | Varkon | Veil | Verification |
+|---|---|---|---|---|
+| Vulkron, Aurelite, and Deuterium capacity | Solvault | Skarncache | Nyxvault | Current-client mapping |
+| Astra capacity | Heliovex | Voltforge | Gloamwell | Current-client mapping |
+| Astraean static attack | Solis Battery | Not applicable | Not applicable | Current-client effect |
+
+These names and roles come from the current client rather than an older generic building vocabulary. [Evidence](#evidence-building-names-1175)
+
+## Finding a prerequisite or copy unlock
+
+```text
+Infrastructure screen
+|- select the building row
+|- read the detail panel
+|  |- current level and copy count
+|  |- next cost and queue state
+|  `- prerequisite or next-copy unlock
+`- confirm the selected colony before queuing
+```
+
+When a building is unavailable, check the selected colony, current copies, level of every existing copy, central infrastructure, local slot capacity, queue state, and the exact detail-panel message. A prerequisite observed for one culture should not be renamed and applied to another without verifying its current equivalent.
+
+> **Needs verification:** A universal table of every building's maximum level, cost curve, copy threshold, and culture equivalent is not published because the current evidence set does not establish every row. Submit the current Codex or detail-panel text to extend this catalog safely.
 
 Specialization remains a strategic choice: production colonies protect continuous output, shipbuilding colonies protect queues and Astra, logistics colonies shorten supply paths, and fortified colonies combine stationed ships with current defensive infrastructure.
 
@@ -300,7 +523,19 @@ Losing the founding colony is different: its capacity does not migrate to anothe
 
 A colonization fleet already traveling from the origin counts while pending. This prevents the same capacity from being promised to multiple destinations. Recheck the origin after a launch is cancelled, resolved, or destroyed rather than assuming the slot display has already changed.
 
-## Multiplayer use
+## Quick answers
+
+**Does a conquered outpost consume the former owner's slot forever?** No. Once it is no longer in that player's qualifying owned settlements, it stops occupying the slot associated with its founding colony. [Evidence](#evidence-runtime-settlement-slots-1175)
+
+**Can a different colony automatically use the freed capacity?** No. Capacity belongs to the founding origin; another colony must have its own available slot.
+
+**Can I queue a replacement while the original colonization fleet is unresolved?** A pending colonization fleet counts against the origin, so the live slot panel must show availability before another launch.
+
+**What if the founding colony was lost?** Its capacity does not migrate. Select another surviving colony and inspect its independently unlocked capacity.
+
+For the full launch workflow, see [Founding a colony or outpost](/wiki/settlement-procedure/). If the action remains unavailable, follow [Troubleshooting colonization and outposts](/wiki/troubleshooting-colonization/).
+
+## Live-world confirmation
 
 After losing an outpost, verify ownership and the origin’s slot panel before building a replacement plan. The safest statement is “the slot should be available under the current rule”; the live launch screen remains authoritative for the exact world state.
 
@@ -329,6 +564,99 @@ The target tile constrains what can be founded, so settlement type is not merely
 ## Loss and replacement
 
 Any of these outposts stops counting for its former owner after ownership is lost. The freed capacity remains attached to the founding colony, not to the tile or the conquering player.
+
+## Before committing a colonization hull
+
+Confirm the exact settlement option shown on the target, the selected founding origin, that origin's available capacity, pending colonization fleets, displayed cost, and travel time. The type is constrained by the tile, while the slot is constrained by the origin.
+
+See [Founding a colony or outpost](/wiki/settlement-procedure/) for the full procedure and [Rare-metal mining outposts](/wiki/mining-outposts/) for the SPU-specific workflow.
+
+### Rare-metal mining outposts
+
+Canonical page: [/wiki/mining-outposts/](https://riftbornewiki.317society.com/wiki/mining-outposts/)
+
+A rare-metal mining outpost is the settlement type used on an eligible rare-metal site. It consumes a settlement slot from the colony that founded it and connects that site to the SPU workflow. [Evidence](#evidence-runtime-settlement-slots-1175)
+
+## Before launching
+
+1. Select the intended founding colony.
+2. Confirm that the target offers the mining-outpost action.
+3. Read the origin's available settlement capacity.
+4. Check for a pending colonization fleet from that origin.
+5. Review the displayed cost, travel time, and destination.
+6. Confirm that the route and resulting outpost can be defended.
+
+The target tile determines whether this settlement type is available. A commander cannot turn an arbitrary empty-space or asteroid target into a rare-metal site. [Evidence](#evidence-current-data-1175)
+
+## After founding
+
+Open the site rather than assuming production has started. Check its current status, inventory, available actions, and any delivery destination. The existence of an owned outpost does not by itself prove that a specific recipe is active or an SPU has been installed.
+
+## Loss and replacement
+
+If the outpost leaves the former owner's owned-base collection, it stops consuming that player's slot. The capacity becomes reusable at the original founding colony, subject to that colony still existing and exposing the slot. [Evidence](#evidence-runtime-settlement-slots-1175)
+
+## Needs verification
+
+Exact extraction chances, action timings, recipes, and delivery schedules must be read from the active site. Preserve the world and capture time when documenting those values. [Evidence](#evidence-live-world-1175)
+
+### Founding a colony or outpost
+
+Canonical page: [/wiki/settlement-procedure/](https://riftbornewiki.317society.com/wiki/settlement-procedure/)
+
+Founding a settlement joins a target, a founding colony, settlement capacity, and a colonization fleet. The capacity check belongs to the selected origin rather than an empire-wide pool. [Evidence](#evidence-runtime-settlement-slots-1175)
+
+## Procedure
+
+1. Select an eligible destination and inspect the settlement option it offers.
+2. Select the colony that will serve as the founding origin.
+3. Confirm that the origin has an unlocked, unused settlement slot.
+4. Check whether a colonization fleet is already pending from that origin.
+5. Confirm that the required hull and resources are available.
+6. Read the final mission, destination, and travel preview.
+7. Launch and then verify that the fleet appears as pending from the intended origin.
+8. After arrival, open the new settlement and confirm ownership and available infrastructure.
+
+## Why the origin matters
+
+The new settlement records its founding colony. If the outpost is later lost, its occupied capacity is removed from that origin's current count. If the founding colony itself is lost, its unlocked capacity does not transfer to another colony. [Evidence](#evidence-runtime-settlement-slots-1175)
+
+## If the action is unavailable
+
+Check the target type, selected origin, current slot display, pending launches, hull availability, resource requirement, and any prerequisite shown by the action. Do not infer the missing requirement from a different culture or campaign.
+
+## Cancellation and destruction
+
+A pending colonization fleet counts against the origin while pending. After cancellation, interception, or resolution, reopen the origin and confirm its displayed capacity before scheduling another launch. Exact refund and timing behavior is **Needs verification** unless the current confirmation screen states it.
+
+### Troubleshooting colonization and outposts
+
+Canonical page: [/wiki/troubleshooting-colonization/](https://riftbornewiki.317society.com/wiki/troubleshooting-colonization/)
+
+When a settlement action is unavailable, diagnose it from the destination back to the origin. Most apparent slot problems are actually a target, origin, pending-fleet, hull, resource, or prerequisite mismatch.
+
+## Diagnostic order
+
+1. **Target:** Does this tile offer the settlement type you intend to found?
+2. **Origin:** Is the correct founding colony selected?
+3. **Capacity:** Does that origin show an unlocked, unused slot?
+4. **Pending action:** Is a colonization fleet from that origin already consuming the slot?
+5. **Hull:** Is the required colonization ship available at that origin and not in transit?
+6. **Resources:** Does the action preview show every required resource as available?
+7. **Prerequisite:** Does the current action or Codex name a missing building or level?
+8. **Live state:** Did ownership, diplomacy, or another fleet change since the screen was opened?
+
+## After losing an outpost
+
+The former outpost stops occupying its founding origin's slot after it leaves the player's owned-base collection. Reopen that origin and inspect the capacity display. If the slot does not appear usable, check for a pending colonization fleet and confirm that the founding colony still exists. [Evidence](#evidence-runtime-settlement-slots-1175)
+
+## Useful evidence capture
+
+Capture the target action, selected origin, slot panel, available colonization hull, and exact refusal message in the same session. Include the build, world, and time while removing player identity and coordinates.
+
+## Needs verification
+
+If all displayed requirements are met but the action remains unavailable, preserve the screen state as a reproducible case. Do not invent a hidden cooldown or permanent slot loss without runtime evidence. [Evidence](#evidence-live-world-1175)
 
 ## Cultures
 
@@ -428,13 +756,31 @@ Training capacity and unlocks are shown by the current culture-specific shipyard
 
 Intelligence hulls support information gathering; Light and Heavy families form the main combat mix; Carriers modify supported forces according to the active roster; Siege converts successful attacks into structural damage; Colonization hulls establish settlements; Flagships are roster-defined strategic hulls.
 
+| Role | Primary question | Do not assume |
+|---|---|---|
+| Intelligence | What information will this mission produce? | That an old report still describes the target on arrival |
+| Light | What screening, tracking, or combat role does the current hull show? | That all Light ships are interchangeable |
+| Heavy | Which observed target profile is it intended to fight? | That raw power predicts the matchup |
+| Carrier | Which eligible ships receive the displayed support effect? | That a coefficient from another roster applies |
+| Siege | Will enough siege survive a successful attack to affect the target building? | That normal combat victory alone damages infrastructure |
+| Colonization | Which eligible target and founding origin will it use? | That settlement capacity is empire-wide |
+| Flagship | What does this roster's exact entry say? | That every campaign supplies the same flagship |
+
 ## Travel discipline
 
 Read the launch preview after every composition change. A route that works for a reaction fleet may fail once cargo or siege joins it. Wrapped geography also means the visually obvious direction is not always the shortest.
 
+## Control workflow
+
+Choose an origin, select participating ships, choose the destination and mission, then read the complete preview. After launch, verify the group in the fleet or movement list. On arrival, confirm whether the ships are stationed, returning, or still assigned to a mission. See [Fleet controls and ship transfers](/wiki/fleet-controls/).
+
+Only stationed ships should be counted as local defenders. Ships moving toward a colony may arrive too late, and ships leaving it no longer provide the same local posture.
+
 ## Roster provenance
 
 When sharing a fleet plan, state the world and capture time. Ship names, costs, speed, cargo, upkeep, and combat values can be supplied by the operator, so a table without provenance should not be treated as current.
+
+For a build decision, use [Which ship should I build?](/wiki/which-ship-should-i-build/) and work backward from the mission rather than relying on a universal tier list.
 
 ### Fleet composition
 
@@ -486,6 +832,107 @@ It does not reveal ship count, replacement cost, cargo, travel time, siege survi
 ## How to quote it responsibly
 
 Attach the roster provenance, cultures, ship counts, infrastructure, mission, target mix, modifiers, and capture time. Without those inputs, “3,200 power” is context rather than a reproducible combat claim.
+
+### Fleet controls and ship transfers
+
+Canonical page: [/wiki/fleet-controls/](https://riftbornewiki.317society.com/wiki/fleet-controls/)
+
+Fleet controls turn stationed ships into a mission group and assign that group an origin, destination, mission, and travel state. The final preview is the best check that the intended ships are participating. [Evidence](#evidence-runtime-fleets-1175)
+
+## Assemble and launch
+
+1. Open the colony or garrison that currently owns the ships.
+2. Open its fleet or ship action.
+3. Select the hulls and quantities needed for one mission.
+4. Choose the target and mission.
+5. Review participating ships, travel time, cargo, and mission-specific fields.
+6. Launch, then verify the fleet in the movement or fleet list.
+
+## Move versus station
+
+A ship in transit is not stationed at either endpoint. After arrival, verify whether the mission leaves the ships stationed, returning, or otherwise occupied. Only stationed ships belong in a base-defense count.
+
+## Return ships home
+
+Select the fleet at its current location, choose the appropriate movement or return action exposed by that screen, select the intended destination, and inspect the preview. “Home” should be treated as a chosen destination, not an assumption: verify where the fleet will actually arrive.
+
+## Common control mistakes
+
+- Launching from the wrong colony after switching map targets.
+- Selecting every available hull and accidentally slowing a reaction fleet.
+- Counting ships in transit as local defense.
+- Sending siege or colonization hulls on a mission that does not need them.
+- Reading a stale fleet list instead of reopening it after arrival.
+- Assuming reinforcement is sustainable without checking destination Astra.
+
+## Needs verification
+
+Exact key bindings and action labels can differ between interfaces and builds. This page documents the workflow; use the labels visible in the current client and capture the complete screen before adding a universal key sequence. [Evidence](#evidence-live-world-1175)
+
+### Which ship should I build?
+
+Canonical page: [/wiki/which-ship-should-i-build/](https://riftbornewiki.317society.com/wiki/which-ship-should-i-build/)
+
+The best ship is the hull that supplies a missing mission role at an acceptable cost, travel profile, and upkeep in the active world. Patch 11.75 distinguishes Intelligence, Light, Heavy, Carrier, Siege, Colonization, and Flagship roles. [Evidence](#evidence-runtime-fleets-1175)
+
+| Desired result | Start by evaluating | Check before building |
+|---|---|---|
+| Obtain information | Intelligence role | Target, mission availability, travel time, and survival assumptions |
+| Fight or intercept | Light and Heavy roles | Observed enemy mix and current simulator inputs |
+| Move loot or supplies | Hulls with displayed cargo | Expected surviving capacity and route time |
+| Damage infrastructure | Siege role with combat support | Target building, surviving siege, and mission type |
+| Found a settlement | Colonization role | Eligible target, founding origin, slot, and travel time |
+| Support a larger force | Carrier or roster-defined support | Current effect text and whether enough eligible ships benefit |
+| Defend a colony | Sustainable mixed garrison | Arrival time, target mix, shield/base effects, and Astra runway |
+
+## Selection method
+
+1. Write the mission result in one sentence.
+2. Inspect the current Codex entries for eligible roles.
+3. Eliminate hulls that cannot arrive in time or cannot be sustained.
+4. Compare at least two compositions with the exact target information available.
+5. Use the built-in simulator for combat claims and retain its roster provenance.
+6. Build only the amount supported by the current economy and mission schedule.
+
+## Why there is no universal tier list
+
+Multiplayer worlds may provide a custom roster and modifiers. Names, costs, speed, cargo, upkeep, and combat profiles require a world identifier and capture time. A hull can be excellent in one roster and unsuitable in another. [Evidence](#evidence-live-world-1175)
+
+## Needs verification
+
+Any page claiming exact counter ratios or “ships per power” must provide the culture, ship counts, infrastructure, mission, modifiers, roster provenance, simulator seed set, and capture time. Without those inputs, the claim is not reproducible.
+
+### Troubleshooting fleets and missing ships
+
+Canonical page: [/wiki/troubleshooting-fleets-and-ships/](https://riftbornewiki.317society.com/wiki/troubleshooting-fleets-and-ships/)
+
+A ship count is a snapshot of one state, not necessarily the empire's total. Reconcile garrisons, fleets in transit, training queues, resolved missions, and combat losses before concluding that ships appeared or disappeared.
+
+## Reconciliation procedure
+
+1. Reopen the selected colony and record its stationed garrison.
+2. Inspect active outbound, inbound, returning, and otherwise occupied fleets.
+3. Check ship-training queues and recently completed training.
+4. Review combat logs and mission results since the last known count.
+5. Check whether ships arrived at a different destination than expected.
+6. Verify the destination's Astra state if ships were stationed there.
+7. Refresh the relevant screens and compare again.
+
+## Extra ships
+
+An apparent increase can come from completed training, a returning fleet, reinforcement, or comparing different colonies or timestamps. Establish a common timestamp before treating it as duplication.
+
+## Missing ships
+
+Ships may be in transit, assigned to another fleet, destroyed in combat, or lost after creating unsustainable stationed demand. The movement list, training queue, combat log, notifications, and destination resource trend together provide a better account than a single garrison screen. [Evidence](#evidence-runtime-fleets-1175)
+
+## Reporting checklist
+
+Provide the build, world, timestamps, origin, intended destination, hull counts before and after, fleet state, training state, relevant combat-log entry, and destination Astra trend. Sanitize player identity and coordinates.
+
+## Needs verification
+
+If the states do not reconcile, preserve them without restarting or issuing more movement orders. A suspected duplication or disappearance requires a reproducible transition, not only two totals captured at unknown times. [Evidence](#evidence-live-world-1175)
 
 ## Warfare and intelligence
 
@@ -749,6 +1196,306 @@ Read the active confirmation screens before accepting obligations. Shares, loans
 ## Diplomacy
 
 Before a coordinated mission, confirm the current relationship, who can change it, and whether every participant sees the same plan.
+
+### Organizations overview
+
+Canonical page: [/wiki/organizations/](https://riftbornewiki.317society.com/wiki/organizations/)
+
+Organizations combine ownership, treasury decisions, credit, contracts, and control inside the active multiplayer world. The current client exposes these system families, while displayed values and available actions remain live-world observations rather than universal patch constants. [Evidence](#evidence-runtime-organizations-1175)
+
+## Start here
+
+| Question | Field guide |
+|---|---|
+| What does this screen mean? | [Organization screen](/wiki/organization-screen/) |
+| What is the organization worth? | [Fair value](/wiki/organization-fair-value/) |
+| Who owns it? | [Shares and the share pool](/wiki/shares-and-share-pool/) |
+| How is it funded? | [Follow-on funding and dilution](/wiki/follow-on-funding-and-dilution/) |
+| What can it pay? | [Treasury and holdings](/wiki/treasury-and-holdings/) |
+| What does it owe? | [Loans and the credit book](/wiki/loans-and-credit-book/) |
+| What controls another entity? | [Subsidiaries and control](/wiki/subsidiaries-and-control/) |
+
+Read an organization as a dated balance of claims and obligations. Record the world, timestamp, organization identifier, currency units, and the exact confirmation screen before acting.
+
+> **Needs verification:** Voting thresholds, founder powers, transfer restrictions, fees, progression gates, and valuation formulas must be confirmed in the active client. The current evidence registry does not establish one universal organization ruleset.
+
+### Organization screen field guide
+
+Canonical page: [/wiki/organization-screen/](https://riftbornewiki.317society.com/wiki/organization-screen/)
+
+Treat the organization screen as a live snapshot. The screen families are present in the current CLI, but names, balances, ownership, permissions, and pending actions can change after capture. [Evidence](#evidence-organization-ui-1175)
+
+Before confirming an action, compare the summary screen with the final confirmation. Record whether values are estimates, settled amounts, pending transfers, or projected results. Use [Fair value](/wiki/organization-fair-value/) for valuation vocabulary and [Treasury and holdings](/wiki/treasury-and-holdings/) for liquidity.
+
+> **Needs verification:** Tab names, refresh behavior, role permissions, rounding, and whether pending actions are included in totals must be checked on the active screen.
+
+### Fair value
+
+Canonical page: [/wiki/organization-fair-value/](https://riftbornewiki.317society.com/wiki/organization-fair-value/)
+
+Displayed fair value is a live-world figure. Use it as the client’s current estimate, not as guaranteed liquidation proceeds or a permanent formula. [Evidence](#evidence-live-world-1175)
+
+## Reconciliation worksheet
+
+| Component | Question to ask |
+|---|---|
+| Treasury | Is the full balance spendable now? |
+| Holdings | What price and timestamp value each holding? |
+| Receivables | Are repayments or contracts counted before settlement? |
+| Liabilities | Are principal, accrued charges, and pending payments deducted? |
+| Control interests | How are subsidiaries represented? |
+| Share count | Is the figure organization-wide or per issued share? |
+
+Record the displayed total and its components from the same refresh. If a component cannot be reconciled, label the difference rather than forcing an invented residual. Pair the result with [Shares and the share pool](/wiki/shares-and-share-pool/) before quoting a per-share figure.
+
+> **Needs verification:** The exact valuation formula, mark-to-market source, treatment of illiquid holdings, subsidiary consolidation, loan-loss assumptions, and rounding are not established by current evidence.
+
+### Shares and the share pool
+
+Canonical page: [/wiki/shares-and-share-pool/](https://riftbornewiki.317society.com/wiki/shares-and-share-pool/)
+
+Share records describe ownership at a point in time. Separate shares already held by owners from any share-pool capacity the organization may allocate through a later action. [Evidence](#evidence-live-world-1175)
+
+## Ownership ledger
+
+| Field | Record separately |
+|---|---|
+| Issued shares | Shares currently assigned to holders |
+| Share pool | Unallocated or organization-held capacity shown by the client |
+| Holder stake | Count and displayed percentage |
+| Pending action | Proposed issue, transfer, sale, or repurchase |
+| Post-action stake | Confirmation-screen projection, if shown |
+
+Never assume that pool shares have the same economic or voting treatment as issued shares. For a transfer between current owners, use [Existing-share sales](/wiki/existing-share-sales/). For newly allocated ownership, use [Follow-on funding and dilution](/wiki/follow-on-funding-and-dilution/).
+
+> **Needs verification:** Authorized-versus-issued terminology, voting rights, fractional shares, pool replenishment, transfer restrictions, and the denominator used for displayed percentages must be confirmed in the active world.
+
+### Existing-share sales
+
+Canonical page: [/wiki/existing-share-sales/](https://riftbornewiki.317society.com/wiki/existing-share-sales/)
+
+An existing-share sale should be read from its confirmation screen as a transfer between named parties. Do not assume the organization receives proceeds unless the interface explicitly says so. [Evidence](#evidence-live-world-1175)
+
+## Before confirming
+
+| Check | Record |
+|---|---|
+| Seller | Current holder and shares available |
+| Buyer | Eligible recipient |
+| Quantity | Shares transferred |
+| Consideration | Amount, units, and payer |
+| Fees | Who pays and when |
+| Ownership result | Both parties’ projected percentages |
+| Treasury result | Explicit organization balance change, if any |
+
+Compare this with [Follow-on funding and dilution](/wiki/follow-on-funding-and-dilution/): a secondary sale usually changes who owns an existing claim, while follow-on funding may create or allocate a claim and change the denominator. The exact client wording controls.
+
+> **Needs verification:** Settlement timing, cancellation, price limits, taxes or fees, buyer eligibility, and whether any sale type routes proceeds to the treasury.
+
+### Follow-on funding and dilution
+
+Canonical page: [/wiki/follow-on-funding-and-dilution/](https://riftbornewiki.317society.com/wiki/follow-on-funding-and-dilution/)
+
+Follow-on funding can change both organization liquidity and ownership. Use the confirmation screen’s projected post-action ledger instead of applying an assumed finance formula. [Evidence](#evidence-live-world-1175)
+
+## Funding worksheet
+
+| Before | Transaction | After |
+|---|---|---|
+| Issued shares | New or pool shares allocated | New issued total |
+| Holder counts | Contributor and amount | New holder counts |
+| Ownership percentages | Displayed price or terms | Recalculated percentages |
+| Treasury balance | Funding inflow and fees | Spendable post-settlement balance |
+| Control | Current controller | Projected controller |
+
+Dilution means an existing holder’s percentage can fall even if their share count does not. Check the new denominator and control result separately. Link the capital effect to [Treasury and holdings](/wiki/treasury-and-holdings/) and the governance effect to [Subsidiaries and control](/wiki/subsidiaries-and-control/).
+
+> **Needs verification:** Pricing rules, pool consumption, approval thresholds, pre-emption rights, minimum investment, fee treatment, and the exact control test.
+
+### Treasury and holdings
+
+Canonical page: [/wiki/treasury-and-holdings/](https://riftbornewiki.317society.com/wiki/treasury-and-holdings/)
+
+Treasury is useful only to the extent the active interface permits it to be spent. Keep cash-like balance distinct from holdings, receivables, and amounts reserved for pending actions. [Evidence](#evidence-live-world-1175)
+
+## Liquidity view
+
+| Bucket | Operational question |
+|---|---|
+| Available treasury | Can it fund an action immediately? |
+| Reserved or pending | Which confirmation or contract claims it? |
+| Holdings | What asset is owned and how is it valued? |
+| Receivables | When and under what condition does it settle? |
+| Debt service | What payment is due before discretionary spending? |
+| Distribution capacity | What does the dividend or buyback screen allow? |
+
+Take all figures from one timestamp, then reconcile them with [Loans and the credit book](/wiki/loans-and-credit-book/) and [Contracts](/wiki/contracts/). A high fair value does not prove high immediate liquidity.
+
+> **Needs verification:** Currency units, reservation order, negative balances, holding valuation, settlement latency, and which roles can commit treasury funds.
+
+### Loans and the credit book
+
+Canonical page: [/wiki/loans-and-credit-book/](https://riftbornewiki.317society.com/wiki/loans-and-credit-book/)
+
+The credit book is a dated record of claims and obligations. Read each loan’s displayed parties, principal, status, schedule, and settlement state rather than inferring terms from the headline balance. [Evidence](#evidence-live-world-1175)
+
+## Loan ledger
+
+| Field | Lender view | Borrower view |
+|---|---|---|
+| Counterparty | Who owes | Who is owed |
+| Principal | Amount exposed | Amount received or outstanding |
+| Price of credit | Return shown | Charge shown |
+| Schedule | Expected receipt | Required payment |
+| Status | Current, pending, late, closed | Current, pending, late, closed |
+| Recovery | Client-described remedy | Client-described consequence |
+
+Use [Borrowing and repayment](/wiki/borrowing-and-repayment/) before accepting or paying a loan. Use [Credit ratings and factors](/wiki/credit-ratings/) only as an observed indicator, not a substitute for the loan ledger.
+
+> **Needs verification:** Interest calculation, compounding, grace periods, default remedies, early repayment, collateral, write-offs, and whether obligations survive ownership changes.
+
+### Borrowing and repayment
+
+Canonical page: [/wiki/borrowing-and-repayment/](https://riftbornewiki.317society.com/wiki/borrowing-and-repayment/)
+
+Borrow only from the exact terms shown in the active confirmation flow. Projected proceeds are not the same as net spendable treasury, and a displayed due amount may change with settlement or timing. [Evidence](#evidence-live-world-1175)
+
+## Decision table
+
+| Stage | Confirm |
+|---|---|
+| Offer | lender, principal, total obligation, due timing |
+| Acceptance | net treasury received, fees, rating effect |
+| During term | next payment, available treasury, competing obligations |
+| Repayment | amount applied, remaining principal, status after payment |
+| Closure | zero balance and closed state on both ledgers |
+
+Keep a repayment reserve separate from discretionary [Dividends](/wiki/dividends/) and [Buybacks](/wiki/buybacks/). Capture before-and-after screenshots or transcripts so a rounding or settlement difference can be diagnosed.
+
+> **Needs verification:** Partial payments, automatic collection, payment priority, early-payment treatment, late penalties, default behavior, and whether repayment consumes reserved funds.
+
+### Credit ratings and factors
+
+Canonical page: [/wiki/credit-ratings/](https://riftbornewiki.317society.com/wiki/credit-ratings/)
+
+A credit rating is an observed client output. Record the rating and every factor the same screen displays; do not reverse-engineer a universal score from a small sample. [Evidence](#evidence-live-world-1175)
+
+## Rating log
+
+| Field | Record |
+|---|---|
+| Rating | Exact grade, score, or label |
+| Factors | Names, direction, and values shown |
+| Debt | Outstanding and newly requested amount |
+| Liquidity | Treasury figure shown at the same time |
+| History | Recent repayments, late states, or defaults visible |
+| Change event | Action immediately preceding a rating update |
+
+Compare repeated observations from the same world and build. A correlation between treasury or repayment history and a rating change is useful evidence, but it is not proof of weighting.
+
+> **Needs verification:** Factor weights, update cadence, hidden inputs, history window, subsidiary effects, caps, decay, and how the rating changes loan availability or terms.
+
+### Dividends
+
+Canonical page: [/wiki/dividends/](https://riftbornewiki.317society.com/wiki/dividends/)
+
+A dividend converts organization treasury into holder distributions according to the active confirmation screen. Record the entitlement snapshot and projected treasury change before approval. [Evidence](#evidence-live-world-1175)
+
+## Distribution worksheet
+
+| Field | Confirm |
+|---|---|
+| Basis | Total distribution or amount per eligible share |
+| Eligible shares | Which issued shares count |
+| Recipients | Holder list and projected receipts |
+| Organization cost | Gross outflow plus any fees |
+| Timing | Declaration, record, and settlement state shown |
+| Remaining headroom | Treasury after debt and contracts |
+
+Reconcile recipient totals to the organization outflow. Check [Shares and the share pool](/wiki/shares-and-share-pool/) for the relevant denominator and [Treasury and holdings](/wiki/treasury-and-holdings/) for liquidity.
+
+> **Needs verification:** Eligibility timing, treatment of pool or organization-held shares, rounding residuals, minimum distribution, approval permissions, fees, and cancellation.
+
+### Buybacks
+
+Canonical page: [/wiki/buybacks/](https://riftbornewiki.317society.com/wiki/buybacks/)
+
+A buyback spends organization resources to repurchase ownership from a holder. Use the projected post-action ledger because the destination and treatment of repurchased shares determine the result. [Evidence](#evidence-live-world-1175)
+
+## Buyback checklist
+
+| Field | Record |
+|---|---|
+| Seller | Holder and shares offered |
+| Price | Total and per-share display, if present |
+| Treasury cost | Purchase amount plus fees |
+| Share destination | Pool, organization-held, retired, or other label |
+| Ownership result | Remaining holders’ projected percentages |
+| Control result | Any projected controller change |
+
+Do not equate a buyback with a [Dividend](/wiki/dividends/): both use treasury, but one purchases a specific ownership claim while the other distributes value under the client’s eligibility rule.
+
+> **Needs verification:** Pricing limits, seller consent, approval thresholds, repurchased-share destination, percentage denominator, fee treatment, and whether debt or contracts block a buyback.
+
+### Subsidiaries and control
+
+Canonical page: [/wiki/subsidiaries-and-control/](https://riftbornewiki.317society.com/wiki/subsidiaries-and-control/)
+
+Control should be taken from the active organization screen, not inferred from a familiar real-world corporate threshold. Ownership percentages and displayed control are related observations but may not be identical. [Evidence](#evidence-live-world-1175)
+
+## Control map
+
+| Entity | Direct owner | Stake shown | Controller shown | Timestamp |
+|---|---|---:|---|---|
+| Parent | Record from screen | Record | Record | Record |
+| Subsidiary | Record from screen | Record | Record | Record |
+| Lower-tier entity | Record from screen | Record | Record | Record |
+
+Trace each link separately. After a share sale, funding round, or buyback, re-open every affected entity and record the new controller. Keep [Fair value](/wiki/organization-fair-value/) separate from the control map unless the client explicitly consolidates subsidiaries.
+
+> **Needs verification:** The control threshold, tie handling, indirect ownership, voting versus economic rights, maximum depth, circular ownership prevention, consolidation, and controller permissions.
+
+### Contracts
+
+Canonical page: [/wiki/contracts/](https://riftbornewiki.317society.com/wiki/contracts/)
+
+Contracts are active-world obligations. Preserve the exact offer and confirmation text because a title or summary may omit conditions that determine settlement. [Evidence](#evidence-live-world-1175)
+
+## Contract ledger
+
+| Field | Record |
+|---|---|
+| Parties | Every organization or player bound |
+| Consideration | What each party commits |
+| Trigger | Event or time that activates performance |
+| Deadline | Client-displayed due time and timezone |
+| Settlement | Automatic or manual action shown |
+| Failure state | Client-described consequence |
+| Authority | Role or account that may accept, alter, or cancel |
+
+Reserve any promised treasury or holdings in the organization’s operational plan even if the main balance still displays them. Cross-check lending-like terms against [Loans and the credit book](/wiki/loans-and-credit-book/).
+
+> **Needs verification:** Supported contract types, escrow, amendments, cancellation, breach remedies, visibility, transferability, recurring obligations, and settlement order.
+
+### Organization progression and limits
+
+Canonical page: [/wiki/organization-progression/](https://riftbornewiki.317society.com/wiki/organization-progression/)
+
+Organization progression and limits belong to the active world unless the current client evidence proves otherwise. Record the level screen and the action that exposes each gate. [Evidence](#evidence-live-world-1175)
+
+## Progression ledger
+
+| Level or state | Cost | Prerequisite | Unlock or limit change | Source screen |
+|---|---:|---|---|---|
+| Current | Record | Record | Record | Record |
+| Next | Record | Record | Record | Record |
+| Later preview | Record only if displayed | Record | Record | Record |
+
+Track member capacity, share or funding limits, loan capacity, contract capacity, subsidiary limits, role permissions, cooldowns, and treasury requirements as separate fields. Do not extrapolate a later level from one observed step.
+
+Use [Organization screen field guide](/wiki/organization-screen/) to preserve provenance and revisit dependent pages when an unlock changes available finance or control actions.
+
+> **Needs verification:** Maximum level, cost curve, unlock schedule, capacity formulas, downgrade behavior, cooldowns, world overrides, and whether limits apply per organization, account, faction, or ownership chain.
 
 ## Strategy
 
@@ -1623,9 +2370,9 @@ Use a carrier when its measured marginal result is worth its cost, speed effect 
 
 Canonical page: [/wiki/directives/](https://riftbornewiki.317society.com/wiki/directives/)
 
-Directives are twelve parallel ten-stage progression paths that grant permanent empire bonuses when completed. [Evidence](#evidence-client-build-1175)
+Directives are eleven parallel ten-stage progression paths in the installed 11.75 data. [Evidence](#evidence-current-data-1175)
 
-The current directive table defines twelve ten-stage paths that progress in parallel and auto-complete. It lists these permanent capstones: [Evidence](#evidence-current-data-1175)
+The current directive table defines eleven ten-stage paths. The current client exposes these permanent capstones for those paths: [Evidence](#evidence-current-data-1175)
 
 | Path | Permanent effect |
 |---|---|
@@ -1633,7 +2380,6 @@ The current directive table defines twelve ten-stage paths that progress in para
 | Void Reaver | +10% raid loot |
 | Aegis Vanguard | +8% fleet attack |
 | Solar Ledger | +6% base production |
-| Concord Envoy | +20% diplomacy penalty resistance |
 | Starlane Broker | +8% fleet cargo |
 | Consortium Founder | +8% base storage |
 | Frontier Ascendant | +8% travel speed |
@@ -1641,6 +2387,28 @@ The current directive table defines twelve ten-stage paths that progress in para
 | Bastion Warden | +10% base defense, +6% fleet defense |
 | Flux Quartermaster | +10% travel speed, +6% cargo |
 | Noctium Artificer | +8% research, +10% transmute speed |
+
+## How to read the directive screen
+
+For each path, separate the current stage, the requirement for that stage, recorded progress, and the permanent capstone shown for completing the path. Do not use the capstone table as proof that an intermediate stage has the same effect.
+
+```text
+Directive path
+|- current stage
+|- current requirement
+|- progress toward that requirement
+`- permanent completion effect
+```
+
+The paths progress in parallel and auto-complete when their conditions are satisfied. Return to the directive screen after a qualifying action to confirm that the expected path moved. [Evidence](#evidence-current-data-1175)
+
+## Planning with directives
+
+Directive progress is a secondary return on actions that already serve the campaign. Prefer actions that advance the current objective, economy, defense, or intelligence plan; then use directive progress to break ties between otherwise useful choices. Spending scarce resources only to chase a distant capstone can delay the position that would exploit the bonus.
+
+## Needs verification
+
+The capstones above are current-client evidence. The [complete stage catalog](/wiki/directive-catalog/) transcribes all 110 current data rows. When reporting a mismatch, capture the path, stage, exact requirement text, progress display, build, world, and time.
 
 Broad activity progresses more directive tracks. Espionage, trade, raiding, construction, expansion, and augmentation retain long-term value even when they are not an empire’s primary specialization.
 
@@ -1756,3 +2524,236 @@ Do not average incompatible worlds or quote a current observation as a permanent
 ## Update policy
 
 If the installed client changes, confirmed core claims pause until affected evidence is revalidated. Live-world observations remain historical records with their original timestamps, not proof of the new state.
+
+### Complete directive stage catalog
+
+Canonical page: [/wiki/directive-catalog/](https://riftbornewiki.317society.com/wiki/directive-catalog/)
+
+This catalog transcribes all 110 directive stages from the installed 11.75 data. Internal storage identifiers are translated to current culture-neutral descriptions so the table applies to Astraean, Varkon, and Veil interfaces. [Evidence](#evidence-current-data-1175)
+
+Use the stage title and tracked metric to diagnose progress. A row describes the requirement for that stage; it does not grant the permanent path effect listed in [Directives](/wiki/directives/).
+
+## Signal Cartographer
+
+**Archetype:** Intelligence · **Path key:** `INTEL` · **Stages:** 10
+
+| Stage | Directive | Objective | Tracked metric | Target | Unlock |
+|---:|---|---|---|---|---|
+| 1 | **Wake the Listening Posts** | Build Light Shipyard L1 and commission your first Intelligence ship. | Owned building level + owned unit count | LightShipyard>=1; Intelligence ships>=1 | Available at game start |
+| 2 | **First Ghost Ping** | Launch your first spy mission. | Spy missions launched | >=1 | Complete previous stage in same path |
+| 3 | **Constellation Sweep** | Complete three spy missions against enemy targets. | Spy missions resolved | >=3 total | Complete previous stage in same path |
+| 4 | **Pattern Hunter** | Run intel operations against at least two different factions. | Distinct factions targeted by spy ops | >=2 | Complete previous stage in same path |
+| 5 | **Threat Atlas** | Collect recent intel on five unique enemy bases. | Unique enemy bases with fresh intel | >=5 in recent window | Complete previous stage in same path |
+| 6 | **Silence Breaker** | Accumulate eight successful spy outcomes. | Successful spy outcomes | >=8 lifetime | Complete previous stage in same path |
+| 7 | **Eyes Across the Rim** | Launch at least three intel operations within a short campaign window. | Spy launches in rolling window | >=3 within 2h | Complete previous stage in same path |
+| 8 | **Hunter of Giants** | Execute operations on 3 top ten empires by power. | Distinct top-10 power empires targeted by spy operations | >=3 empires | Complete previous stage in same path |
+| 9 | **Black-Sky Mapping** | Map twelve unique enemy strongholds through intelligence activity. | Unique enemy bases ever scouted | >=12 lifetime | Complete previous stage in same path |
+| 10 | **Omniscience Protocol** | Maintain fresh intelligence on ten high-value enemy bases. | High-value bases with fresh intel | >=10 in recent window | Complete previous stage in same path |
+
+## Void Reaver
+
+**Archetype:** Raider · **Path key:** `RAIDER` · **Stages:** 10
+
+| Stage | Directive | Objective | Tracked metric | Target | Unlock |
+|---:|---|---|---|---|---|
+| 1 | **Sharpen the Claws** | Assemble a starter raiding wing. | Owned light combat ships | >=10 | Available at game start |
+| 2 | **First Blood in the Dark** | Launch your first raid mission. | Raid missions launched | >=1 | Complete previous stage in same path |
+| 3 | **Burn-and-Run** | Win three raid engagements. | Raid victories | >=3 | Complete previous stage in same path |
+| 4 | **Plunder Circuit** | Steal resources through raids. | Resources stolen via raid outcomes | >=2,500 | Complete previous stage in same path |
+| 5 | **Blood Tally** | Destroy enemy ships during raids. | Ships killed in raids | >=100 lifetime | Complete previous stage in same path |
+| 6 | **Cross-Faction Predation** | Score successful raids against multiple factions. | Distinct factions successfully raided | >=3 | Complete previous stage in same path |
+| 7 | **Relentless Pressure** | Sustain heavy raid activity in one day cycle. | Raid victories in rolling 24h | >=10 | Complete previous stage in same path |
+| 8 | **King's Ransom** | Accumulate major raid loot. | Resources stolen via raids | >=500,000 lifetime | Complete previous stage in same path |
+| 9 | **Predator's Loop** | Build long-term raid consistency. | Raid victories | >=25 lifetime | Complete previous stage in same path |
+| 10 | **Night Emperor** | Prove yourself the ultimate raider through sheer volume of conquest. | Raid victories + resources looted | 100 raid victories; 1,000,000 resources looted, lifetime | Complete previous stage in same path |
+
+## Aegis Vanguard
+
+**Archetype:** Fighter · **Path key:** `FIGHTER` · **Stages:** 10
+
+| Stage | Directive | Objective | Tracked metric | Target | Unlock |
+|---:|---|---|---|---|---|
+| 1 | **Form the Vanguard** | Build a frontline battle group. | Owned combat ships | >=25 | Available at game start |
+| 2 | **Live Fire** | Win your first direct attack battle. | Attack battle victories | >=1 | Complete previous stage in same path |
+| 3 | **Line Breaker** | Win five offensive battles. | Attack battle victories | >=5 | Complete previous stage in same path |
+| 4 | **Combined Arms** | Field a mixed doctrine fleet. | Distinct combat unit classes owned | >=4 | Complete previous stage in same path |
+| 5 | **Shock Spearhead** | Defeat a fleet that has over 10k power. | Victories over 10k defender power | >=1 | Complete previous stage in same path |
+| 6 | **War Rhythm** | Launch repeated strikes in one operation window. | Attack launches in rolling window | >=5 within 60m | Complete previous stage in same path |
+| 7 | **Command Presence** | Reach a high military posture. | Power | >=250,000 | Complete previous stage in same path |
+| 8 | **Unbroken Advance** | Secure three consecutive attack victories. | Consecutive attack battle wins | >=3 streak | Complete previous stage in same path |
+| 9 | **War Banner** | Accumulate sustained combat success. | Attack battle victories | >=20 lifetime | Complete previous stage in same path |
+| 10 | **Ascendant Marshal** | Sustain overwhelming fleet power through a full cycle. | Fleet power sustained | >=1,000,000 power for 24h | Complete previous stage in same path |
+
+## Solar Ledger
+
+**Archetype:** Economist · **Path key:** `ECON` · **Stages:** 10
+
+| Stage | Directive | Objective | Tracked metric | Target | Unlock |
+|---:|---|---|---|---|---|
+| 1 | **Balance the Grid** | Establish core resource production buildings. | Owned building levels | Extractor>=1; Synthesiser>=1; Combinator>=1; SolarArray>=1 | Available at game start |
+| 2 | **Positive Throughput** | Reach early stable income. | Total passive resources per hour | >=1,000 | Complete previous stage in same path |
+| 3 | **Capacity Discipline** | Upgrade storage foundations. | Owned building levels | primary resource storage >=10; Astra storage >=10 | Complete previous stage in same path |
+| 4 | **Macro Engine** | Scale into midgame macro economy. | Total passive resources per hour | >=10,000 | Complete previous stage in same path |
+| 5 | **Volatility Damping** | Keep resources moving instead of letting storage bins cap out. | Storage cap avoidance streak | No resource at max storage for 12h | Complete previous stage in same path |
+| 6 | **Compounding Systems** | Reach broad economic infrastructure maturity. | Economy building count at high level | 12 buildings at L10+ | Complete previous stage in same path |
+| 7 | **Era Leverage** | Hit late-midgame production velocity. | Total passive resources per hour | >=50,000 | Complete previous stage in same path |
+| 8 | **Treasury of Suns** | Maintain large reserves without starvation pressure. | Combined stockpile + starvation checks | Stockpile>=100,000; no starvation for 24h | Complete previous stage in same path |
+| 9 | **Post-Scarcity Curve** | Push to ultra-high passive output. | Total passive resources per hour | >=150,000 | Complete previous stage in same path |
+| 10 | **Economic Hegemony** | Sustain a dominant passive income stream. | Passive resources per hour sustained | >=250,000 for 8h | Complete previous stage in same path |
+
+## Starlane Broker
+
+**Archetype:** Trader · **Path key:** `TRADER` · **Stages:** 10
+
+| Stage | Directive | Objective | Tracked metric | Target | Unlock |
+|---:|---|---|---|---|---|
+| 1 | **Open the Exchange** | Construct Orbital Exchange L1. | Owned building level | OrbitalExchange>=1 | Available at game start |
+| 2 | **First Listing** | Post your first marketplace offer. | Marketplace offers posted | >=1 | Complete previous stage in same path |
+| 3 | **Ticker Initiate** | Complete five market trades. | Marketplace trade completions | >=5 | Complete previous stage in same path |
+| 4 | **Spread Maker** | Maintain multiple active listings. | Concurrent active marketplace offers | >=3 | Complete previous stage in same path |
+| 5 | **Route Arbitrage** | Trade across varied resource pairs. | Distinct resource pair combinations traded | >=3 | Complete previous stage in same path |
+| 6 | **Market Pulse** | Reach significant market volume. | Marketplace trade volume | >=10,000 | Complete previous stage in same path |
+| 7 | **Interstellar Counterparties** | Trade with many separate players. | Distinct counterparties traded with | >=5 | Complete previous stage in same path |
+| 8 | **Liquidity Engine** | Complete high-frequency marketplace execution. | Marketplace trade completions | >=25 | Complete previous stage in same path |
+| 9 | **Macro Arbitrage** | Scale to major trading operation size. | Marketplace trade volume | >=50,000 | Complete previous stage in same path |
+| 10 | **Exchange Apex** | Reach elite lifetime trading volume. | Marketplace trade volume | >=75,000 lifetime | Complete previous stage in same path |
+
+## Consortium Founder
+
+**Archetype:** Business Owner · **Path key:** `BIZ` · **Stages:** 10
+
+| Stage | Directive | Objective | Tracked metric | Target | Unlock |
+|---:|---|---|---|---|---|
+| 1 | **File the Charter** | Create your first organization. | Organizations owned | >=1 | Available at game start |
+| 2 | **Issue a Mandate** | Post your first contract. | Contracts posted | >=1 | Complete previous stage in same path |
+| 3 | **Contractor Network** | See multiple contracts completed. | Contracts completed | >=3 | Complete previous stage in same path |
+| 4 | **Public Confidence** | Execute your first share-market transaction. | Organization share transactions | >=1 | Complete previous stage in same path |
+| 5 | **Portfolio Layer** | Operate at least two active contracts at once. | Concurrent active contracts | >=2 | Complete previous stage in same path |
+| 6 | **Executive Reach** | Have contracts accepted by many commanders. | Distinct players who accepted contracts | >=4 | Complete previous stage in same path |
+| 7 | **Capital Momentum** | Grow organization valuation past a mid-tier target. | Organization valuation | >=5,000 | Complete previous stage in same path |
+| 8 | **Board Expansion** | Complete a broad contract book. | Contracts completed | >=10 lifetime | Complete previous stage in same path |
+| 9 | **Interstellar Holdings** | Own and operate multiple organizations. | Organizations owned | >=2 | Complete previous stage in same path |
+| 10 | **Boardroom Throne** | Sustain elite organization valuation. | Organization valuation sustained | >=15,000 for 8h | Complete previous stage in same path |
+
+## Frontier Ascendant
+
+**Archetype:** Expansionist · **Path key:** `EXPAND` · **Stages:** 10
+
+| Stage | Directive | Objective | Tracked metric | Target | Unlock |
+|---:|---|---|---|---|---|
+| 1 | **Spire Backbone** | Raise Central Spire to L10. | Central Spire level | >=10 | Available at game start |
+| 2 | **Mining Charter** | Found your first rare metals mining outpost. | Rare metals mining outpost count (not asteroid or strategic outposts) | >=1 | Complete previous stage in same path |
+| 3 | **Command Apex** | Raise Central Spire to L20. | Central Spire level | >=20 | Complete previous stage in same path |
+| 4 | **Second Horizon** | Colonize your second base. | Owned base count | >=2 | Complete previous stage in same path |
+| 5 | **Web of Colonies** | Own five total settlements. | Owned base count (colonies + mining/strategic/asteroid outposts combined) | >=5 | Complete previous stage in same path |
+| 6 | **Regional Hegemony** | Grow into a regional empire of eight total settlements. | Owned base count (colonies + mining/strategic/asteroid outposts combined) | >=8 | Complete previous stage in same path |
+| 7 | **Imperial Infrastructure** | Reach Central Spire level 20 while holding at least 2 colonies. | Spire level + colony count | Spire>=20; colonies>=2 | Complete previous stage in same path |
+| 8 | **Outpost Triad** | Diversify your expansion across every outpost type. | Distinct outpost types founded (Mining + Strategic + Asteroid) | >=3 | Complete previous stage in same path |
+| 9 | **Imperial Palace** | Build one colony to Central Spire L25 with every outpost slot filled. | Colony Spire level + founded outpost slots | Spire>=25; 8/8 outpost slots filled | Complete previous stage in same path |
+| 10 | **Dominion Ascendant** | Grow a sprawling colonial empire. | Owned colony count (colonies only - not outposts) | >=6 | Complete previous stage in same path |
+
+## Forge Architect
+
+**Archetype:** Industrialist · **Path key:** `INDUSTRY` · **Stages:** 10
+
+| Stage | Directive | Objective | Tracked metric | Target | Unlock |
+|---:|---|---|---|---|---|
+| 1 | **Industrial Seed** | Raise core industry buildings to L3. | Owned building levels | Extractor>=3; Synthesiser>=3; Combinator>=3; SolarArray>=3 | Available at game start |
+| 2 | **Hardening Program** | Upgrade defense and heavy military fabrication infrastructure. | Owned building levels | IonShield>=3; HeavyShipyard>=3 | Complete previous stage in same path |
+| 3 | **Specialization Frame** | Activate your culture-specific industry technology. | Culture-specific building level | Unique industry building >=1 | Complete previous stage in same path |
+| 4 | **Foundry Tempo** | Accumulate combined building levels across your empire. | Total building levels empire-wide | >=60 | Complete previous stage in same path |
+| 5 | **Vertical Scale** | Reach substantial empire construction depth. | Total building levels empire-wide | >=120 | Complete previous stage in same path |
+| 6 | **Systems Core** | Upgrade strategic infrastructure hubs. | Owned building levels | OrbitalExchange>=5; IonShield>=5 | Complete previous stage in same path |
+| 7 | **Megastructure Prelude** | Begin Dyson Sphere development. | Dyson Sphere level | >=1 | Complete previous stage in same path |
+| 8 | **Factory Constellation** | Push empire-wide build depth further. | Total building levels empire-wide | >=220 | Complete previous stage in same path |
+| 9 | **Dyson Surge** | Advance deep into Dyson specialization. | Dyson Sphere level | >=5 | Complete previous stage in same path |
+| 10 | **Machine Dominion** | Reach machine-empire production apex. | Total passive resources per hour | >=250,000 | Complete previous stage in same path |
+
+## Bastion Warden
+
+**Archetype:** Defender · **Path key:** `DEFENSE` · **Stages:** 10
+
+| Stage | Directive | Objective | Tracked metric | Target | Unlock |
+|---:|---|---|---|---|---|
+| 1 | **Raise the Screen** | Build Ion Shield L1. | Owned building level | IonShield>=1 | Available at game start |
+| 2 | **Garrison Protocol** | Maintain an initial home defense force. | Home-base stationed ships | >=25 | Complete previous stage in same path |
+| 3 | **First Stand** | Win your first defensive battle. | Defense battle victories | >=1 | Complete previous stage in same path |
+| 4 | **No Breach** | Secure repeated defensive wins. | Defense battle victories | >=5 | Complete previous stage in same path |
+| 5 | **Mutual Bulwark** | Send reinforcements to support allies. | Reinforcement dispatches to allies | >=3 | Complete previous stage in same path |
+| 6 | **Fortress Grid** | Deploy hardened shields across your empire. | Total Ion Shield levels across all bases | >=60 | Complete previous stage in same path |
+| 7 | **Attrition Mastery** | Maintain favorable defensive kill efficiency. | Defensive K/D ratio over 24h | >1.0 | Complete previous stage in same path |
+| 8 | **Unbroken Wall** | Prevent base losses during sustained pressure. | Base-loss events in rolling window | 0 losses for 48h | Complete previous stage in same path |
+| 9 | **Citadel Doctrine** | Accumulate long-term defense victories. | Defense battle victories | >=20 lifetime | Complete previous stage in same path |
+| 10 | **Aegis Imperium** | Hold through full-day conflict without losing a colony. | Base-loss events during active conflict | 0 losses for 24h | Complete previous stage in same path |
+
+## Flux Quartermaster
+
+**Archetype:** Logistics · **Path key:** `LOGI` · **Stages:** 10
+
+| Stage | Directive | Objective | Tracked metric | Target | Unlock |
+|---:|---|---|---|---|---|
+| 1 | **Supply Spine** | Create your first trade route. | Trade route count | >=1 | Available at game start |
+| 2 | **Clockwork Freight** | Keep a route active for a full hour. | Single route active uptime | >=60m | Complete previous stage in same path |
+| 3 | **Multi-Lane Traffic** | Operate multiple simultaneous trade routes. | Active trade routes | >=3 | Complete previous stage in same path |
+| 4 | **Relief Lift** | Ship 20,000 resources via cargo route. | Cargo-route resources shipped | >=20,000 | Complete previous stage in same path |
+| 5 | **Cargo River** | Ship 50,000 resources via cargo route. | Cargo-route resources shipped | >=50,000 | Complete previous stage in same path |
+| 6 | **War Pipeline** | Reinforce 2 allied commanders. | Allied reinforcement arrivals | >=2 | Complete previous stage in same path |
+| 7 | **Adaptive Routing** | Ship 100,000 resources via cargo route. | Cargo-route resources shipped | >=100,000 | Complete previous stage in same path |
+| 8 | **Whole-Empire Scheduling** | Sustain a large active route network. | Active routes total | >=6 | Complete previous stage in same path |
+| 9 | **Interstellar Throughput** | Ship 500,000 resources via cargo route. | Cargo-route resources shipped | >=500,000 lifetime | Complete previous stage in same path |
+| 10 | **Galactic Backbone** | Run mixed logistics across many colonies. | Bases with active logistics participation | >=8 | Complete previous stage in same path |
+
+## Noctium Artificer
+
+**Archetype:** Augment Specialist · **Path key:** `AUGMENT` · **Stages:** 10
+
+| Stage | Directive | Objective | Tracked metric | Target | Unlock |
+|---:|---|---|---|---|---|
+| 1 | **Prospector's Oath** | Establish your first rare metals mining outpost. | Rare metals mining outpost count (not asteroid or strategic outposts) | >=1 | Available at game start |
+| 2 | **Refiner Spark** | Produce your first refined outpost batch. | Rare-metal or refiner output events | >=1 | Complete previous stage in same path |
+| 3 | **Chipwright** | Craft your first SPU augment. | SPUs crafted | >=1 | Complete previous stage in same path |
+| 4 | **Loadout Draft** | Equip multiple augments. | Active SPUs equipped | >=3 | Complete previous stage in same path |
+| 5 | **A/B Tuning** | Craft stronger-quality SPUs. | Average SPU tier crafted | >=10 | Complete previous stage in same path |
+| 6 | **Augment Exchange** | Execute your first SPU market transaction. | SPU market buys or sells | >=1 | Complete previous stage in same path |
+| 7 | **Noctium Treasury** | Accumulate a meaningful Noctmarks reserve. | Noctmarks balance or earned total | >=2,500 | Complete previous stage in same path |
+| 8 | **Augment Lattice** | Maintain a broad active augmentation setup. | Active SPUs equipped | >=8 | Complete previous stage in same path |
+| 9 | **Legendary Craft** | Craft high-tier signature SPUs. | Average SPU tier crafted | >=20 | Complete previous stage in same path |
+| 10 | **Apex Combination** | Combine or craft a single SPU at the maximum tier. | SPU tier owned (Tier 8 - the ceiling of the display tier curve) | >=1 SPU at Tier 8 | Complete previous stage in same path |
+
+## Reading culture-specific requirements
+
+The data uses internal building categories for tracking. In the interface, satisfy a storage requirement with the current culture-specific building in that category: Solvault and Heliovex for Astraean, Skarncache and Voltforge for Varkon, or Nyxvault and Gloamwell for Veil. [Evidence](#evidence-current-data-1175)
+
+## Evidence boundary
+
+These rows establish the current data targets. When a live progress display appears not to match a row, capture the path, stage, exact UI text, current progress, world identifier, build, and time before reporting a discrepancy.
+
+### Contributing evidence and corrections
+
+Canonical page: [/wiki/contributing-to-wiki/](https://riftbornewiki.317society.com/wiki/contributing-to-wiki/)
+
+Wiki corrections are reviewed against the current reference build before a claim is marked confirmed. The active edition targets patch 11.75 build `a7b5c7c`. [Evidence](#evidence-client-build-1175)
+
+## Report a correction
+
+Open a [GitHub issue](https://github.com/pdubsmcgee/riftborne/issues/new) with the article URL, the disputed sentence or table row, what the current game shows, and enough provenance to reproduce it. Do not include account credentials, access tokens, private messages, or information that would expose an active operation.
+
+## Useful evidence package
+
+- Game patch and build.
+- Multiplayer world identifier when the value is world-specific.
+- Screen or Codex section.
+- Exact observation or sanitized transcript.
+- Capture date and time.
+- Steps that another player can repeat.
+- For combat, the complete fixture, seed policy, roster provenance, and run count.
+
+## Requested captures
+
+The highest-value missing observations are current organization confirmation screens, building detail panels for each culture, SPU installation and combination confirmations, fleet transfer and return controls, marketplace reservation behavior, and settlement cancellation or failure outcomes.
+
+Screenshots are optional. A concise transcript is sufficient when it preserves the exact labels and values. Remove player names, coordinates, balances unrelated to the claim, private diplomacy, and strategic fleet information before submission.
+
+## Verification outcomes
+
+Evidence may confirm a core rule, document a dated live-world value, identify a patch-sensitive discrepancy, or leave a question marked **Needs verification**. A single screenshot does not establish a universal formula when world settings or hidden modifiers could explain the result.

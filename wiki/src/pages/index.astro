@@ -10,6 +10,23 @@ const starters = ['riftborne-overview', 'opening-priorities', 'resources', 'flee
 const essential = ['combat-power', 'shield-integrity', 'objectives-and-victory', 'official-multiplayer', 'advanced-tactics-and-edge-cases']
   .map((slug) => articles.find((article) => article.data.slug === slug))
   .filter(Boolean);
+const howTo = [
+  ['Create or move a fleet', 'fleet-controls'],
+  ['Found a colony or outpost', 'settlement-procedure'],
+  ['Choose which ship to build', 'which-ship-should-i-build'],
+  ['Understand organization shares', 'shares-and-share-pool'],
+  ['Craft and install an SPU', 'spu-crafting-and-delivery'],
+  ['Check a building prerequisite', 'buildings-and-base-roles']
+].map(([label, slug]) => ({ label, article: articles.find((article) => article.data.slug === slug) })).filter((item) => item.article);
+const troubleshooting = [
+  ['I cannot colonize or establish an outpost', 'troubleshooting-colonization'],
+  ['Ships disappeared or appeared in the wrong place', 'troubleshooting-fleets-and-ships'],
+  ['Cargo is reserved or unavailable', 'marketplace-cargo-and-liquidity'],
+  ['My Astra economy is collapsing', 'astra-upkeep-and-starvation'],
+  ['I cannot find a prerequisite', 'buildings-and-base-roles']
+].map(([label, slug]) => ({ label, article: articles.find((article) => article.data.slug === slug) })).filter((item) => item.article);
+const majorSystems = ['organizations', 'rare-metals-and-spus', 'settlement-slots', 'ships-fleets-and-travel', 'directives', 'resources']
+  .map((slug) => articles.find((article) => article.data.slug === slug)).filter(Boolean);
 const recentlyReviewed = [...articles]
   .sort((a, b) => b.data.lastReviewed.localeCompare(a.data.lastReviewed) || b.data.order - a.data.order)
   .slice(0, 6);
@@ -50,6 +67,20 @@ const recentlyReviewed = [...articles]
       </ol>
     </section>
 
+    {howTo.length > 0 && <section class="portal-section task-section">
+      <div class="section-heading"><div><span>Task index</span><h2>How do I…?</h2></div><a href="/a-z/">Browse every article</a></div>
+      <ul class="task-links">
+        {howTo.map((item) => item.article && <li><a href={articlePath(item.article.data)}><strong>{item.label}?</strong><span>{item.article.summary}</span></a></li>)}
+      </ul>
+    </section>}
+
+    {majorSystems.length > 0 && <section class="portal-section">
+      <div class="section-heading"><div><span>Reference map</span><h2>Major systems</h2></div></div>
+      <ul class="system-index">
+        {majorSystems.map((article) => article && <li><a href={articlePath(article.data)}><strong>{article.data.title}</strong><span>{article.data.category}</span><p>{article.data.summary}</p></a></li>)}
+      </ul>
+    </section>}
+
     <section class="portal-section">
       <div class="section-heading">
         <div><span>Browse the wiki</span><h2>Topics</h2></div>
@@ -83,9 +114,22 @@ const recentlyReviewed = [...articles]
       </section>
     </div>
 
+    {troubleshooting.length > 0 && <section class="portal-section troubleshooting-section">
+      <div class="section-heading"><div><span>Diagnostics</span><h2>Troubleshooting</h2></div></div>
+      <ul class="link-index">
+        {troubleshooting.map((item) => item.article && <li><a href={articlePath(item.article.data)}><strong>{item.label}</strong><span>Open guide</span></a></li>)}
+      </ul>
+    </section>}
+
+    <section class="portal-section evidence-section">
+      <div class="section-heading"><div><span>Patch and evidence</span><h2>Know what is verified</h2></div></div>
+      <p>The reference edition targets patch {SITE.patch}, build <code>{SITE.build}</code>. Articles separate core rules, live-world observations, and strategy analysis, with sanitized evidence attached to individual claims.</p>
+      <a href="/wiki/sources-and-confidence/">Read the evidence policy</a>
+    </section>
+
     <section class="contribute-strip">
       <div><span>Curated on GitHub</span><h2>Found an error or missing interaction?</h2><p>Corrections are reviewed against the active Codex, installed patch data, and primary documentation.</p></div>
-      <a href={`${SITE.repository}/issues/new`}>Report a correction</a>
+      <a href="/wiki/contributing-to-wiki/">Contribute evidence</a>
     </section>
   </div>
 </BaseLayout>

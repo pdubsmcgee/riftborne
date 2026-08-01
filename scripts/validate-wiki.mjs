@@ -24,6 +24,14 @@ const entries = [];
 const evidenceSource = fs.readFileSync(path.join(root, 'wiki', 'src', 'data', 'evidence.ts'), 'utf8');
 const evidenceIds = new Set([...evidenceSource.matchAll(/^\s{2}'([a-z0-9-]+)':\s*\{/gm)].map((match) => match[1]));
 if (!evidenceIds.size) errors.push('Evidence registry is empty.');
+for (const match of evidenceSource.matchAll(/^\s{2}'([a-z0-9-]+)':\s*\{([\s\S]*?)^\s{2}\},?$/gm)) {
+  const [, id, block] = match;
+  for (const field of ['title', 'kind', 'patch', 'build', 'verifiedAt', 'ruleset', 'transcript', 'method']) {
+    if (!new RegExp(`\\b${field}:\\s*'[^']+'`).test(block)) errors.push(`Evidence ${id}: missing or empty ${field}`);
+  }
+  if (!block.includes(`patch: '${expectedPatch}'`)) errors.push(`Evidence ${id}: patch does not match ${expectedPatch}`);
+  if (!block.includes(`build: '${expectedBuild}'`)) errors.push(`Evidence ${id}: build does not match ${expectedBuild}`);
+}
 
 const obsoleteTerms = [
   ['si', 'lo'].join(''),
@@ -52,8 +60,22 @@ for (const [collection, directory] of locations) {
     if (entry.verifiedBuild !== expectedBuild) errors.push(`${collection}/${filename}: expected build ${expectedBuild}, found ${entry.verifiedBuild}`);
     if (entry.verifiedAt !== verifiedAt) errors.push(`${collection}/${filename}: expected verification date ${verifiedAt}`);
     if (!Array.isArray(entry.evidence) || !entry.evidence.length) errors.push(`${collection}/${filename}: at least one evidence record is required`);
+    if (entry.media && !String(entry.media.alt ?? '').trim()) errors.push(`${collection}/${filename}: media requires non-empty alt text`);
+    const localAliases = new Set();
+    for (const alias of entry.aliases ?? []) {
+      const normalized = String(alias).trim().toLowerCase();
+      if (!normalized) errors.push(`${collection}/${filename}: alias cannot be empty`);
+      if (localAliases.has(normalized)) errors.push(`${collection}/${filename}: duplicate alias ${alias}`);
+      localAliases.add(normalized);
+    }
     for (const evidence of entry.evidence ?? []) {
       if (!evidenceIds.has(evidence)) errors.push(`${collection}/${filename}: unknown evidence ${evidence}`);
+    }
+    for (const row of entry.fieldGuide?.rows ?? []) {
+      for (const evidence of row.evidenceIds ?? []) {
+        if (!evidenceIds.has(evidence)) errors.push(`${collection}/${filename}: field guide cites unknown evidence ${evidence}`);
+        if (!entry.evidence.includes(evidence)) errors.push(`${collection}/${filename}: field guide evidence ${evidence} is missing from frontmatter`);
+      }
     }
     if (collection === 'articles') {
       const cited = new Set([...entry.body.matchAll(/#evidence-([a-z0-9-]+)/g)].map((match) => match[1]));
@@ -84,6 +106,23 @@ for (const [collection, directory] of locations) {
 
 const articles = entries.filter((entry) => entry.collection === 'articles');
 if (articles.length < 45) errors.push(`Expected at least 45 focused articles; found ${articles.length}`);
+const categoryEntries = entries.filter((entry) => entry.collection === 'categories');
+const categoryNames = new Set(categoryEntries.map((entry) => entry.title));
+for (const article of articles) {
+  if (!categoryNames.has(article.category)) errors.push(`articles/${article.filename}: unknown category ${article.category}`);
+}
+
+const orderOwners = new Map();
+const summaryOwners = new Map();
+for (const article of articles) {
+  const orderOwner = orderOwners.get(article.order);
+  if (orderOwner) errors.push(`Duplicate article order ${article.order}: ${orderOwner} and ${article.filename}`);
+  else orderOwners.set(article.order, article.filename);
+  const normalizedSummary = String(article.summary).trim().toLowerCase();
+  const summaryOwner = summaryOwners.get(normalizedSummary);
+  if (summaryOwner) errors.push(`Duplicate article summary: ${summaryOwner} and ${article.filename}`);
+  else summaryOwners.set(normalizedSummary, article.filename);
+}
 
 const articleSlugs = new Set(articles.map((entry) => entry.slug));
 const mechanicSlugs = new Set(articles.filter((entry) => entry.pageType !== 'strategy').map((entry) => entry.slug));

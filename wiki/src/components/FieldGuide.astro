@@ -1,0 +1,16 @@
+---
+interface FieldRow { field: string; meaning: string; changes: string; why: string; status: string; evidenceIds: string[]; }
+interface Props { title: string; rows: FieldRow[]; caption?: string; }
+const { title, rows, caption } = Astro.props;
+const headingId = `field-guide-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+---
+<section class="field-guide" aria-labelledby={headingId}>
+  <h2 id={headingId}>{title}</h2>
+  <div class="table-scroll" tabindex="0" role="region" aria-label={`${title} table; scroll horizontally on small screens`}>
+    <table>
+      {caption && <caption>{caption}</caption>}
+      <thead><tr><th scope="col">Field</th><th scope="col">Meaning</th><th scope="col">What changes it</th><th scope="col">Why it matters</th><th scope="col">Status</th><th scope="col">Evidence</th></tr></thead>
+      <tbody>{rows.map((row) => <tr><th scope="row">{row.field}</th><td>{row.meaning}</td><td>{row.changes}</td><td>{row.why}</td><td>{row.status}</td><td>{row.evidenceIds.map((id, index) => <><a href={`#evidence-${id}`}>{id}</a>{index < row.evidenceIds.length - 1 ? ', ' : ''}</>)}</td></tr>)}</tbody>
+    </table>
+  </div>
+</section>

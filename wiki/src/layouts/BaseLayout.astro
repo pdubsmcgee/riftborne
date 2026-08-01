@@ -8,17 +8,33 @@ interface Props {
   description?: string;
   canonicalPath?: string;
   pageClass?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title = SITE.name,
   description = SITE.description,
   canonicalPath = Astro.url.pathname,
-  pageClass = ''
+  pageClass = '',
+  structuredData
 } = Astro.props;
 const articles = (await getCollection('articles')).sort((a, b) => a.data.order - b.data.order);
 const canonical = new URL(canonicalPath, SITE.url);
 const pageTitle = title === SITE.name ? title : `${title} — ${SITE.name}`;
+const socialImage = new URL('/social-preview.svg', SITE.url).toString();
+const websiteData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${SITE.url}/search/?q={search_term_string}`,
+    'query-input': 'required name=search_term_string'
+  }
+};
+const schemas = [websiteData, ...(Array.isArray(structuredData) ? structuredData : structuredData ? [structuredData] : [])];
 ---
 <!doctype html>
 <html lang="en" data-theme="dark">
@@ -32,10 +48,18 @@ const pageTitle = title === SITE.name ? title : `${title} — ${SITE.name}`;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical.toString()} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Riftborne Wiki — independent patch-aware reference" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
     <link rel="canonical" href={canonical.toString()} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
     <script is:inline>
       (() => {
         const saved = localStorage.getItem('riftborne-wiki-theme');
@@ -78,6 +102,10 @@ const pageTitle = title === SITE.name ? title : `${title} — ${SITE.name}`;
         </button>
       </div>
       <nav aria-label="Wiki categories">
+        <form class="sidebar-search" action="/search/" method="get" role="search">
+          <label for="sidebar-query">Search the wiki</label>
+          <div><input id="sidebar-query" name="q" type="search" placeholder="Search" /><button type="submit">Go</button></div>
+        </form>
         <a class="sidebar-home" href="/">
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m4 10 8-6 8 6v10H4Z"/><path d="M9 20v-6h6v6"/></svg>
           Main page
@@ -101,6 +129,7 @@ const pageTitle = title === SITE.name ? title : `${title} — ${SITE.name}`;
         <span>Reference patch</span>
         <strong>{SITE.patch}</strong>
         <a href="/wiki/sources-and-confidence/">Sources and confidence</a>
+        <button class="sidebar-theme" type="button" data-theme-toggle>Switch color theme</button>
       </div>
     </aside>
     <button class="sidebar-scrim" type="button" data-menu-close aria-label="Close navigation"></button>
@@ -122,27 +151,62 @@ const pageTitle = title === SITE.name ? title : `${title} — ${SITE.name}`;
       const menuToggle = document.querySelector('[data-menu-toggle]');
       const sidebar = document.querySelector('[data-sidebar]');
       const closeButtons = document.querySelectorAll('[data-menu-close]');
-      const setMenu = (open) => {
+      const main = document.querySelector('.site-main');
+      const footer = document.querySelector('.site-footer');
+      let menuReturnFocus = null;
+      const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+      const setMenu = (open, restoreFocus = true) => {
+        if (open) menuReturnFocus = document.activeElement;
         sidebar?.classList.toggle('is-open', open);
         document.body.classList.toggle('menu-open', open);
         menuToggle?.setAttribute('aria-expanded', String(open));
+        sidebar?.setAttribute('aria-hidden', String(!open && matchMedia('(max-width: 840px)').matches));
+        if ('inert' in HTMLElement.prototype) {
+          if (main) main.inert = open;
+          if (footer) footer.inert = open;
+        }
+        if (open) sidebar?.querySelector('[data-menu-close]')?.focus();
+        else if (restoreFocus && menuReturnFocus instanceof HTMLElement) menuReturnFocus.focus();
       };
       menuToggle?.addEventListener('click', () => setMenu(!sidebar?.classList.contains('is-open')));
       closeButtons.forEach((button) => button.addEventListener('click', () => setMenu(false)));
 
-      document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
-        const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-        document.documentElement.dataset.theme = next;
-        localStorage.setItem('riftborne-wiki-theme', next);
-      });
+      document.querySelectorAll('[data-theme-toggle]').forEach((button) => button.addEventListener('click', () => {
+          const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+          document.documentElement.dataset.theme = next;
+          localStorage.setItem('riftborne-wiki-theme', next);
+      }));
 
       document.addEventListener('keydown', (event) => {
         if (event.key === '/' && !(event.target instanceof HTMLInputElement) && !(event.target instanceof HTMLTextAreaElement)) {
           event.preventDefault();
           document.querySelector('#global-search')?.focus();
         }
-        if (event.key === 'Escape') setMenu(false);
+        if (event.key === 'Escape' && sidebar?.classList.contains('is-open')) setMenu(false);
+        if (event.key === 'Tab' && sidebar?.classList.contains('is-open')) {
+          const focusable = [...sidebar.querySelectorAll(focusableSelector)].filter((element) => element instanceof HTMLElement && element.offsetParent !== null);
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+          else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+        }
       });
+
+      sidebar?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+        if (matchMedia('(max-width: 840px)').matches) setMenu(false, false);
+      }));
+      const syncSidebarState = () => {
+        const mobile = matchMedia('(max-width: 840px)').matches;
+        if (!mobile) {
+          sidebar?.removeAttribute('aria-hidden');
+          sidebar?.classList.remove('is-open');
+          document.body.classList.remove('menu-open');
+          if (main) main.inert = false;
+          if (footer) footer.inert = false;
+        } else if (!sidebar?.classList.contains('is-open')) sidebar?.setAttribute('aria-hidden', 'true');
+      };
+      addEventListener('resize', syncSidebarState);
+      syncSidebarState();
 
       if (location.pathname === '/' && location.hash.length > 1) {
         const legacy = location.hash.slice(1).split('/')[0];

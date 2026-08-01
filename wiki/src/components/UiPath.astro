@@ -1,0 +1,8 @@
+---
+interface Props { steps: string[]; label?: string; }
+const { steps, label = 'UI path' } = Astro.props;
+---
+<nav class="ui-path" aria-label={label}>
+  <strong>{label}</strong>
+  <ol>{steps.map((step) => <li>{step}</li>)}</ol>
+</nav>

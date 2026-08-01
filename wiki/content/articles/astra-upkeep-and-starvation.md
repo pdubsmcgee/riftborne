@@ -18,6 +18,7 @@ relatedPages:
   - resources
   - the-storage-rule
   - production-scaling-caveat
+  - troubleshooting-fleets-and-ships
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
 ruleset: core
@@ -46,3 +47,24 @@ Before sending ships to an ally, ask for the destination’s current Astra amoun
 ## Recovery options
 
 Reduce stationed demand, increase or redirect Astra supply, arrange a shipment, or shorten the period the fleet must remain. Exact attrition timing is intentionally omitted because the current roster and world settings can alter the result. [Evidence](#evidence-live-world-1175)
+
+## Recovery sequence
+
+1. Reopen the affected colony and record current Astra, capacity, and hourly trend.
+2. Identify newly stationed or returning fleets that changed demand.
+3. Check incoming supply and the time until it arrives.
+4. Compare that arrival with the displayed runway; do not rely on a remembered balance.
+5. Reduce stationed demand or increase supply before beginning optional construction.
+6. Reopen the resource panel after each major change and confirm that the trend moved as expected.
+
+## Common mistakes
+
+- Treating capacity as production: a larger Astra cap does not itself correct a negative hourly trend.
+- Sending more defenders without checking the destination's demand.
+- Counting an incoming shipment as already available.
+- Assuming a loss interval copied from another world is current.
+- Starting another Astra-consuming commitment during recovery without rereading the trend.
+
+## Needs verification
+
+The exact ordering of ship losses, grace periods, and any world-specific starvation modifier requires current runtime evidence. A useful capture includes the colony's Astra panel, full stationed roster, active modifiers, world, build, and timestamps before and after the transition.

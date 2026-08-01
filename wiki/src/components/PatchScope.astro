@@ -1,0 +1,17 @@
+---
+interface Props {
+  patch: string;
+  build: string;
+  ruleset: 'core' | 'live-world' | 'both' | 'strategy';
+  reviewed: string;
+}
+
+const { patch, build, ruleset, reviewed } = Astro.props;
+const rulesetLabels = { core: 'Core rules', 'live-world': 'Live-world observation', both: 'Core + live world', strategy: 'Strategy analysis' };
+---
+<dl class="patch-scope" aria-label="Article verification scope">
+  <div><dt>Patch</dt><dd>{patch}</dd></div>
+  <div><dt>Build</dt><dd><code>{build}</code></dd></div>
+  <div><dt>Scope</dt><dd>{rulesetLabels[ruleset]}</dd></div>
+  <div><dt>Reviewed</dt><dd><time datetime={reviewed}>{reviewed}</time></dd></div>
+</dl>

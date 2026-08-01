@@ -3,6 +3,9 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import { SITE, articlePath, categorySlug } from '../data/wiki';
 import { EVIDENCE } from '../data/evidence';
+import PatchScope from '../components/PatchScope.astro';
+import StatusCallout from '../components/StatusCallout.astro';
+import FieldGuide from '../components/FieldGuide.astro';
 
 interface Props {
   article: CollectionEntry<'articles'>;
@@ -26,8 +29,22 @@ const historyUrl = `${SITE.repository}/commits/main/${sourcePath}`;
 const issueUrl = `${SITE.repository}/issues/new?title=${encodeURIComponent(`Wiki correction: ${data.title}`)}&body=${encodeURIComponent(`Page: ${SITE.url}${path}\n\nDescribe the correction and include a source if possible:\n`)}`;
 const toc = headings.filter((heading) => heading.depth <= 3);
 const evidence = data.evidence.map((id) => EVIDENCE[id]).filter(Boolean);
+const structuredData = [
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Main page', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: data.category, item: `${SITE.url}/category/${categorySlug(data.category)}/` },
+      { '@type': 'ListItem', position: 3, name: data.title, item: `${SITE.url}${path}` }
+    ]
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'TechArticle', headline: data.title,
+    description: data.summary, url: `${SITE.url}${path}`, dateModified: data.lastReviewed,
+    about: 'Riftborne', isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.url }
+  }
+];
 ---
-<BaseLayout title={data.title} description={data.summary} canonicalPath={path} pageClass="article-page">
+<BaseLayout title={data.title} description={data.summary} canonicalPath={path} pageClass="article-page" structuredData={structuredData}>
   <div class="article-wrap">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="/">Main page</a><span aria-hidden="true">›</span>
@@ -50,6 +67,12 @@ const evidence = data.evidence.map((id) => EVIDENCE[id]).filter(Boolean);
           </div>
         </header>
 
+        <PatchScope patch={data.patch} build={data.verifiedBuild} ruleset={data.ruleset} reviewed={data.lastReviewed} />
+
+        {data.verification !== 'confirmed' && <StatusCallout status={data.verification} title="Evidence boundary">
+          This page contains {data.verification.replace('-', ' ')} information. Follow its claim-level evidence links and treat uncited operational details as needing verification in the current world.
+        </StatusCallout>}
+
         {data.infobox && <aside class="infobox" aria-label={`${data.title} summary`}>
           <h2>{data.title}</h2>
           <dl>
@@ -61,6 +84,8 @@ const evidence = data.evidence.map((id) => EVIDENCE[id]).filter(Boolean);
           <img src={data.media.src} alt={data.media.alt} />
           {data.media.caption && <figcaption>{data.media.caption}</figcaption>}
         </figure>}
+
+        {data.fieldGuide && <FieldGuide title={data.fieldGuide.title} caption={data.fieldGuide.caption} rows={data.fieldGuide.rows} />}
 
         <div class="article-content"><slot /></div>
 
