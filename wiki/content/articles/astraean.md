@@ -2,34 +2,36 @@
 title: 'Astraean: compound interest with a shield'
 slug: astraean
 summary: >-
-  Astraean is an economy-oriented culture with discounted Aurelite ship costs,
-  strong shields, and slower construction.
+  Astraean uses solar-themed infrastructure, strong defensive tools, and a
+  measured economy-first style.
 category: Cultures
 pageType: mechanic
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 23
 aliases: []
 relatedPages:
   - cultures
   - varkon
   - veil
-sources:
-  - local-guide
-  - official-manual
 infobox:
   Type: Playable culture
-  Patch: '11.73'
+  Patch: '11.75'
   Focus: Economy and defense
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-Astraean is an economy-oriented culture with discounted Aurelite ship costs, strong shields, and slower construction. [Source](#references)
+Astraean’s current infrastructure includes Sunspire, Solvault, Heliovex, Astergate, Solis Aegis, Solis Battery, Solar Slipway, Auric Drydock, and Helion Bombard. [Evidence](#evidence-building-names-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
-
-- 50% Aurelite discount on ship costs.
-- Overclocker adds half the campaign’s normal per-level resource bonus to all four outputs.
-- Strongest Ion Shield.
-- Normal buildings run at 0.60 speed; ship-building speed at 0.70.
-
-Astraean performs best as a compounding economy built around safe clusters, balanced output, and efficient mixed fleets. Its production advantage can attract raids, which makes Nano Storage and credible retaliation important. The culture has no innate combat multiplier; its advantage is the ability to field and replace useful ships over time.
+Astraean strategy favors protected production clusters and deliberate reinforcement. Culture and ship modifiers can vary with the active roster and campaign, so exact discounts, speeds, and combat values belong to the current Codex rather than a universal table. [Evidence](#evidence-live-world-1175)

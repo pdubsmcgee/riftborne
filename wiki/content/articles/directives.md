@@ -6,24 +6,33 @@ summary: >-
   permanent empire bonuses when completed.
 category: Reference
 pageType: reference
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 39
 aliases:
   - Aegis
   - Aegis Vanguard
   - directive paths
 relatedPages: []
-sources:
-  - local-guide
-  - local-data
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: both
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - current-data-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-Directives are twelve parallel ten-stage progression paths that grant permanent empire bonuses when completed. [Source](#references)
+Directives are twelve parallel ten-stage progression paths that grant permanent empire bonuses when completed. [Evidence](#evidence-client-build-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
 
-Twelve ten-stage tracks progress in parallel and auto-complete. The installed guide lists these permanent capstones:
+The current directive table defines twelve ten-stage paths that progress in parallel and auto-complete. It lists these permanent capstones: [Evidence](#evidence-current-data-1175)
 
 | Path | Permanent effect |
 |---|---|

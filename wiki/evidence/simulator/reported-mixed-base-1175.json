@@ -1,0 +1,25 @@
+{
+  "patch": "11.75",
+  "build": "a7b5c7c",
+  "verifiedAt": "2026-07-30",
+  "command": "Riftborne.exe --battle-sim-auto --battle-sim-auto-runs=200 --battle-sim-auto-seed=1175 --battle-sim-auto-profile=reported-mixed-base",
+  "mission": "Attack",
+  "runsPerMatchup": 200,
+  "seed": 1175,
+  "profile": {
+    "attackerShips": { "LightFighter": 15 },
+    "defenderShips": { "Destroyer": 10 },
+    "defenderBuildings": { "CentralSpire": 5 }
+  },
+  "results": [
+    { "attacker": "Astraean", "defender": "Astraean", "attackerWinRate": 0, "defenderWinRate": 1, "averageAttackerLoss": 1, "averageDefenderLoss": 0 },
+    { "attacker": "Astraean", "defender": "Varkon", "attackerWinRate": 0, "defenderWinRate": 1, "averageAttackerLoss": 1, "averageDefenderLoss": 0 },
+    { "attacker": "Astraean", "defender": "Veil", "attackerWinRate": 0, "defenderWinRate": 1, "averageAttackerLoss": 1, "averageDefenderLoss": 0 },
+    { "attacker": "Varkon", "defender": "Astraean", "attackerWinRate": 0, "defenderWinRate": 1, "averageAttackerLoss": 1, "averageDefenderLoss": 0 },
+    { "attacker": "Varkon", "defender": "Varkon", "attackerWinRate": 0, "defenderWinRate": 1, "averageAttackerLoss": 1, "averageDefenderLoss": 0 },
+    { "attacker": "Varkon", "defender": "Veil", "attackerWinRate": 0, "defenderWinRate": 1, "averageAttackerLoss": 1, "averageDefenderLoss": 0 },
+    { "attacker": "Veil", "defender": "Astraean", "attackerWinRate": 0, "defenderWinRate": 1, "averageAttackerLoss": 1, "averageDefenderLoss": 0 },
+    { "attacker": "Veil", "defender": "Varkon", "attackerWinRate": 0, "defenderWinRate": 1, "averageAttackerLoss": 1, "averageDefenderLoss": 0 },
+    { "attacker": "Veil", "defender": "Veil", "attackerWinRate": 0, "defenderWinRate": 1, "averageAttackerLoss": 1, "averageDefenderLoss": 0 }
+  ]
+}

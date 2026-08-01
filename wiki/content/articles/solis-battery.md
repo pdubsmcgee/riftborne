@@ -2,33 +2,37 @@
 title: Solis Battery
 slug: solis-battery
 summary: >-
-  Solis Battery is part of Riftborne’s reference system and is documented here
-  for patch 11.73.
+  Solis Battery is Astraean static attack infrastructure that contributes
+  against light and heavy attackers while the building stands.
 category: Reference
 pageType: reference
-patch: '11.73'
-verification: patch-sensitive
-lastReviewed: '2026-07-29'
+patch: '11.75'
+verification: confirmed
+lastReviewed: '2026-07-30'
 order: 70
 aliases: []
 relatedPages:
   - shield-integrity
   - key-structures
   - fleet-power
-sources:
-  - local-guide
-  - local-data
 infobox:
-  Type: Unresolved Codex term
-  Status: Not documented in installed 11.73 guide
-  Authority: Active-world Codex
+  Culture: Astraean
+  Role: Static attack infrastructure
+  Targets: Light and heavy hulls
+  Patch: '11.75'
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-combat-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-Solis Battery is part of Riftborne’s reference system and is documented here for patch 11.73. [Source](#references)
+Solis Battery is the Astraean static attack building. It adds flat attack against light and heavy hulls and fires with the stationed garrison while the building remains standing. It does not use shield integrity. [Evidence](#evidence-building-effects-1175)
 
-> **Evidence status — patch sensitive:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+Its effect is culture-dependent. The active Codex and combat simulator should be used for a specific level and world; this page deliberately avoids copying a value from defensive infrastructure or converting its level into an unsupported fleet-power total.
 
-Solis Battery is a term that may appear in an active-world Codex or earlier game material, but it is not defined in the installed patch 11.73 gameplay guide or readable data tables used by this wiki.
-
-It should not be assigned an inferred defense value from its level alone. When the term appears in a live world, its Codex entry and combat preview are authoritative for that world.
-
-> **Patch-sensitive:** This page intentionally records the documentation gap instead of presenting an unsupported formula. Related calculations are documented under [Shield integrity](/wiki/shield-integrity/) and [Key structures](/wiki/key-structures/).
+The Varkon and Veil structures in the same role are Warbattery and Duskbattery. [Evidence](#evidence-building-names-1175)

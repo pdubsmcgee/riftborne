@@ -6,9 +6,9 @@ summary: >-
   support, and mission-specific speed.
 category: Ships and fleets
 pageType: mechanic
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 27
 aliases:
   - mixed fleet
@@ -16,12 +16,18 @@ aliases:
   - heavy ships
 relatedPages:
   - ships-fleets-and-travel
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - runtime-objectives-1175
+mechanicDependencies: []
 ---
-Fleet composition balances screening, line combat, cargo, siege, carrier support, and mission-specific speed. [Source](#references)
+Fleet composition balances screening, line combat, cargo, siege, carrier support, and mission-specific speed. [Evidence](#evidence-client-build-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
 
 A practical force has:
 

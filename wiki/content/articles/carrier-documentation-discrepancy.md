@@ -1,24 +1,28 @@
 ---
-title: Carrier documentation discrepancy
+title: Carrier values and custom rosters
 slug: carrier-documentation-discrepancy
 summary: >-
-  Carrier documentation discrepancy is part of Riftborne’s reference system and
-  is documented here for patch 11.73.
+  Carrier effects must be read from the active roster and combat preview because
+  multiplayer worlds can use detached or modified ship statistics.
 category: Reference
 pageType: reference
-patch: '11.73'
-verification: patch-sensitive
-lastReviewed: '2026-07-29'
+patch: '11.75'
+verification: observed
+lastReviewed: '2026-07-30'
 order: 29
 aliases: []
 relatedPages:
   - combat-power
-sources:
-  - local-guide
-  - local-data
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-Carrier documentation discrepancy is part of Riftborne’s reference system and is documented here for patch 11.73. [Source](#references)
+Carrier effects are roster-dependent. The active multiplayer operator can supply a custom or detached ship roster, so a carrier coefficient copied from another campaign is not reliable. [Evidence](#evidence-live-world-1175)
 
-> **Evidence status — patch sensitive:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
-
-The 11.73 combat chapter says each carrier adds 0.1% (`0.001`) to non-carrier stats, but its worked example and movement/raid chapters use 0.01% (`0.0001`). Treat the live combat preview as authoritative. Either value still means carriers pay off through the number and value of non-carrier hulls, not their own stat line.
+Use the current Codex roster and combat preview for the active world. This wiki does not publish a universal carrier percentage until the value is exposed by a current, ruleset-specific source.

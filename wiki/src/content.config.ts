@@ -3,6 +3,7 @@ import { glob } from 'astro/loaders';
 
 const verification = z.enum(['confirmed', 'patch-sensitive', 'observed', 'inferred', 'strategy']);
 const pageType = z.enum(['overview', 'guide', 'mechanic', 'reference', 'strategy']);
+const ruleset = z.enum(['core', 'live-world', 'both', 'strategy']);
 
 const sharedSchema = z.object({
   title: z.string().min(2),
@@ -11,12 +12,16 @@ const sharedSchema = z.object({
   category: z.string().min(2),
   pageType,
   patch: z.string(),
+  verifiedBuild: z.string().regex(/^[a-f0-9]{7}$/),
+  verifiedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  ruleset,
   verification,
   lastReviewed: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   order: z.number().int().nonnegative(),
   aliases: z.array(z.string()).default([]),
   relatedPages: z.array(z.string()).default([]),
-  sources: z.array(z.string()).min(1),
+  evidence: z.array(z.string()).min(1),
+  mechanicDependencies: z.array(z.string()).default([]),
   legacyHash: z.string().optional(),
   infobox: z.record(z.string(), z.string()).optional(),
   media: z.object({
@@ -26,6 +31,10 @@ const sharedSchema = z.object({
   }).optional()
 });
 
+const categorySchema = sharedSchema.omit({
+  mechanicDependencies: true
+});
+
 const articles = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './content/articles' }),
   schema: sharedSchema
@@ -33,7 +42,7 @@ const articles = defineCollection({
 
 const categoryIntros = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './content/categories' }),
-  schema: sharedSchema
+  schema: categorySchema
 });
 
 export const collections = { articles, categoryIntros };

@@ -2,13 +2,13 @@
 title: Combat power
 slug: combat-power
 summary: >-
-  Combat power is derived from target composition, unit statistics, critical
-  chance, tracking, evasion, and global multipliers.
+  Combat power is a matchup estimate produced from the active roster, fleet
+  composition, infrastructure, and current modifiers.
 category: Warfare and intelligence
 pageType: mechanic
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 28
 aliases:
   - fleet power
@@ -16,42 +16,23 @@ aliases:
   - 3200 power
 relatedPages:
   - carrier-documentation-discrepancy
-sources:
-  - local-guide
 legacyHash: combat-without-the-fog-machine
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - combat-matrix-1175
+mechanicDependencies: []
 ---
-Combat power is derived from target composition, unit statistics, critical chance, tracking, evasion, and global multipliers. [Source](#references)
+Combat power is a matchup estimate, not a fixed conversion between a displayed number and ship count. [Evidence](#evidence-runtime-combat-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+The active roster, attacker and defender cultures, light/heavy mix, infrastructure, directives, SPUs, tactics, and world modifiers can all change a preview. This is why a displayed power value cannot answer “how many ships?” without the exact scenario.
 
-Combat weights attack and defense against the opponent’s light/heavy mix.
+## Reproducible example
 
-```text
-weighted attack =
-  attack-vs-light × enemy light share +
-  attack-vs-heavy × enemy heavy share
+The 11.75 built-in simulator was run with seed 1175 for 200 trials per culture pairing. The profile used 15 attacking light fighters against 10 defending destroyers with level-5 central infrastructure. In all nine culture pairings, the defender won every run and the attacking force was lost. [Evidence](#evidence-combat-matrix-1175)
 
-weighted defense =
-  defense-vs-light × enemy light share +
-  defense-vs-heavy × enemy heavy share
-```
-
-Unit SPUs and carrier aura modify those contributions. Crit contributes `1 + average crit / 200`. Tracking versus evasion contributes a multiplier clamped between 0.8 and 1.2:
-
-```text
-tracking edge = clamp((tracking - enemy evasion) / 200, -0.2, 0.2)
-```
-
-Attacker power then applies fleet and global attack multipliers. Defender power combines its crit-adjusted attack, multiplier-adjusted unit defense, flat base defense, global defense, and tracking edge.
-
-On an Attack, one side breaks. Loss fractions are scaled so the losing side is wiped. On a Raid, the same raw fractions start halved; raids are softer, not safe.
-
-Large overmatch gives only a limited casualty discount. Attack incoming damage bottoms at 75% around 3× overmatch; raid incoming damage bottoms at 90%. Even an overwhelming fleet therefore continues to take meaningful incoming damage.
-
-Small fleets suffer rounding:
-
-```text
-lost ships = round(original count × loss fraction)
-```
-
-This makes one- and two-hull probes swing between no effect and total loss.
+This result proves only that recorded fixture. It should not be generalized to a custom multiplayer roster or a different building, directive, SPU, or tactics configuration.

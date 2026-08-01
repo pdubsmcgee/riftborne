@@ -352,7 +352,7 @@ function buildFleetPlans(input: {
       title: `Prepare a guarded colonization package for ${expansion.key}`,
       composition: ['Colonization-capable fleet only after expansion gate is confirmed', 'Escort sized to nearby exposure', 'Separate cargo/logistics follow-up for early build support'],
       rationale: `${expansion.terrain} at ${expansion.key} is the top visible expansion target, but the fleet should be treated as a package: claim, escort, and supply.`,
-      readinessChecks: ['Confirm Central Spire requirement and colony/outpost cap.', 'Check wrapped travel time from nearest owned site.', 'Stage resources before the new site idles.'],
+      readinessChecks: ['Confirm the culture-specific central-infrastructure requirement and colony/outpost cap.', 'Check wrapped travel time from nearest owned site.', 'Stage resources before the new site idles.'],
       risk: expansion.threatScore > 50 ? 'medium' : 'low',
       evidence: expansion.evidence
     });
@@ -429,7 +429,7 @@ function recommendations(input: {
       score: expansion.opportunityScore,
       whyNow: expansion.nearestOwnedDistance !== null ? `${expansion.nearestOwnedDistance.toFixed(1)} wrapped tiles from your nearest visible holding.` : 'No owned distance baseline is available.',
       evidence: expansion.evidence,
-      verifyInGame: ['Confirm Central Spire expansion gate.', 'Confirm fleet availability and fog conditions.', 'Check whether a closer staging base is safer.'],
+      verifyInGame: ['Confirm the culture-specific expansion gate.', 'Confirm fleet availability and fog conditions.', 'Check whether a closer staging base is safer.'],
       missingInformation: 'Colonization requirements and hidden fleet movements must be checked in-game.',
       sourceRefs: [{ kind: 'tile', id: expansion.key, label: `Tile ${expansion.key}` }]
     });

@@ -89,7 +89,7 @@ export function buildForecast(input: { world: WorldRecord | null; analysis: Stra
         probability,
         confidence: 0.42,
         subjectKey: keystones[0].key,
-        supportingFeatures: [`${keystones.length} Keystone/KRAKEN-like site(s) identifiable`, 'Current 11.73 victory rules emphasize Origin and Keystone Vision paths'],
+        supportingFeatures: [`${keystones.length} Keystone/KRAKEN-like site(s) identifiable`, 'Current 11.75 victory rules emphasize Origin Wormhole and Keystone-generated Valor paths'],
         assumptions: ['Keystone marker detection from map labels is accurate.', 'Faction objective progress is not fully exposed.', 'Spy snapshots may be stale.'],
         invalidatedBy: ['Map schema changes Keystone labels.', 'Faction objective telemetry becomes available.', 'Manual notes mark sites uncontested or irrelevant.'],
         dataAgeMinutes

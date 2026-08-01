@@ -6,9 +6,9 @@ summary: >-
   production time, capacity, and scheduled spending.
 category: Economy
 pageType: overview
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 14
 aliases:
   - Vulkron
@@ -20,29 +20,43 @@ relatedPages:
   - the-storage-rule
   - astra-upkeep-and-starvation
   - production-scaling-caveat
-sources:
-  - local-guide
-  - local-data
 legacyHash: economy-four-resources-and-one-invisible-clock
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-fleets-1175
+  - current-data-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-The Riftborne economy consists of four stored resources whose value depends on production time, capacity, and scheduled spending. [Source](#references)
+Riftborne tracks four colony resources: Vulkron, Aurelite, Deuterium, and Astra. Each resource has its own current amount, capacity, and hourly trend. [Evidence](#evidence-runtime-economy-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+## Production buildings
 
-The four core resources are:
+| Resource | Production building |
+|---|---|
+| Vulkron | Extractor |
+| Aurelite | Synthesiser |
+| Deuterium | Combinator |
+| Astra | Solar Array |
 
-| Resource | Storage | Main pressure |
+The live interface reports all four resources together. Capacity is not a shared warehouse total: each resource has an independent cap. Production values and modifiers may differ by campaign, so the base preview is authoritative for the active world. [Evidence](#evidence-live-world-1175)
+
+## Capacity buildings
+
+| Culture | Vulkron, Aurelite, and Deuterium | Astra |
 |---|---|---|
-| Vulkron | Silo | Heavy industry, buildings, ships |
-| Aurelite | Silo | Broad economy and ship costs |
-| Deuterium | Silo | Logistics and advanced hulls |
-| Astra | Solar Cell | Buildings, ships, and stationed-fleet upkeep |
+| Astraean | Solvault | Heliovex |
+| Varkon | Skarncache | Voltforge |
+| Veil | Nyxvault | Gloamwell |
 
-Standard passive production is:
+The first building in each row supplies capacity to the first three resources. The second supplies Astra capacity. [Evidence](#evidence-building-effects-1175)
 
-```text
-gain = base production per hour × resource multiplier × hours
-stored = min(storage cap, old stored + gain)
-```
+## Practical reading
 
-Standard base production begins at 1,000 per hour for each resource. Tile and building bonuses add to the base multiplier; some Eldritch and SPU effects multiply afterward.
+A capped resource cannot receive further passive production. Before leaving a colony unattended, compare its current amount, cap, and hourly trend with the next expected login. Transfers and spending decisions should use the figures displayed for that colony rather than a wiki-wide assumed production rate.

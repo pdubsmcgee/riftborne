@@ -85,7 +85,7 @@ export function buildFactionStrategy(input: {
     id: `faction-keystone-${keystone.key}`,
     category: 'keystone',
     title: `Assign Keystone/Origin coverage around ${keystone.key}`,
-    rationale: 'Current 11.73 victory rules make Origin and Keystone Vision sites faction-level objectives, but enemy progress is not live public information.',
+    rationale: 'Current 11.75 victory rules make the Origin and Valor-producing Keystone sites faction-level objectives, but enemy progress is not live public information.',
     priority: 62,
     risk: 'high',
     confidence: 0.46,
@@ -126,6 +126,6 @@ export function buildFactionStrategy(input: {
     },
     actions: actions.sort((a, b) => b.priority - a.priority).slice(0, 10),
     factionProfiles,
-    note: 'Faction strategy is advisory and based on visible telemetry, imported observations, manual state, and current 11.73 knowledge. It does not know hidden fleets, private stockpiles, or faction chat agreements.'
+    note: 'Faction strategy is advisory and based on visible telemetry, imported observations, manual state, and current 11.75 knowledge. It does not know hidden fleets, private stockpiles, or faction chat agreements.'
   };
 }

@@ -2,31 +2,42 @@
 title: Sources and confidence
 slug: sources-and-confidence
 summary: >-
-  This wiki ranks installed patch data above older official material and labels
-  strategic inference separately from confirmed mechanics.
+  This wiki uses current-client evidence, sanitized UI transcripts,
+  deterministic simulations, and separately labeled live-world observations.
 category: Reference
 pageType: reference
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 67
 aliases: []
 relatedPages: []
-sources:
-  - local-guide
-  - local-data
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: both
+evidence:
+  - client-build-1175
+  - runtime-combat-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-This wiki ranks installed patch data above older official material and labels strategic inference separately from confirmed mechanics. [Source](#references)
+This wiki targets the installed 11.75 client, build `a7b5c7c`. [Evidence](#evidence-client-build-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+## Evidence order
 
-Primary inputs:
+1. Current in-game Codex and visible UI.
+2. Read-only runtime audits of the installed client.
+3. Reproducible runs through the built-in combat simulator.
+4. Current multiplayer telemetry and world settings.
+5. Current official release information.
 
-- Bundled local `Content/GAMEPLAY_GUIDE` and `Content/Data` from Steam patch 11.73.
-- [Official Steam store page](https://store.steampowered.com/app/4301130/Riftborne/).
-- [Official gameplay-guide PDF](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4301130/manuals/ba1549a453f026cc7a8cf3247e19af87c8d91b37/RiftborneSovereigns_GameplayGuide.pdf).
-- [Official 11.64 patch notes](https://riftborne.itch.io/riftborne/devlog/1571499/1164-patch-notes).
-- [Developer’s July 2026 multiplayer announcement](https://www.reddit.com/r/spacesimgames/comments/1v012eq/riftborne_space_4x_new_multiplayer_server/).
-- [Community beginner guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3705847823), used only for qualitative culture perspective because many numbers predate 11.73.
+Older written guides are discovery aids only. They cannot confirm a mechanic.
 
-Where sources conflict, this manual prefers the installed 11.73 data, explicitly marks the disagreement, and recommends the live Codex or combat preview for the active world.
+## Verification labels
+
+- **Confirmed:** directly supported by the current client or Codex.
+- **Observed:** captured from a current UI or live-world response.
+- **Patch-sensitive:** valid only with the stated world or build context.
+- **Strategy:** analysis whose mechanic dependencies are listed and verified separately.
+
+Raw player screenshots remain private. Public evidence entries are sanitized transcripts that omit identity, coordinates, credentials, private stockpiles, and tactical information.

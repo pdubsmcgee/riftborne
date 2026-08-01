@@ -6,24 +6,30 @@ summary: >-
   defensive specialization.
 category: Expansion and buildings
 pageType: overview
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 20
 aliases: []
 relatedPages:
   - key-structures
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - current-data-1175
+mechanicDependencies: []
 ---
-Buildings define a base’s production, logistics, military output, storage, and defensive specialization. [Source](#references)
+Buildings determine a colony’s production, capacity, logistics, military output, and defensive role. [Evidence](#evidence-building-effects-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+Current building names are culture-specific. A role should therefore be identified by its displayed effect, not by carrying terminology from another culture into the article.
 
-Most structures cap at 20. Dyson Sphere caps at 200; Flagship Research at 5.
+Additional copies and maximum levels are not uniform across every structure. The construction screen states whether another copy is available and what prerequisite unlocks it. Use that screen for the active campaign rather than assuming that all structures share one cap.
 
-```text
-actual build time = listed build time / build-speed multiplier
-```
-
-Build speed comes from Central Spire, Flagship Research, Eldritch upgrades, directives, and SPUs. Astraean normal building speed receives a 0.60 multiplier, so Astraean expansion needs planning rather than improvisation.
+Specialization remains a strategic choice: production colonies protect continuous output, shipbuilding colonies protect queues and Astra, logistics colonies shorten supply paths, and fortified colonies combine stationed ships with current defensive infrastructure.

@@ -2,38 +2,38 @@
 title: Expansion and geography
 slug: expansion-and-geography
 summary: >-
-  Expansion converts Central Spire milestones and colonization hulls into
-  additional territory on a wrapped galaxy map.
+  Expansion converts current infrastructure prerequisites and colonization
+  hulls into additional territory on a wrapped galaxy map.
 category: Expansion and buildings
 pageType: mechanic
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 18
 aliases: []
 relatedPages:
   - how-to-value-a-tile
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-fleets-1175
+  - runtime-settlement-slots-1175
+  - runtime-combat-1175
+mechanicDependencies: []
 ---
-Expansion converts Central Spire milestones and colonization hulls into additional territory on a wrapped galaxy map. [Source](#references)
+Expansion converts current infrastructure prerequisites and colonization hulls into additional territory on a wrapped galaxy map. [Evidence](#evidence-runtime-fleets-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+The construction and colonization screens are authoritative for the active campaign’s unlocks, valid destination, slot type, cost, and travel time. Do not apply a milestone table from another world.
 
-The galaxy wraps at its edges. Distance is shortest-path Euclidean distance on that torus, so a visually distant opposite edge may provide a short route into an empire’s territory.
+## Losing an outpost
 
-Central Spire provides `+10%` building speed per level and unlocks:
+An outpost slot is current capacity, not a lifetime expenditure. The game counts qualifying outposts still owned by the player plus colonization fleets pending from the founding colony. If an outpost is lost to another player, it leaves the former owner’s count and that founding colony can use the slot again. An outpost with no remaining building levels also stops occupying a slot. [Evidence](#evidence-runtime-settlement-slots-1175)
 
-| Spire | Unlock |
-|---|---|
-| 5, 10, 15 | One generic outpost slot at each milestone |
-| 20 | One child colony from that origin |
-| 21–25 | One additional generic outpost slot per level |
+The slot belongs to its founding colony. Losing that colony does not transfer its unlocked capacity to another colony, and a replacement launch still needs a valid unlocked slot at the chosen origin.
 
-Each generic slot can fund:
-
-- a strategic outpost on empty space;
-- an asteroid mining outpost on an asteroid;
-- a rare-metal mining outpost on a seeded site.
-
-A full colony requires a Colonization hull, consumes one hull, and can raise its own Spire to continue the colony chain. Reaching an occupied hostile tile resolves as combat.
+Because the map wraps, visual edge distance can be misleading. Evaluate an expansion by actual travel time, reinforcement access, resource effect, and exposure to hostile launch colonies.

@@ -2,13 +2,13 @@
 title: Shield integrity
 slug: shield-integrity
 summary: >-
-  Ion Shield integrity scales a shield’s defensive contribution and is reduced
-  by every direct attack.
+  Defensive-structure integrity scales its combat contribution and can be
+  reduced by direct attacks separately from building-level siege damage.
 category: Warfare and intelligence
 pageType: mechanic
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 32
 aliases:
   - Solis Battery
@@ -19,21 +19,19 @@ relatedPages:
   - raid-ceiling
   - siege
   - espionage
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-combat-1175
+mechanicDependencies: []
 ---
-Ion Shield integrity scales a shield’s defensive contribution and is reduced by every direct attack. [Source](#references)
+Shield integrity represents the current contribution of a colony’s culture-specific defensive structure. Direct attacks can reduce that contribution even when the attacking force fails to capture the colony. [Evidence](#evidence-runtime-combat-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+Integrity loss and building-level destruction are separate outcomes. A later attack may face a weaker defensive contribution, but removing building levels requires the attack and siege paths shown by the current simulator.
 
-Every Attack chips Ion Shield integrity even if the attackers die:
-
-```text
-base damage % = attacker opening power / 45,000
-ratio = attacker power / defender power
-blend = ratio / (ratio + 1)
-factor = 0.90 + 0.20 × blend
-integrity damage = base damage × factor
-```
-
-Only siege removes actual building levels. Integrity attrition, however, can prepare a later breach.
+Do not infer integrity damage from attacker headcount or Solis Battery level. Solis Battery is static attack infrastructure, not the Astraean shield. [Evidence](#evidence-building-effects-1175)

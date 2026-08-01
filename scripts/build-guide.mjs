@@ -33,7 +33,7 @@ const lines = [
   '',
   '> Generated from the canonical Riftborne Wiki article collection. Edit the individual files in `wiki/content/articles/`, then run `npm run guide:generate`.',
   '',
-  'This reference targets **Riftborne patch 11.73**. Each article distinguishes confirmed mechanics, patch-sensitive documentation, inference, and strategy.',
+  'This reference targets **Riftborne patch 11.75**, build `a7b5c7c`. Confirmed mechanics cite current-client evidence; live-world observations and strategy are labeled separately.',
   ''
 ];
 

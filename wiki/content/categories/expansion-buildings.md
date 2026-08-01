@@ -4,9 +4,9 @@ slug: expansion-buildings
 summary: 'Territory, colonies, outposts, structures, and specialized base roles.'
 category: Expansion and buildings
 pageType: overview
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 2
 aliases: []
 relatedPages:
@@ -15,8 +15,14 @@ relatedPages:
   - buildings-and-base-roles
   - key-structures
   - rare-metals-and-spus
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
 ---
 Territory, colonies, outposts, structures, and specialized base roles.
 

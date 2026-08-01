@@ -4,9 +4,9 @@ slug: warfare-intelligence
 summary: 'Combat resolution, raiding, shield integrity, siege, and espionage.'
 category: Warfare and intelligence
 pageType: overview
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 5
 aliases: []
 relatedPages:
@@ -16,8 +16,12 @@ relatedPages:
   - shield-integrity
   - siege
   - espionage
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-combat-1175
 ---
 Combat resolution, raiding, shield integrity, siege, and espionage.
 

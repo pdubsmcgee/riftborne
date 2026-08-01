@@ -6,9 +6,9 @@ summary: >-
   after a successful attack.
 category: Warfare and intelligence
 pageType: mechanic
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 33
 aliases: []
 relatedPages:
@@ -16,17 +16,20 @@ relatedPages:
   - raid-ceiling
   - shield-integrity
   - espionage
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+mechanicDependencies: []
 ---
-Siege damage converts surviving siege capacity into building-level destruction after a successful attack. [Source](#references)
+Siege is the building-damage stage of a successful attack. Surviving siege capability and the selected target determine whether building levels are removed. [Evidence](#evidence-runtime-combat-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+Siege is not interchangeable with raid cargo or ordinary combat power. A fleet that wins the ship battle can still fail to achieve its structural objective if too little siege capability survives.
 
-```text
-raw siege = Σ(count × siege stat × carrier effect)
-survival scale = max(0.2, surviving siege / initial siege)
-final budget = raw siege × fleet siege multiplier × survival scale
-```
-
-Stasis Bastion multiplies that budget by 0.75. Each destroyed building level consumes 40% of that level’s total build cost. With no selected target, siege hits the highest-level building. A non-spawn base disappears when every building reaches zero.
+Use the current simulator with the exact target building and infrastructure. World-specific building costs and modifiers make a universal “siege per level” table unreliable.

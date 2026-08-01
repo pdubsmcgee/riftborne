@@ -1,7 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
-import { SITE, SOURCES, articlePath, categorySlug } from '../data/wiki';
+import { SITE, articlePath, categorySlug } from '../data/wiki';
+import { EVIDENCE } from '../data/evidence';
 
 interface Props {
   article: CollectionEntry<'articles'>;
@@ -24,6 +25,7 @@ const editUrl = `${SITE.repository}/edit/main/${sourcePath}`;
 const historyUrl = `${SITE.repository}/commits/main/${sourcePath}`;
 const issueUrl = `${SITE.repository}/issues/new?title=${encodeURIComponent(`Wiki correction: ${data.title}`)}&body=${encodeURIComponent(`Page: ${SITE.url}${path}\n\nDescribe the correction and include a source if possible:\n`)}`;
 const toc = headings.filter((heading) => heading.depth <= 3);
+const evidence = data.evidence.map((id) => EVIDENCE[id]).filter(Boolean);
 ---
 <BaseLayout title={data.title} description={data.summary} canonicalPath={path} pageClass="article-page">
   <div class="article-wrap">
@@ -42,6 +44,8 @@ const toc = headings.filter((heading) => heading.depth <= 3);
           <div class="article-status">
             <span class={`status status-${data.verification}`}>{data.verification.replace('-', ' ')}</span>
             <span>Patch {data.patch}</span>
+            <span>Build {data.verifiedBuild}</span>
+            <span>{data.ruleset === 'live-world' ? 'Live world' : data.ruleset === 'both' ? 'Core + live world' : data.ruleset === 'strategy' ? 'Strategy' : 'Core rules'}</span>
             <span>Reviewed <time datetime={data.lastReviewed}>{data.lastReviewed}</time></span>
           </div>
         </header>
@@ -60,14 +64,15 @@ const toc = headings.filter((heading) => heading.depth <= 3);
 
         <div class="article-content"><slot /></div>
 
-        <section id="references" class="references" aria-labelledby="references-title">
-          <h2 id="references-title">References</h2>
+        <section id="references" class="references evidence-ledger" aria-labelledby="references-title">
+          <h2 id="references-title">Evidence</h2>
+          <p class="evidence-intro">Sanitized transcripts from the current client. Raw player captures remain private.</p>
           <ol>
-            {data.sources.map((sourceId) => {
-              const source = SOURCES[sourceId];
-              return <li>
-                {source.href ? <a href={source.href} rel="noreferrer">{source.title}</a> : <strong>{source.title}</strong>}
-                <span>{source.note}</span>
+            {evidence.map((record) => {
+              return <li id={`evidence-${record.id}`}>
+                <strong>{record.title}</strong>
+                <span>{record.transcript}</span>
+                <small>Patch {record.patch} · build {record.build} · verified {record.verifiedAt} · {record.method}</small>
               </li>;
             })}
           </ol>

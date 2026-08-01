@@ -2,34 +2,35 @@
 title: Fleet power
 slug: fleet-power
 summary: >-
-  Fleet power is part of Riftborne’s ships and fleets system and is documented
-  here for patch 11.73.
+  Fleet power is a context-sensitive preview and has no universal conversion to
+  a number of ships.
 category: Ships and fleets
 pageType: mechanic
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 68
 aliases: []
 relatedPages:
   - combat-power
   - fleet-composition
   - key-structures
-sources:
-  - local-guide
 infobox:
   Type: Combat metric
   Context: Matchup-dependent
   Exact source: Codex combat simulator
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - current-data-1175
+mechanicDependencies: []
 ---
-Fleet power is part of Riftborne’s ships and fleets system and is documented here for patch 11.73. [Source](#references)
+Fleet power is a context-sensitive preview rather than a fixed conversion from headcount. [Evidence](#evidence-runtime-combat-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+A displayed value such as **3,200 power has no universal ship count**. It can describe materially different fleets because hull lines, culture, roster settings, infrastructure, directives, SPUs, tactics, mission type, and the opposing composition all affect the estimate.
 
-Fleet power is a context-sensitive combat estimate rather than a fixed conversion from ship count.
-
-The combat calculation weights attack and defense against the opposing fleet’s light and heavy mix, then applies critical chance, tracking, evasion, carrier effects, base defense, shield integrity, directives, SPUs, and culture modifiers. A displayed value such as **3,200 power therefore has no universal ship count**.
-
-As a rough reading aid, a 3,200-power force may represent dozens of developed combat hulls or hundreds of inexpensive light hulls. The exact count changes with hull class, culture, shipyard levels, directives, SPUs, and whether the fleet is attacking or defending.
-
-> **Patch-sensitive:** Use the in-game Codex combat simulator for an exact matchup. Headcount alone cannot determine whether a force defeats a fortified base.
+Use the in-game combat simulator with the exact active-world roster. Record both sides, infrastructure, modifiers, and mission type whenever quoting a power result.

@@ -2,34 +2,35 @@
 title: 'Varkon: choose the hour of violence'
 slug: varkon
 summary: >-
-  Varkon is an offensive culture built around discounted Vulkron ship costs and
-  time-limited attack amplification.
+  Varkon favors deliberate offensive timing, culture-specific military
+  infrastructure, and fleets built for a chosen campaign window.
 category: Cultures
 pageType: mechanic
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 24
 aliases: []
 relatedPages:
   - cultures
   - astraean
   - veil
-sources:
-  - local-guide
-  - official-manual
 infobox:
   Type: Playable culture
-  Patch: '11.73'
+  Patch: '11.75'
   Focus: Timed offense
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - building-names-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-Varkon is an offensive culture built around discounted Vulkron ship costs and time-limited attack amplification. [Source](#references)
+Varkon is an offensive culture whose current infrastructure includes Warspire, Skarncache, Voltforge, Kraghwall, Warbattery, Clawdock, Warfoundry, and Breach Forge. [Evidence](#evidence-building-names-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
-
-- 50% Vulkron ship-cost discount.
-- Attack and raid fleets receive a 3.0× attack multiplier in the 11.73 guide.
-- Conscription Service costs `200 × level` of every resource and grants `+10% × level` attack during its active window.
-- Weakest shield and slow ships.
-
-Conscription’s active window scales from 15 minutes to 4 hours; the post-window cooldown scales from 24 to 16 hours. Activate for a coordinated campaign, not a random probe. Varkon’s strategic problem is not winning a chosen fight—it is arriving, recovering, and not being counterattacked while its slow fleet is away.
+Its practical strength is concentrated force: assemble a fleet for a defined target, confirm travel and return exposure, and coordinate the launch window with allies. Numerical culture modifiers and ship values must be read from the active Codex because multiplayer worlds can use a customized roster. [Evidence](#evidence-live-world-1175)

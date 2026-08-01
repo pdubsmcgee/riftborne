@@ -4,7 +4,7 @@ A private, local-first guide and strategic dashboard for Riftborne. It indexes v
 
 ## The complete game guide
 
-Start with **[The Riftborne Field Manual](GUIDE.md)** for mechanics, formulas, culture playstyles, opening plans, multiplayer organization, objective strategy, and a dedicated hidden-mechanics/meta section. It targets patch 11.73 and labels patch-sensitive conflicts rather than hiding them.
+Start with **[The Riftborne Field Manual](GUIDE.md)** for mechanics, culture playstyles, opening plans, multiplayer organization, objective strategy, and advanced tactics. It targets patch 11.75 build `a7b5c7c`, cites current-client evidence, and separates core rules from live-world settings.
 
 ## Public wiki
 

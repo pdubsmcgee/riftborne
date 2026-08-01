@@ -6,9 +6,9 @@ summary: >-
   mechanics and should be evaluated against the active world state.
 category: Strategy
 pageType: strategy
-patch: '11.73'
+patch: '11.75'
 verification: strategy
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 53
 aliases: []
 relatedPages:
@@ -16,12 +16,16 @@ relatedPages:
   - astra-trap
   - shield-grinding-sacrificial-attacks
   - hangar-feint
-sources:
-  - local-guide
-  - official-manual
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: strategy
+evidence:
+  - client-build-1175
+  - live-world-1175
+mechanicDependencies:
+  - expansion-and-geography
 ---
-Wrapped-edge backdoor is a strategy pattern derived from documented Riftborne mechanics and should be evaluated against the active world state. [Source](#references)
+Wrapped-edge backdoor is a strategy pattern derived from documented Riftborne mechanics and should be evaluated against the active world state. [Evidence](#evidence-client-build-1175)
 
-> **Evidence status — Strategy:** This page derives recommendations from confirmed mechanics. It does not describe an official guarantee.
 
 Players read a rectangular map emotionally even though it is toroidal. Expand and launch across the seam; measure both routes.

@@ -6,9 +6,9 @@ summary: >-
   begins losing garrisoned ships.
 category: Economy
 pageType: mechanic
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 16
 aliases:
   - zero Astra
@@ -18,25 +18,19 @@ relatedPages:
   - resources
   - the-storage-rule
   - production-scaling-caveat
-sources:
-  - local-guide
-  - local-data
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - runtime-fleets-1175
+  - current-data-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-Astra supports both construction and stationed fleets; a base at zero Astra begins losing garrisoned ships. [Source](#references)
+Astra supports construction and stationed fleets. A colony whose stationed upkeep exceeds its Astra supply can begin losing garrisoned ships. [Evidence](#evidence-runtime-economy-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+The safe operating rule is to use the live hourly trend: estimate the runway from current Astra and the displayed net drain, then include incoming or departing reinforcements before relying on that colony.
 
-```text
-hourly upkeep = Σ(ship upkeep × stationed count)
-after Drone Facility = upkeep × (1 - reduction)
-Drone reduction = min(80%, 4% × level)
-```
-
-Veil’s Astra Suture Seal then multiplies remaining upkeep by 0.80. Stored base-side reduction is capped at 95% even if SPUs push it higher.
-
-At zero Astra, the base loses one stationed ship every 10 simulation seconds, cheapest hull first. This creates two useful rules:
-
-- Keep several hours of burn at military bases.
-- Do not reinforce an ally until somebody confirms the destination can pay the upkeep.
-
-Mining outposts draw Astra from their founding colony, falling back to the richest colony if that origin is gone.
+Upkeep modifiers and starvation timing can vary with the current roster, structures, SPUs, and world settings. This wiki therefore does not publish a universal loss interval. Confirm the destination’s Astra runway before reinforcing an ally. [Evidence](#evidence-live-world-1175)

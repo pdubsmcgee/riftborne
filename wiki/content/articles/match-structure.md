@@ -6,31 +6,34 @@ summary: >-
   production and information into useful options.
 category: Getting started
 pageType: guide
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 11
 aliases: []
 relatedPages: []
-sources:
-  - local-guide
 legacyHash: what-a-match-is-really-about
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: both
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - runtime-objectives-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-A Riftborne match is governed by tempo: the rate at which an empire converts production and information into useful options. [Source](#references)
+A Riftborne match is governed by tempo: the rate at which an empire converts production, movement, and information into useful options. [Evidence](#evidence-client-build-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+Patch 11.75 presents two standard victory tracks:
 
-The visible loop is simple:
+- **Origin Wormhole:** hold the Origin at `(0,0)` and raise its culture-specific Wormhole to level 100.
+- **Valor:** generate 250,000 faction Valor through Valor Conduits on controlled Keystones.
 
-`produce → build → scout → expand → pressure → hold objectives`
+The active multiplayer operator owns world settings and may change campaign parameters, so the live victory panel is authoritative. [Evidence](#evidence-runtime-objectives-1175)
 
-The deeper loop is about **tempo**. Every capped warehouse, idle shipyard, slow launch base, stale spy report, and indefensible colony gives away time. Good players convert time into optionality: enough storage to wait, enough intelligence to choose, and enough travel speed to respond.
-
-The normal victory paths are:
-
-- **Origin victory:** clear and colonize `(0,0)`, then raise the culture-specific Wormhole to level 100.
-- **Keystone victory:** one faction controls five Keystone colonies, each with at least 1,000 Visions.
-
-If all other campaign factions surrender in multiplayer, the last unsurrendered faction also wins.
-
-Origin and Keystone sites begin under static **KRAKEN Void** garrisons. Objective sites can be attacked and spied on, but not raided. Enemy objective values are only as current as the last successful spy snapshot; faction-owned objectives are live to their faction.
+Between those objectives, good play means maintaining capacity headroom, protecting Astra-supported garrisons, keeping useful queues active, shortening response paths, and refreshing intelligence before committing a fleet.

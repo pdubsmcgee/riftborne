@@ -6,9 +6,9 @@ summary: >-
   response-time organization, and objective timing.
 category: Strategy
 pageType: strategy
-patch: '11.73'
+patch: '11.75'
 verification: strategy
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 40
 aliases: []
 relatedPages:
@@ -19,13 +19,20 @@ relatedPages:
   - run-an-intelligence-cycle
   - fight-campaigns-not-battles
   - shift-to-objectives-before-the-leaderboard-tells-you-to
-sources:
-  - local-guide
-  - official-manual
 legacyHash: how-to-win-official-multiplayer
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: strategy
+evidence:
+  - client-build-1175
+  - runtime-objectives-1175
+  - live-world-1175
+mechanicDependencies:
+  - objectives-and-victory
 ---
-Official multiplayer rewards coordinated logistics, current intelligence, response-time organization, and objective timing. [Source](#references)
+Official multiplayer rewards coordinated logistics, current intelligence, response-time organization, and objective timing. [Evidence](#evidence-client-build-1175)
 
-> **Evidence status — Strategy:** This page derives recommendations from confirmed mechanics. It does not describe an official guarantee.
 
-The current official world is a weeks-long real-time campaign. You cannot reproduce single-player’s time-advance tactics. The best approach is operational:
+The official world is real-time, so single-player time-advance tactics do not transfer. Its roster, modifiers, population, faction structure, and objective state are live-world values; capture them with a world identifier and timestamp before using them in a plan. [Evidence](#evidence-live-world-1175)
+
+The best approach is operational:

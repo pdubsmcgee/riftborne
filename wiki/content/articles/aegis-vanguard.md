@@ -3,29 +3,35 @@ title: Aegis Vanguard
 slug: aegis-vanguard
 summary: >-
   Aegis Vanguard is part of Riftborne’s reference system and is documented here
-  for patch 11.73.
+  for patch 11.75.
 category: Reference
 pageType: reference
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 69
 aliases: []
 relatedPages:
   - directives
   - fleet-power
   - combat-power
-sources:
-  - local-guide
-  - local-data
 infobox:
   Type: Directive path
   Stages: '10'
   Capstone: +8% fleet attack
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - runtime-objectives-1175
+  - current-data-1175
+mechanicDependencies: []
 ---
-Aegis Vanguard is part of Riftborne’s reference system and is documented here for patch 11.73. [Source](#references)
+Aegis Vanguard is part of Riftborne’s reference system and is documented here for patch 11.75. [Evidence](#evidence-client-build-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
 
 Aegis Vanguard is the Fighter directive path. It contains ten stages that progress automatically alongside the other directive tracks.
 

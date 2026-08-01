@@ -6,49 +6,55 @@ summary: >-
   defensive effects used by specialized bases.
 category: Expansion and buildings
 pageType: mechanic
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 21
 aliases:
   - Solis Battery
-  - Ion Shield
-  - Silo
-  - Solar Cell
+  - Solis Aegis
+  - Solvault
+  - Heliovex
+  - Skarncache
+  - Voltforge
+  - Nyxvault
+  - Gloamwell
   - shipyard
 relatedPages:
   - buildings-and-base-roles
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - runtime-objectives-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-Key structures provide the economic, military, storage, logistics, and defensive effects used by specialized bases. [Source](#references)
+Key structures provide the economic, military, capacity, logistics, and defensive effects used by specialized colonies. [Evidence](#evidence-building-effects-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+- **Extractor / Synthesiser / Combinator / Solar Array:** production for Vulkron, Aurelite, Deuterium, and Astra.
+- **Solvault / Skarncache / Nyxvault:** capacity for Vulkron, Aurelite, and Deuterium.
+- **Heliovex / Voltforge / Gloamwell:** capacity for Astra.
+- **Solar Slipway / Clawdock / Nocturnal Slipway:** intelligence and light-hull construction.
+- **Auric Drydock / Warfoundry / Umbral Drydock:** heavy-hull construction.
+- **Helion Bombard / Breach Forge / Rift Ruinery:** bomber and siege-hull construction.
+- **Solis Aegis / Kraghwall / Duskshroud:** culture-specific defensive infrastructure.
+- **Solis Battery / Warbattery / Duskbattery:** static attack against light and heavy hulls.
+- **Astergate / Warcross / Whisperway:** logistics and market infrastructure.
+- **Nano Storage:** reduces resources exposed to hostile looting.
 
-- **Extractor / Synthesiser / Combinator / Solar Array:** Vulkron, Aurelite, Deuterium, Astra production.
-- **Dyson Sphere:** late-game Astra scaling.
-- **Light Shipyard:** `+10%` light/intelligence build and travel speed and `+2%` light stats per level.
-- **Heavy Shipyard:** same pattern for heavy/cargo/colonization hulls.
-- **Siege Foundry:** same pattern for bomber/siege hulls; bombers at 5, siege at 15.
-- **Ion Shield:** defense multiplier plus flat defense; current integrity scales only its contribution.
-- **Nano Storage:** hides `min(80%, 4% × level)` from hostile loot.
-- **Drone Facility:** reduces upkeep by the same curve.
-- **Orbital Exchange:** `+1%` launched cargo and `+1%` logistics shipment speed per level.
-- **Flagship Research:** `+15%` research and `+3%` building speed per level.
+Exact effects are shown by the current Codex and may depend on culture or campaign configuration. The wiki does not transfer a value from one culture’s building to another merely because the structures fill similar roles.
 
-Ion Shield strength varies dramatically:
+Useful colony roles include:
 
-| Culture | Per level | Level 20 |
-|---|---|---|
-| Astraean | +7.5% defense, +75 flat | 2.5× shield contribution, +1,500 flat |
-| Varkon | +1%, +10 flat | 1.2×, +200 |
-| Veil | +5%, +50 flat | 2.0×, +1,000 |
-
-Strong empires assign roles:
-
-- **Economic engine:** matching production, storage, low unnecessary garrison.
-- **Military forge:** shipyards, Astra, Drone Facility, uninterrupted stock.
-- **Launch hub:** shipyards, Orbital Exchange, speed/cargo effects.
-- **Fortress:** Ion Shield, Nano Storage, stationed defenders, nearby response.
-- **Objective node:** storage gates, Astra, shield, faction reinforcement.
-- **Research sanctuary:** Flagship Research on a base unlikely to be erased.
+- **Economic engine:** matching production and capacity with a low unnecessary garrison.
+- **Military forge:** shipbuilding infrastructure, Astra, and uninterrupted inputs.
+- **Launch hub:** shipbuilding, logistics infrastructure, and a protected route network.
+- **Fortress:** defensive infrastructure, Nano Storage, stationed defenders, and nearby response.
+- **Objective node:** capacity gates, Astra, defense, and faction reinforcement.

@@ -6,44 +6,29 @@ summary: >-
   determined by wrapped distance and the slowest participating ship.
 category: Ships and fleets
 pageType: overview
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 26
 aliases: []
 relatedPages:
   - fleet-composition
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: both
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-Fleets combine specialized hull families, while their travel time is determined by wrapped distance and the slowest participating ship. [Source](#references)
+Fleets combine specialized hull families, while their travel time is determined by wrapped distance and the slowest participating ship. [Evidence](#evidence-client-build-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
 
-Every culture covers Intelligence, light screen/skirmisher, main-line heavy, Carrier, Siege, Colonization, and Flagship roles.
+The current client distinguishes Intelligence, Light, Heavy, Carrier, Siege, Colonization, and Flagship roles. The active roster supplies each hull’s cost, speed, cargo, upkeep, and combat profile; multiplayer worlds may replace those values. [Evidence](#evidence-runtime-fleets-1175)
 
-Ship resource cost derives from base cost:
+A fleet travels at the pace produced by its participating hulls and active modifiers. The launch preview is authoritative for the chosen origin, destination, mission, and world. Keep slow-purpose hulls out of reaction fleets unless their effect is needed at the destination. [Evidence](#evidence-live-world-1175)
 
-```text
-Vulkron   = base cost × 1.25
-Aurelite  = base cost × 0.95
-Deuterium = base cost × 0.95
-Astra     = base cost × 0.85
-```
-
-Then the culture discount halves one resource.
-
-Training is split into independent lanes by completed shipyard copies and hull family. Veil Riftwalk Logistics doubles each unlocked family’s lanes. Current clients can split batches across lanes; use it to start every lane immediately.
-
-Travel:
-
-```text
-hours = wrapped distance /
-        (slowest modified ship speed × base travel multiplier × global multiplier)
-```
-
-The standard global multiplier is 3.0 and minimum travel is 0.01 hours. Manual shipments and accepted market trades instead use:
-
-```text
-trade speed = 5 × base travel multiplier × global multiplier × shipment-speed multiplier
-```
+Training capacity and unlocks are shown by the current culture-specific shipyard screens. Do not infer lane counts, discounts, or timing from another campaign.

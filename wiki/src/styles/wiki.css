@@ -289,6 +289,11 @@ kbd { padding: .08rem .38rem; border: 1px solid var(--border); border-radius: 3p
 .references ol { padding-left: 1.5rem; color: var(--muted); font-size: .78rem; }
 .references li { margin: .75rem 0; padding-left: .35rem; }
 .references li span { display: block; margin-top: .15rem; color: var(--dim); }
+.evidence-intro { margin: -.35rem 0 1.25rem; color: var(--muted); font-size: .78rem; }
+.evidence-ledger li { scroll-margin-top: calc(var(--header-height) + 1.25rem); padding: .85rem .85rem .85rem .35rem; border-bottom: 1px solid var(--border-soft); }
+.evidence-ledger li:target { border-left: 2px solid var(--accent); background: var(--surface-soft); }
+.evidence-ledger li strong { color: var(--text-soft); }
+.evidence-ledger li small { display: block; margin-top: .45rem; color: var(--dim); font: .62rem/1.5 var(--mono); }
 .related-pages ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border-soft); }
 .related-pages li { border-bottom: 1px solid var(--border-soft); }
 .related-pages li a { display: block; padding: .75rem 0 .2rem; font-weight: 700; text-decoration: none; }

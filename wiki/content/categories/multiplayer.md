@@ -4,15 +4,19 @@ slug: multiplayer
 summary: 'Organizations, markets, diplomacy, logistics, and faction coordination.'
 category: Multiplayer
 pageType: overview
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 7
 aliases: []
 relatedPages:
   - markets-organizations-and-diplomacy
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: both
+evidence:
+  - client-build-1175
+  - live-world-1175
 ---
 Organizations, markets, diplomacy, logistics, and faction coordination.
 

@@ -6,9 +6,9 @@ summary: >-
   advantages that are not obvious from headline statistics.
 category: Strategy
 pageType: strategy
-patch: '11.73'
+patch: '11.75'
 verification: strategy
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 48
 aliases:
   - cheese
@@ -32,13 +32,18 @@ relatedPages:
   - market-capital-lock
   - empty-base-deletion
   - objective-information-asymmetry
-sources:
-  - local-guide
-  - official-manual
 legacyHash: hidden-mechanics-cheese-and-meta-play
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: strategy
+evidence:
+  - client-build-1175
+mechanicDependencies:
+  - resources
+  - combat-power
+  - objectives-and-victory
 ---
-Advanced tactics use documented interactions and edge cases to create advantages that are not obvious from headline statistics. [Source](#references)
+Advanced tactics use documented interactions and edge cases to create advantages that are not obvious from headline statistics. [Evidence](#evidence-client-build-1175)
 
-> **Evidence status — Strategy:** This page derives recommendations from confirmed mechanics. It does not describe an official guarantee.
 
 These tactics follow from confirmed rules. “Cheese” means exploiting incentives and timing, not abusing bugs or unauthorized access.

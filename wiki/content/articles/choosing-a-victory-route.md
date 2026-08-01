@@ -6,32 +6,33 @@ summary: >-
   defense, resource throughput, and information position.
 category: Strategy
 pageType: strategy
-patch: '11.73'
+patch: '11.75'
 verification: strategy
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 37
 aliases: []
 relatedPages:
   - objectives-and-victory
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: strategy
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - runtime-objectives-1175
+  - current-data-1175
+  - live-world-1175
+mechanicDependencies:
+  - objectives-and-victory
 ---
-Victory-route selection compares a faction’s central control, distributed defense, resource throughput, and information position. [Source](#references)
+Victory-route selection compares a faction’s Origin access, Keystone network, defensive coverage, resource throughput, and information position. [Evidence](#evidence-runtime-objectives-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+Prefer the Origin Wormhole route when the faction can hold the central colony, sustain both capacity prerequisites, and protect a single highly visible construction project.
 
-Prefer Origin when your faction has:
+Prefer the Valor route when the faction can control and supply Keystones, grow Valor Conduits, and defend a distributed objective network long enough to reach the active-world threshold.
 
-- superior central travel lanes;
-- a concentrated defensive economy;
-- enough storage/build tempo to raise one site;
-- the ability to absorb attention from the entire map.
-
-Prefer Keystones when your faction has:
-
-- distributed territory across several quadrants;
-- reliable Noctmark production and donation discipline;
-- enough members to defend multiple sites;
-- intelligence coverage that catches coordinated sieges.
-
-The best faction may threaten both so opponents cannot concentrate.
+The strongest posture can threaten both routes so opponents cannot concentrate every response on one site. Confirm the live victory panel before committing; the operator owns campaign settings. [Evidence](#evidence-live-world-1175)

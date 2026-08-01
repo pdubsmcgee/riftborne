@@ -6,9 +6,9 @@ summary: >-
   and raid-loot modifiers.
 category: Warfare and intelligence
 pageType: mechanic
-patch: '11.73'
+patch: '11.75'
 verification: confirmed
-lastReviewed: '2026-07-29'
+lastReviewed: '2026-07-30'
 order: 31
 aliases: []
 relatedPages:
@@ -16,24 +16,22 @@ relatedPages:
   - shield-integrity
   - siege
   - espionage
-sources:
-  - local-guide
+verifiedBuild: a7b5c7c
+verifiedAt: '2026-07-30'
+ruleset: core
+evidence:
+  - client-build-1175
+  - runtime-economy-1175
+  - building-names-1175
+  - building-effects-1175
+  - runtime-fleets-1175
+  - runtime-combat-1175
+  - current-data-1175
+  - live-world-1175
+mechanicDependencies: []
 ---
-Raid yield is limited by surviving cargo capacity, visible target resources, and raid-loot modifiers. [Source](#references)
+Raid yield is bounded by the surviving fleet’s cargo, the target resources exposed to looting, and current raid modifiers. [Evidence](#evidence-runtime-combat-1175)
 
-> **Evidence status — confirmed:** Unless noted otherwise, mechanics are verified against the installed patch 11.73 guide.
+Nano Storage reduces exposed value, while logistics hulls and current cargo modifiers affect what can be carried away. A larger combat fleet does not automatically improve the haul if surviving cargo remains the bottleneck.
 
-```text
-carry = Σ(count × cargo × carrier effect) × fleet cargo multiplier
-ceiling = min(carry, target total)
-ceiling = min(target total, ceiling × raid-loot multiplier)
-visible = target total × (1 - hidden fraction)
-```
-
-Loot is then taken randomly by resource from visible stock. Nano Storage therefore reduces expected value, while Orbital Exchange, cargo hulls, directive/SPU bonuses, and Veil effects raise it.
-
-Veil Stolen Breath takes an extra:
-
-```text
-min(10% of main steal, 5% of remaining target resources)
-```
+Use the raid simulator with explicit target resources and buildings when comparing designs. Active-world roster values must be recorded with the result. [Evidence](#evidence-live-world-1175)

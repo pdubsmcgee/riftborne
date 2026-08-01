@@ -3,8 +3,9 @@ export const SITE = {
   description: 'An independent, patch-aware reference for Riftborne mechanics, strategy, and multiplayer.',
   url: 'https://riftbornewiki.317society.com',
   repository: 'https://github.com/pdubsmcgee/riftborne',
-  patch: '11.73',
-  reviewed: '2026-07-29'
+  patch: '11.75',
+  build: 'a7b5c7c',
+  reviewed: '2026-07-30'
 };
 
 export const CATEGORIES = [
@@ -19,37 +20,6 @@ export const CATEGORIES = [
   { name: 'Strategy', slug: 'strategy', description: 'Clearly labeled analysis, advanced tactics, and edge cases.' },
   { name: 'Reference', slug: 'reference', description: 'Formulas, directives, terminology, sources, and patch notes.' }
 ] as const;
-
-export const SOURCES: Record<string, { title: string; href?: string; note: string }> = {
-  'local-guide': {
-    title: 'Installed Riftborne gameplay guide, patch 11.73',
-    note: 'Bundled with the local Steam build dated 22 July 2026.'
-  },
-  'local-data': {
-    title: 'Installed Riftborne data files, patch 11.73',
-    note: 'Includes directive_paths.csv, spu_bonuses.csv, and build metadata.'
-  },
-  'official-manual': {
-    title: 'Official Riftborne gameplay guide',
-    href: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4301130/manuals/ba1549a453f026cc7a8cf3247e19af87c8d91b37/RiftborneSovereigns_GameplayGuide.pdf',
-    note: 'Official reference; some values may predate patch 11.73.'
-  },
-  'steam': {
-    title: 'Riftborne on Steam',
-    href: 'https://store.steampowered.com/app/4301130/Riftborne/',
-    note: 'Official store and release information.'
-  },
-  'patch-11-64': {
-    title: 'Riftborne 11.64 patch notes',
-    href: 'https://riftborne.itch.io/riftborne/devlog/1571499/1164-patch-notes',
-    note: 'Older official patch notes used only where identified.'
-  },
-  'community-guide': {
-    title: 'Community beginner guide',
-    href: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3705847823',
-    note: 'Qualitative perspective only; numerical values may be outdated.'
-  }
-};
 
 export const LEGACY_ROUTES: Record<string, string> = {
   'field-manual': '/',
