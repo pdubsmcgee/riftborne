@@ -1,43 +1,48 @@
 ---
 title: Credit ratings and factors
 slug: credit-ratings
-summary: How to record an organization credit rating, its displayed factors, and changes without claiming an unsupported universal formula.
+summary: Exact credit-score inputs, caps, penalties, grade thresholds, qualifying payments, and ways to recover after a default.
 category: Multiplayer
 pageType: reference
 patch: '11.75'
-verification: observed
-lastReviewed: '2026-07-30'
+verification: confirmed
+lastReviewed: '2026-08-01'
 order: 87
-aliases:
-  - credit rating
-  - organization credit score
-relatedPages:
-  - loans-and-credit-book
-  - borrowing-and-repayment
-  - treasury-and-holdings
-  - organization-fair-value
+aliases: [credit rating, organization credit score, AAA rating]
+relatedPages: [loans-and-credit-book, borrowing-and-repayment, treasury-and-holdings, organization-fair-value]
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
-ruleset: live-world
-evidence:
-  - client-build-1175
-  - live-world-1175
+ruleset: core
+evidence: [client-build-1175, organization-credit-1175]
 mechanicDependencies: []
 ---
-A credit rating is an observed client output. Record the rating and every factor the same screen displays; do not reverse-engineer a universal score from a small sample. [Evidence](#evidence-live-world-1175)
+A credit score begins at 74 and is recalculated from business activity, good payments, active debt, and defaults. The final score is clamped from 0 to 100. [Evidence](#evidence-organization-credit-1175)
 
-## Rating log
+## Formula
 
-| Field | Record |
+`score = clamp(74 + activity + good payments − active-debt penalty − recent-default penalty, 0, 100)`
+
+| Input | Rule |
 |---|---|
-| Rating | Exact grade, score, or label |
-| Factors | Names, direction, and values shown |
-| Debt | Outstanding and newly requested amount |
-| Liquidity | Treasury figure shown at the same time |
-| History | Recent repayments, late states, or defaults visible |
-| Change event | Action immediately preceding a rating update |
+| Organization activity | Up to 6 recorded economic-reliability events |
+| Personal activity | Marketplace trades, contracts, and share trades; each count is capped at 5 and multiplied by 0.4, with 6 points total maximum |
+| On-time streak | Up to 8 points |
+| Seasoned loans repaid | Up to 3 loans at 4 points each |
+| Active debt | Up to 8 points: outstanding/original principal × 5, plus 1 for each active loan beyond the first |
+| Recent defaults | 30 points each, capped at 60, during the previous 30 days |
 
-Compare repeated observations from the same world and build. A correlation between treasury or repayment history and a rating change is useful evidence, but it is not proof of weighting.
+Good-payment credit is capped at 20. A loan must have original principal of at least 80 Noctmarks to qualify. An on-time scheduled payment counts only when interest is positive. A seasoned repayment requires positive interest paid and full principal repayment no later than maturity. Default resets the on-time streak to zero. [Evidence](#evidence-organization-credit-1175)
 
-> **Needs verification:** Factor weights, update cadence, hidden inputs, history window, subsidiary effects, caps, decay, and how the rating changes loan availability or terms.
+## Grades
 
+| Minimum score | Grade |
+|---:|---|
+| 88 | AAA |
+| 80 | AA |
+| 71 | A |
+| 61 | BBB |
+| 49 | BB |
+| 37 | B |
+| 0 | CCC |
+
+Loan offers may specify a minimum acceptable grade. Recovery after default is slow by design: avoid another default, reduce active exposure, generate legitimate activity, and complete qualifying interest-bearing loans on time.

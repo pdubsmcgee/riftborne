@@ -25,9 +25,9 @@ export const EVIDENCE: Record<string, EvidenceRecord> = {
     kind: 'runtime-audit',
     patch: '11.75',
     build: 'a7b5c7c',
-    verifiedAt: '2026-07-30',
+    verifiedAt: '2026-08-01',
     ruleset: 'core',
-    transcript: 'The installed Windows client reports patch 11.75, build a7b5c7c, built 2026-07-30 16:32:01 UTC.',
+    transcript: 'The installed Windows client reports patch 11.75, build a7b5c7c, built 2026-07-31 15:16:13 UTC.',
     method: 'Riftborne.exe --build-info and Content/build_info.json.'
   },
   'building-names-1175': {
@@ -74,6 +74,28 @@ export const EVIDENCE: Record<string, EvidenceRecord> = {
     transcript: 'Directive and SPU tables were read from the same installed 11.75 build. Values are used only where the current table exposes them directly.',
     method: 'Content/Data/directive_paths.csv and Content/Data/spu_bonuses.csv.'
   },
+  'spu-stacking-1175': {
+    id: 'spu-stacking-1175',
+    title: 'SPU identity, magnitude, and stacking rules',
+    kind: 'runtime-audit',
+    patch: '11.75',
+    build: 'a7b5c7c',
+    verifiedAt: '2026-08-01',
+    ruleset: 'core',
+    transcript: 'A valid non-errored SPU contributes its per-unit bonus multiplied by stack count. Contributions targeting the same statistic are added. Invalid, errored, unknown, empty, and zero-count stacks contribute nothing. Without an explicit override, per-unit bonus is 0.1 percent times the average of Drill and Refiner levels.',
+    method: 'Read-only inspection of SpuStack.BonusPercentPerUnit and SpuAugmentSystem.ComputeTotals, cross-checked against Content/Data/spu_bonuses.csv.'
+  },
+  'building-catalog-1175': {
+    id: 'building-catalog-1175',
+    title: 'Building limits and level tables',
+    kind: 'runtime-audit',
+    patch: '11.75',
+    build: 'a7b5c7c',
+    verifiedAt: '2026-08-01',
+    ruleset: 'core',
+    transcript: 'Standard structures use level 20 unless explicitly specialized. Central infrastructure reaches 25, flagship research 5, hangar 10, origin-wormhole and Keystone-vision objectives 100, and Dyson Sphere 200. Current level tables define resource costs and build times independently by structure.',
+    method: 'Read-only inspection of BuildingConfig initialization and generated level tables.'
+  },
   'runtime-economy-1175': {
     id: 'runtime-economy-1175',
     title: 'Current economy and storage implementation',
@@ -117,6 +139,50 @@ export const EVIDENCE: Record<string, EvidenceRecord> = {
     ruleset: 'core',
     transcript: 'The current client contains organization identity and ownership records, shareholder and share-market snapshots, capital history, parent/subsidiary relationships, contracts, loans, defaults, credit ratings, dividends, buybacks, earnings, catalysts, and reinvestment surfaces. This inventory establishes that the systems exist; it does not establish formulas or live values.',
     method: 'Read-only type and member inventory of OrganizationSystem, OrganizationStatsSystem, CreditRatingSystem, and organization domain records in the installed client.'
+  },
+  'organization-valuation-1175': {
+    id: 'organization-valuation-1175',
+    title: 'Organization valuation and ownership formulas',
+    kind: 'runtime-audit',
+    patch: '11.75',
+    build: 'a7b5c7c',
+    verifiedAt: '2026-08-01',
+    ruleset: 'core',
+    transcript: 'Fair value per share combines balance value, profitable seven-day income, backlog, reinvestment, holdings, interest and dividend flows, dilution, concentration, liquidity, defaults, and a bounded macro multiplier. Outstanding shares exclude treasury shares. Control resolves to the largest effective ownership stake, with current owner and then founder winning an exact tie.',
+    method: 'Read-only inspection of OrganizationStatsSystem.ComputeFairValuePerShare, OutstandingShares, ComputeShareholderSnapshots, and OrganizationSystem.ResolveControllingPlayerId.'
+  },
+  'organization-capital-actions-1175': {
+    id: 'organization-capital-actions-1175',
+    title: 'Organization shares, buybacks, and dividends',
+    kind: 'runtime-audit',
+    patch: '11.75',
+    build: 'a7b5c7c',
+    verifiedAt: '2026-08-01',
+    ruleset: 'core',
+    transcript: 'Sell orders reserve existing shares; bids escrow Noctmarks. Treasury issuance lists treasury-backed shares without increasing issued shares, while follow-on funding increases authorized, issued, and treasury shares before listing them. Buyback budgets are escrowed from treasury and completed purchases become treasury shares. Scheduled dividends pay whole-Noctmark amounts to current player and organization holders and skip an interval when treasury cannot cover the complete payout.',
+    method: 'Read-only inspection of OrganizationSystem share-order, issuance, follow-on-funding, buyback, matching, cancellation, and scheduled-dividend methods.'
+  },
+  'organization-credit-1175': {
+    id: 'organization-credit-1175',
+    title: 'Organization loan and credit-rating rules',
+    kind: 'runtime-audit',
+    patch: '11.75',
+    build: 'a7b5c7c',
+    verifiedAt: '2026-08-01',
+    ruleset: 'core',
+    transcript: 'Loan terms use one-to-seven-day durations and daily simple interest equal to the ceiling of outstanding principal times the daily percentage. Interest is collected daily; a missed interest payment or unpaid maturity defaults immediately and seizes available borrower funds. Credit score starts at 74 and is adjusted by bounded activity, repayment history, active debt, and defaults in the preceding 30 days.',
+    method: 'Read-only inspection of OrganizationSystem loan lifecycle methods and CreditRatingSystem score and event methods.'
+  },
+  'organization-contracts-1175': {
+    id: 'organization-contracts-1175',
+    title: 'Organization contract lifecycle',
+    kind: 'runtime-audit',
+    patch: '11.75',
+    build: 'a7b5c7c',
+    verifiedAt: '2026-08-01',
+    ruleset: 'core',
+    transcript: 'A controlling player posts a validated contract against another player. The payout leaves treasury immediately for escrow. A different player may accept it for personal or controlled-organization settlement. Cancellation returns remaining escrow to the posting organization. Current objective types enforce their own target and minimum-quantity rules.',
+    method: 'Read-only inspection of OrganizationSystem contract posting, validation, acceptance, completion, and cancellation methods.'
   },
   'organization-ui-1175': {
     id: 'organization-ui-1175',

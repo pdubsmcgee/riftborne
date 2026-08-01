@@ -1,45 +1,37 @@
 ---
 title: Treasury and holdings
 slug: treasury-and-holdings
-summary: How to separate spendable treasury, investments, receivables, restricted amounts, and pending organization obligations.
+summary: What enters and leaves organization treasury, how orders reserve capital, and how holdings and obligations affect liquidity.
 category: Multiplayer
 pageType: reference
 patch: '11.75'
-verification: observed
-lastReviewed: '2026-07-30'
+verification: confirmed
+lastReviewed: '2026-08-01'
 order: 84
-aliases:
-  - organization treasury
-  - company holdings
-relatedPages:
-  - organizations
-  - organization-fair-value
-  - loans-and-credit-book
-  - dividends
-  - buybacks
+aliases: [organization treasury, company holdings, treasury liquidity, reserved Noctmarks]
+relatedPages: [organizations, organization-fair-value, loans-and-credit-book, dividends, buybacks]
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
-ruleset: live-world
-evidence:
-  - client-build-1175
-  - runtime-economy-1175
-  - live-world-1175
+ruleset: core
+evidence: [client-build-1175, organization-capital-actions-1175, organization-credit-1175, organization-contracts-1175]
 mechanicDependencies: []
 ---
-Treasury is useful only to the extent the active interface permits it to be spent. Keep cash-like balance distinct from holdings, receivables, and amounts reserved for pending actions. [Evidence](#evidence-live-world-1175)
+Treasury is the organization’s Noctmark balance. The action being taken determines whether capital remains liquid, moves to escrow, becomes a holding, or leaves the organization. [Evidence](#evidence-organization-capital-actions-1175)
 
-## Liquidity view
-
-| Bucket | Operational question |
+| Action | Immediate treasury effect |
 |---|---|
-| Available treasury | Can it fund an action immediately? |
-| Reserved or pending | Which confirmation or contract claims it? |
-| Holdings | What asset is owned and how is it valued? |
-| Receivables | When and under what condition does it settle? |
-| Debt service | What payment is due before discretionary spending? |
-| Distribution capacity | What does the dividend or buyback screen allow? |
+| Treasury-share or follow-on listing | None until a buyer pays |
+| Sale of treasury shares | Buyer payment enters treasury |
+| Organization share bid | Full bid value leaves treasury for escrow |
+| Cancelled organization bid | Remaining escrow returns to treasury |
+| Buyback authorization | Buyback value leaves treasury for escrow |
+| Contract posting | Full payout leaves treasury for contract escrow |
+| Contract cancellation | Remaining escrow returns |
+| Loan issued | Principal leaves lender treasury immediately |
+| Loan borrowed into organization | Principal enters borrower treasury immediately |
+| Principal or interest payment | Leaves borrower and enters lender treasury |
+| Dividend interval | Full holder payout leaves treasury, or the interval is skipped |
 
-Take all figures from one timestamp, then reconcile them with [Loans and the credit book](/wiki/loans-and-credit-book/) and [Contracts](/wiki/contracts/). A high fair value does not prove high immediate liquidity.
+Shares bought through an organization become that organization’s equity holdings. Their reference valuation combines fair value and last trade price when both exist: 65% fair value and 35% last price. The separate fair-value model applies an additional holdings weight rather than treating every holding as instantly spendable cash.
 
-> **Needs verification:** Currency units, reservation order, negative balances, holding valuation, settlement latency, and which roles can commit treasury funds.
-
+For safe liquidity, subtract all bid, buyback, and contract escrow already committed, then reserve the next loan interest and maturity principal. A high [Fair value](/wiki/organization-fair-value/) does not prove that treasury can cover an immediate action.

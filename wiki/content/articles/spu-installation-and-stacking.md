@@ -1,50 +1,39 @@
 ---
 title: SPU installation and stacking
 slug: spu-installation-and-stacking
-summary: Confirm an SPU's eligible recipient, displayed marginal effect, and installed state before treating its bonus as active.
+summary: Exact SPU per-unit strength, additive stack calculation, ignored-stack conditions, effect targets, and recipient choices.
 category: Economy
 pageType: guide
 patch: '11.75'
-verification: observed
+verification: confirmed
 lastReviewed: '2026-08-01'
 order: 96
-aliases:
-  - install SPU
-  - stack SPUs
-  - SPU effects
-relatedPages:
-  - spu-crafting-and-delivery
-  - rare-metals-and-spus
-  - live-world-values
+aliases: [install SPU, stack SPUs, SPU effects, SPU bonus formula]
+relatedPages: [spu-crafting-and-delivery, rare-metals-and-spus, live-world-values]
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
-ruleset: both
-evidence:
-  - client-build-1175
-  - current-data-1175
-  - live-world-1175
+ruleset: core
+evidence: [client-build-1175, current-data-1175, spu-stacking-1175]
 mechanicDependencies: []
 ---
-An SPU becomes strategically useful when its effect is installed on an eligible recipient and the current interface shows that effect as active. The data exposes targets across fleet, colony, economy, capacity, research, travel, cargo, combat, and intelligence systems. [Evidence](#evidence-current-data-1175)
+SPUs add persistent augmentation values to the owning player’s calculated bonuses. The current catalog targets production, storage, build speed, ship construction, travel, defense, research, upkeep, transmutation, fleet combat, cargo, critical chance, evasion, tracking, spy survival, diplomacy, and individual unit classes. [Evidence](#evidence-current-data-1175)
 
-## Installation checklist
+## Strength formula
 
-- Verify the SPU's effect category and eligible target.
-- Select the intended recipient rather than the nearest available one.
-- Read the before and after values when the interface provides them.
-- Confirm the installation action and then reopen the recipient.
-- Record the world and time for any numerical comparison.
+Unless an SPU carries an explicit override, one unit contributes:
 
-## Stacking
+`per-unit bonus = ((Drill level + Refiner level) / 2) × 0.1%`.
 
-Do not assume that two apparently similar effects add, multiply, replace one another, or share a cap. The safe test is to record the displayed value before installation, install one effect, reopen the screen, and record the displayed value again. Repeat only if the interface permits another installation.
+A stack contributes `per-unit bonus × count`. For example, a Drill 10 / Refiner 6 SPU has average level 8 and contributes 0.8% per unit; a stack of 3 contributes 2.4% to its catalogued target. [Evidence](#evidence-spu-stacking-1175)
 
-> **Needs verification:** patch-wide stacking order, duplicate-effect limits, removal rules, and refund behavior require a reproducible UI or runtime observation. They are intentionally not presented as universal mechanics.
+## Stacking rule
 
-## Choosing a recipient
+Valid contributions aimed at the same target are added in the SPU aggregation stage. There is no replacement-by-highest rule or general cap in that stage. Explicit percentage overrides replace the level-derived per-unit magnitude for that stack. Fleet critical, evasion, and tracking values are converted from fractions to percentage points after addition.
 
-Prioritize actual use over headline magnitude. A travel effect belongs where it changes relevant arrivals; a cargo effect belongs where surviving raiders or haulers use it; an economy effect belongs on a colony that will remain productive. Installation on an inactive or doomed asset produces little immediate tempo even when the displayed bonus is large.
+The following contribute nothing: errored SPUs, zero or negative counts, empty permutation keys, keys absent from the current catalog, and effects whose calculated contribution is effectively zero.
 
-## Reporting an installed effect
+## Identity and inventory
 
-Include the SPU name, effect text, recipient, prior value, resulting value, world identifier, capture time, and any other active modifier. Without that context, a screenshot of one number cannot establish stacking behavior. [Evidence](#evidence-live-world-1175)
+Two stacks have the same identity only when error state, permutation key, included codes, Drill level, Refiner level, override, and—when location matching is required—base location agree. A visually similar effect can therefore remain a separate stack.
+
+Choose an SPU for the action it changes now. Travel and cargo favor active routes; production and storage favor durable colonies; class bonuses favor a roster that actually uses that class. The exact crafting recipe and delivery timing remain live-workflow fields covered by [SPU crafting and delivery](/wiki/spu-crafting-and-delivery/).

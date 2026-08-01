@@ -5,7 +5,7 @@ export const SITE = {
   repository: 'https://github.com/pdubsmcgee/riftborne',
   patch: '11.75',
   build: 'a7b5c7c',
-  reviewed: '2026-07-30'
+  reviewed: '2026-08-01'
 };
 
 export const CATEGORIES = [

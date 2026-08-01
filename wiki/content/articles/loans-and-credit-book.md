@@ -1,44 +1,39 @@
 ---
 title: Loans and the credit book
 slug: loans-and-credit-book
-summary: A lender-and-borrower ledger for organization loans, outstanding principal, repayment status, and credit exposure.
+summary: Current loan-offer rules, daily interest, maturity, defaults, treasury seizure, and lender and borrower ledger fields.
 category: Multiplayer
 pageType: reference
 patch: '11.75'
-verification: observed
-lastReviewed: '2026-07-30'
+verification: confirmed
+lastReviewed: '2026-08-01'
 order: 85
-aliases:
-  - organization loans
-  - credit book
-relatedPages:
-  - organizations
-  - borrowing-and-repayment
-  - credit-ratings
-  - treasury-and-holdings
-  - contracts
+aliases: [organization loans, credit book, daily interest]
+relatedPages: [organizations, borrowing-and-repayment, credit-ratings, treasury-and-holdings, contracts]
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
-ruleset: live-world
-evidence:
-  - client-build-1175
-  - live-world-1175
+ruleset: core
+evidence: [client-build-1175, organization-credit-1175]
 mechanicDependencies: []
 ---
-The credit book is a dated record of claims and obligations. Read each loan’s displayed parties, principal, status, schedule, and settlement state rather than inferring terms from the headline balance. [Evidence](#evidence-live-world-1175)
+The credit book records organization-funded loans to players or organizations. Principal moves immediately from lender treasury to the selected borrower destination. Duration is limited to 1–7 days, and an organization cannot borrow from itself. [Evidence](#evidence-organization-credit-1175)
 
-## Loan ledger
+## Offers and interest
 
-| Field | Lender view | Borrower view |
-|---|---|---|
-| Counterparty | Who owes | Who is owed |
-| Principal | Amount exposed | Amount received or outstanding |
-| Price of credit | Return shown | Charge shown |
-| Schedule | Expected receipt | Required payment |
-| Status | Current, pending, late, closed | Current, pending, late, closed |
-| Recovery | Client-described remedy | Client-described consequence |
+A controlling player configures an offer from organization treasury, chooses a daily rate greater than 0% and no more than 100%, and may require a minimum credit grade. Active offers cannot collectively make more Noctmarks available than current treasury.
 
-Use [Borrowing and repayment](/wiki/borrowing-and-repayment/) before accepting or paying a loan. Use [Credit ratings and factors](/wiki/credit-ratings/) only as an observed indicator, not a substitute for the loan ledger.
+Daily interest is simple, not added to principal: `ceil(outstanding principal × daily rate / 100)`. Because it uses outstanding principal, an early partial principal payment reduces later daily charges. Interest is attempted once per elapsed day through maturity and transfers to lender treasury and retained earnings.
 
-> **Needs verification:** Interest calculation, compounding, grace periods, default remedies, early repayment, collateral, write-offs, and whether obligations survive ownership changes.
+## Default
 
+There is no grace period in the audited core path. Missing scheduled interest causes immediate default for principal plus that interest. Reaching maturity with principal outstanding causes default for that principal. The system seizes as much as is currently available from the borrower, closes the loan, records any unrecovered balance, applies the credit penalty, and creates a temporary retaliation record. [Evidence](#evidence-organization-credit-1175)
+
+| Borrower should track | Lender should track |
+|---|---|
+| Outstanding principal | Principal exposed |
+| Daily interest and next collection | Daily receivable |
+| Maturity | Maturity concentration |
+| Spendable balance after other actions | Offer amount still backed by treasury |
+| Credit score and qualifying-payment history | Recent defaults and unrecovered amounts |
+
+Loan records remain obligations of their borrower entity when organization control changes; a share transaction does not cancel debt.

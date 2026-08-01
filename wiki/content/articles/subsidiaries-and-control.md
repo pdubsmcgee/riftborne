@@ -1,41 +1,31 @@
 ---
 title: Subsidiaries and control
 slug: subsidiaries-and-control
-summary: A cautious guide to organization ownership chains, displayed controllers, subsidiary boundaries, and control-change checks.
+summary: How effective ownership, organization-held shares, largest-stake control, ties, subsidiaries, and control changes work.
 category: Multiplayer
 pageType: reference
 patch: '11.75'
-verification: observed
-lastReviewed: '2026-07-30'
+verification: confirmed
+lastReviewed: '2026-08-01'
 order: 90
-aliases:
-  - subsidiary
-  - organization control
-  - parent company
-relatedPages:
-  - organizations
-  - shares-and-share-pool
-  - follow-on-funding-and-dilution
-  - organization-fair-value
+aliases: [subsidiary, organization control, parent company, controlling stake]
+relatedPages: [organizations, shares-and-share-pool, follow-on-funding-and-dilution, organization-fair-value]
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
-ruleset: live-world
-evidence:
-  - client-build-1175
-  - live-world-1175
+ruleset: core
+evidence: [client-build-1175, organization-valuation-1175]
 mechanicDependencies: []
 ---
-Control should be taken from the active organization screen, not inferred from a familiar real-world corporate threshold. Ownership percentages and displayed control are related observations but may not be identical. [Evidence](#evidence-live-world-1175)
+Operational control belongs to the player with the largest effective ownership stake. It does not require 50%: a 40/35/25 split gives control to the 40-share effective holder. [Evidence](#evidence-organization-valuation-1175)
 
-## Control map
+Direct player shares count toward that player. Shares held by another organization are attributed through that organization’s effective controller when resolving the target’s control, with recursion protected against ownership cycles. The controller is refreshed after ownership-changing transactions.
 
-| Entity | Direct owner | Stake shown | Controller shown | Timestamp |
-|---|---|---:|---|---|
-| Parent | Record from screen | Record | Record | Record |
-| Subsidiary | Record from screen | Record | Record | Record |
-| Lower-tier entity | Record from screen | Record | Record | Record |
+## Tie rule
 
-Trace each link separately. After a share sale, funding round, or buyback, re-open every affected entity and record the new controller. Keep [Fair value](/wiki/organization-fair-value/) separate from the control map unless the client explicitly consolidates subsidiaries.
+If several players share the largest effective stake, the current controller keeps control when included in the tie. Otherwise the founder wins when included. If neither applies, the deterministic identifier ordering breaks the tie. This means matching the leader’s count may not be enough to take control.
 
-> **Needs verification:** The control threshold, tie handling, indirect ownership, voting versus economic rights, maximum depth, circular ownership prevention, consolidation, and controller permissions.
+## Subsidiary label
 
+The statistics model counts another organization as a controlled subsidiary only when the holder organization owns strictly more than half of the target’s outstanding shares: `held shares × 2 > outstanding shares`. That reporting threshold is distinct from the operational largest-stake controller rule.
+
+After issuance, follow-on funding, a trade, or a buyback, check both direct ownership and the effective chain. A parent’s controller may indirectly control assets held by that parent even when no personal share line appears on the target.

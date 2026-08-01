@@ -1,43 +1,31 @@
 ---
 title: Follow-on funding and dilution
 slug: follow-on-funding-and-dilution
-summary: A practical guide to recording new organization funding, share allocation, ownership dilution, and post-transaction control.
+summary: How follow-on funding creates treasury shares, lists them for sale, changes the denominator, and delivers capital after purchase.
 category: Multiplayer
 pageType: guide
 patch: '11.75'
-verification: observed
-lastReviewed: '2026-07-30'
+verification: confirmed
+lastReviewed: '2026-08-01'
 order: 83
-aliases:
-  - follow-on investment
-  - dilution
-  - capital raise
-relatedPages:
-  - shares-and-share-pool
-  - existing-share-sales
-  - treasury-and-holdings
-  - subsidiaries-and-control
+aliases: [follow-on investment, dilution, capital raise, new share issue]
+relatedPages: [shares-and-share-pool, existing-share-sales, treasury-and-holdings, subsidiaries-and-control]
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
-ruleset: live-world
-evidence:
-  - client-build-1175
-  - live-world-1175
+ruleset: core
+evidence: [client-build-1175, organization-capital-actions-1175, organization-valuation-1175]
 mechanicDependencies: []
 ---
-Follow-on funding can change both organization liquidity and ownership. Use the confirmation screen’s projected post-action ledger instead of applying an assumed finance formula. [Evidence](#evidence-live-world-1175)
+Follow-on funding creates new shares and lists them from treasury. Only the controlling player can launch it. Quantity must be positive; ask price is floored to a whole number with a minimum of 1 Noctmark. [Evidence](#evidence-organization-capital-actions-1175)
 
-## Funding worksheet
-
-| Before | Transaction | After |
+| Before sale | Launch | When bought |
 |---|---|---|
-| Issued shares | New or pool shares allocated | New issued total |
-| Holder counts | Contributor and amount | New holder counts |
-| Ownership percentages | Displayed price or terms | Recalculated percentages |
-| Treasury balance | Funding inflow and fees | Spendable post-settlement balance |
-| Control | Current controller | Projected controller |
+| Authorized share count | Increases by quantity | Unchanged |
+| Issued share count | Increases by quantity | Unchanged |
+| Treasury shares | Increases by quantity | Decreases by shares sold |
+| Outstanding shares | Initially unchanged | Increases by shares sold |
+| Treasury Noctmarks | No immediate proceeds | Receives price × quantity |
 
-Dilution means an existing holder’s percentage can fall even if their share count does not. Check the new denominator and control result separately. Link the capital effect to [Treasury and holdings](/wiki/treasury-and-holdings/) and the governance effect to [Subsidiaries and control](/wiki/subsidiaries-and-control/).
+Creating treasury shares does not immediately dilute holders because treasury shares are excluded from outstanding shares. Dilution occurs as buyers take shares out of treasury. An unchanged 60-share holding is 60% of 100 outstanding shares, but 50% after 20 new shares are sold and the denominator becomes 120.
 
-> **Needs verification:** Pricing rules, pool consumption, approval thresholds, pre-emption rights, minimum investment, fee treatment, and the exact control test.
-
+The client records recent dilution as `new quantity / pre-launch outstanding shares × 100`, which can depress [Fair value](/wiki/organization-fair-value/). No pre-emption right or transaction fee appears in this core path. Recalculate control after each fill because it follows the effective largest stake, not a fixed majority threshold. [Evidence](#evidence-organization-valuation-1175)

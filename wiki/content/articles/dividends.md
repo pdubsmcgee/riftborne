@@ -1,43 +1,25 @@
 ---
 title: Dividends
 slug: dividends
-summary: A field guide for organization distributions, holder entitlements, treasury impact, and confirmation-screen reconciliation.
+summary: Exact dividend scheduling, eligibility, whole-Noctmark rounding, treasury coverage, skipped intervals, and cancellation.
 category: Multiplayer
 pageType: guide
 patch: '11.75'
-verification: observed
-lastReviewed: '2026-07-30'
+verification: confirmed
+lastReviewed: '2026-08-01'
 order: 88
-aliases:
-  - organization dividend
-  - shareholder distribution
-relatedPages:
-  - shares-and-share-pool
-  - treasury-and-holdings
-  - loans-and-credit-book
-  - buybacks
+aliases: [organization dividend, shareholder distribution, dividend schedule]
+relatedPages: [shares-and-share-pool, treasury-and-holdings, loans-and-credit-book, buybacks]
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
-ruleset: live-world
-evidence:
-  - client-build-1175
-  - live-world-1175
+ruleset: core
+evidence: [client-build-1175, organization-capital-actions-1175]
 mechanicDependencies: []
 ---
-A dividend converts organization treasury into holder distributions according to the active confirmation screen. Record the entitlement snapshot and projected treasury change before approval. [Evidence](#evidence-live-world-1175)
+A controlling player can schedule a recurring cash dividend as an amount per share unit and an interval in hours. The client verifies that treasury can cover the next complete payout before accepting the schedule. [Evidence](#evidence-organization-capital-actions-1175)
 
-## Distribution worksheet
+For each current player or organization holder, payout is `floor(shares held × amount per unit / shares per unit)`. A schedule is rejected if no current holder would receive at least one whole Noctmark. Treasury shares receive nothing. Organization holders receive their payout into their own treasury; players receive it personally.
 
-| Field | Confirm |
-|---|---|
-| Basis | Total distribution or amount per eligible share |
-| Eligible shares | Which issued shares count |
-| Recipients | Holder list and projected receipts |
-| Organization cost | Gross outflow plus any fees |
-| Timing | Declaration, record, and settlement state shown |
-| Remaining headroom | Treasury after debt and contracts |
+At each interval, the full current-holder requirement is recalculated. If treasury covers it, treasury and retained earnings fall by the total and recipients are paid. If treasury is short, the entire interval is skipped and the next interval is scheduled; there is no partial pro-rata distribution.
 
-Reconcile recipient totals to the organization outflow. Check [Shares and the share pool](/wiki/shares-and-share-pool/) for the relevant denominator and [Treasury and holdings](/wiki/treasury-and-holdings/) for liquidity.
-
-> **Needs verification:** Eligibility timing, treatment of pool or organization-held shares, rounding residuals, minimum distribution, approval permissions, fees, and cancellation.
-
+Setting the amount to zero or interval to zero cancels the schedule. Amounts are normalized to four decimal places. Before enabling a dividend, reserve loan interest and contract commitments: the initial coverage check does not guarantee funds will still exist at payment time.

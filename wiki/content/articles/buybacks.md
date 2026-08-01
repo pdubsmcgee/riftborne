@@ -1,43 +1,25 @@
 ---
 title: Buybacks
 slug: buybacks
-summary: A transaction guide for organization share repurchases, treasury cost, ownership changes, and the destination of repurchased shares.
+summary: Exact buyback authorization, escrow, pricing, settlement, cancellation, treasury-share destination, and control effects.
 category: Multiplayer
 pageType: guide
 patch: '11.75'
-verification: observed
-lastReviewed: '2026-07-30'
+verification: confirmed
+lastReviewed: '2026-08-01'
 order: 89
-aliases:
-  - share buyback
-  - organization repurchase
-relatedPages:
-  - shares-and-share-pool
-  - treasury-and-holdings
-  - dividends
-  - subsidiaries-and-control
+aliases: [share buyback, organization repurchase, treasury bid]
+relatedPages: [shares-and-share-pool, treasury-and-holdings, dividends, subsidiaries-and-control]
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
-ruleset: live-world
-evidence:
-  - client-build-1175
-  - live-world-1175
+ruleset: core
+evidence: [client-build-1175, organization-capital-actions-1175]
 mechanicDependencies: []
 ---
-A buyback spends organization resources to repurchase ownership from a holder. Use the projected post-action ledger because the destination and treatment of repurchased shares determine the result. [Evidence](#evidence-live-world-1175)
+A buyback is a treasury-funded bid for the organization’s own shares. Only the controlling player can authorize it. [Evidence](#evidence-organization-capital-actions-1175)
 
-## Buyback checklist
+The bid price is floored to a whole Noctmark with a minimum of 1. The requested budget must buy at least one share and treasury must cover it. The system computes `floor(budget / bid price)` shares, escrows exactly `shares × bid price`, subtracts that amount from treasury and retained earnings, and places a treasury bid.
 
-| Field | Record |
-|---|---|
-| Seller | Holder and shares offered |
-| Price | Total and per-share display, if present |
-| Treasury cost | Purchase amount plus fees |
-| Share destination | Pool, organization-held, retired, or other label |
-| Ownership result | Remaining holders’ projected percentages |
-| Control result | Any projected controller change |
+When a holder sells into it, the holder receives the escrowed price and the purchased shares become treasury shares. Treasury shares leave the outstanding-share denominator, so the remaining outside holders’ percentages rise even though their counts do not.
 
-Do not equate a buyback with a [Dividend](/wiki/dividends/): both use treasury, but one purchases a specific ownership claim while the other distributes value under the client’s eligibility rule.
-
-> **Needs verification:** Pricing limits, seller consent, approval thresholds, repurchased-share destination, percentage denominator, fee treatment, and whether debt or contracts block a buyback.
-
+Cancelling an unfilled treasury bid returns remaining escrow to treasury and retained earnings. No separate fee, debt block, contract block, or seller compulsion appears in the audited core method: a seller must choose to fill the bid. Compare the ownership effect with [Dividends](/wiki/dividends/), which distribute cash without changing share counts.

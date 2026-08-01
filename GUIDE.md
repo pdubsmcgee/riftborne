@@ -352,29 +352,27 @@ Universal recipes, odds, completion times, cancellation refunds, and delivery de
 
 Canonical page: [/wiki/spu-installation-and-stacking/](https://riftbornewiki.317society.com/wiki/spu-installation-and-stacking/)
 
-An SPU becomes strategically useful when its effect is installed on an eligible recipient and the current interface shows that effect as active. The data exposes targets across fleet, colony, economy, capacity, research, travel, cargo, combat, and intelligence systems. [Evidence](#evidence-current-data-1175)
+SPUs add persistent augmentation values to the owning player’s calculated bonuses. The current catalog targets production, storage, build speed, ship construction, travel, defense, research, upkeep, transmutation, fleet combat, cargo, critical chance, evasion, tracking, spy survival, diplomacy, and individual unit classes. [Evidence](#evidence-current-data-1175)
 
-## Installation checklist
+## Strength formula
 
-- Verify the SPU's effect category and eligible target.
-- Select the intended recipient rather than the nearest available one.
-- Read the before and after values when the interface provides them.
-- Confirm the installation action and then reopen the recipient.
-- Record the world and time for any numerical comparison.
+Unless an SPU carries an explicit override, one unit contributes:
 
-## Stacking
+`per-unit bonus = ((Drill level + Refiner level) / 2) × 0.1%`.
 
-Do not assume that two apparently similar effects add, multiply, replace one another, or share a cap. The safe test is to record the displayed value before installation, install one effect, reopen the screen, and record the displayed value again. Repeat only if the interface permits another installation.
+A stack contributes `per-unit bonus × count`. For example, a Drill 10 / Refiner 6 SPU has average level 8 and contributes 0.8% per unit; a stack of 3 contributes 2.4% to its catalogued target. [Evidence](#evidence-spu-stacking-1175)
 
-> **Needs verification:** patch-wide stacking order, duplicate-effect limits, removal rules, and refund behavior require a reproducible UI or runtime observation. They are intentionally not presented as universal mechanics.
+## Stacking rule
 
-## Choosing a recipient
+Valid contributions aimed at the same target are added in the SPU aggregation stage. There is no replacement-by-highest rule or general cap in that stage. Explicit percentage overrides replace the level-derived per-unit magnitude for that stack. Fleet critical, evasion, and tracking values are converted from fractions to percentage points after addition.
 
-Prioritize actual use over headline magnitude. A travel effect belongs where it changes relevant arrivals; a cargo effect belongs where surviving raiders or haulers use it; an economy effect belongs on a colony that will remain productive. Installation on an inactive or doomed asset produces little immediate tempo even when the displayed bonus is large.
+The following contribute nothing: errored SPUs, zero or negative counts, empty permutation keys, keys absent from the current catalog, and effects whose calculated contribution is effectively zero.
 
-## Reporting an installed effect
+## Identity and inventory
 
-Include the SPU name, effect text, recipient, prior value, resulting value, world identifier, capture time, and any other active modifier. Without that context, a screenshot of one number cannot establish stacking behavior. [Evidence](#evidence-live-world-1175)
+Two stacks have the same identity only when error state, permutation key, included codes, Drill level, Refiner level, override, and—when location matching is required—base location agree. A visually similar effect can therefore remain a separate stack.
+
+Choose an SPU for the action it changes now. Travel and cargo favor active routes; production and storage favor durable colonies; class bonuses favor a roster that actually uses that class. The exact crafting recipe and delivery timing remain live-workflow fields covered by [SPU crafting and delivery](/wiki/spu-crafting-and-delivery/).
 
 ### Marketplace offers, reserved cargo, and liquidity
 
@@ -434,7 +432,7 @@ Buildings determine a colony’s production, capacity, logistics, military outpu
 
 Current building names are culture-specific. A role should therefore be identified by its displayed effect, not by carrying terminology from another culture into the article.
 
-Additional copies and maximum levels are not uniform across every structure. The construction screen states whether another copy is available and what prerequisite unlocks it. Use that screen for the active campaign rather than assuming that all structures share one cap.
+Additional copies and maximum levels are not uniform. Standard structures cap at level 20; central infrastructure caps at 25, flagship research at 5, hangars at 10, origin-wormhole and Keystone-vision objectives at 100, and Dyson Sphere at 200. [Evidence](#evidence-building-catalog-1175)
 
 ## Verified culture equivalents
 
@@ -460,7 +458,7 @@ Infrastructure screen
 
 When a building is unavailable, check the selected colony, current copies, level of every existing copy, central infrastructure, local slot capacity, queue state, and the exact detail-panel message. A prerequisite observed for one culture should not be renamed and applied to another without verifying its current equivalent.
 
-> **Needs verification:** A universal table of every building's maximum level, cost curve, copy threshold, and culture equivalent is not published because the current evidence set does not establish every row. Submit the current Codex or detail-panel text to extend this catalog safely.
+Each structure has its own generated resource-cost and build-time curve. Copy unlocks are separate from level caps and should be read from the selected colony’s detail panel; the current audit has not yet established a safe universal copy-threshold table.
 
 Specialization remains a strategic choice: production colonies protect continuous output, shipbuilding colonies protect queues and Astra, logistics colonies shorten supply paths, and fortified colonies combine stationed ships with current defensive infrastructure.
 
@@ -1201,23 +1199,28 @@ Before a coordinated mission, confirm the current relationship, who can change i
 
 Canonical page: [/wiki/organizations/](https://riftbornewiki.317society.com/wiki/organizations/)
 
-Organizations combine ownership, treasury decisions, credit, contracts, and control inside the active multiplayer world. The current client exposes these system families, while displayed values and available actions remain live-world observations rather than universal patch constants. [Evidence](#evidence-runtime-organizations-1175)
+Organizations are multiplayer entities with their own treasury, shares, holdings, contracts, loans, capital history, and controller. They let players pool or separate financial activity from personal Noctmarks. [Evidence](#evidence-runtime-organizations-1175)
 
-## Start here
+## Founding
 
-| Question | Field guide |
+An organization name must contain at least 3 characters. Its ticker is exactly 3 unique letters from A–Z. Founding requires at least 1 Noctmark, funded either personally or from the treasury of an organization the player controls when creating a subsidiary.
+
+A new organization begins with 100 authorized and 100 issued shares. The founder or parent receives all 100; none begin in treasury. Seed capital enters the new treasury. Initial share price is `max(1, round(seed capital / 100))`, using midpoint-away-from-zero rounding. [Evidence](#evidence-organization-capital-actions-1175)
+
+## System map
+
+| Question | Article |
 |---|---|
-| What does this screen mean? | [Organization screen](/wiki/organization-screen/) |
-| What is the organization worth? | [Fair value](/wiki/organization-fair-value/) |
+| What does the screen mean? | [Organization screen](/wiki/organization-screen/) |
+| What is it worth? | [Fair value](/wiki/organization-fair-value/) |
 | Who owns it? | [Shares and the share pool](/wiki/shares-and-share-pool/) |
-| How is it funded? | [Follow-on funding and dilution](/wiki/follow-on-funding-and-dilution/) |
-| What can it pay? | [Treasury and holdings](/wiki/treasury-and-holdings/) |
-| What does it owe? | [Loans and the credit book](/wiki/loans-and-credit-book/) |
-| What controls another entity? | [Subsidiaries and control](/wiki/subsidiaries-and-control/) |
+| How does new funding work? | [Follow-on funding and dilution](/wiki/follow-on-funding-and-dilution/) |
+| What is actually liquid? | [Treasury and holdings](/wiki/treasury-and-holdings/) |
+| How do loans and ratings work? | [Loans and the credit book](/wiki/loans-and-credit-book/) and [Credit ratings](/wiki/credit-ratings/) |
+| How are jobs funded? | [Contracts](/wiki/contracts/) |
+| Who controls subsidiaries? | [Subsidiaries and control](/wiki/subsidiaries-and-control/) |
 
-Read an organization as a dated balance of claims and obligations. Record the world, timestamp, organization identifier, currency units, and the exact confirmation screen before acting.
-
-> **Needs verification:** Voting thresholds, founder powers, transfer restrictions, fees, progression gates, and valuation formulas must be confirmed in the active client. The current evidence registry does not establish one universal organization ruleset.
+The controlling player can authorize treasury actions, but control can move after trades or dilution. Reopen the organization after any ownership-changing transaction rather than assuming founder status is permanent.
 
 ### Organization screen field guide
 
@@ -1233,249 +1236,266 @@ Before confirming an action, compare the summary screen with the final confirmat
 
 Canonical page: [/wiki/organization-fair-value/](https://riftbornewiki.317society.com/wiki/organization-fair-value/)
 
-Displayed fair value is a live-world figure. Use it as the client’s current estimate, not as guaranteed liquidation proceeds or a permanent formula. [Evidence](#evidence-live-world-1175)
+Fair value is the client’s modelled value per outstanding share. In build `a7b5c7c`, the calculation is deterministic, but several inputs reflect current world and organization state. It is not a liquidation guarantee or the price at which another player must trade. [Evidence](#evidence-organization-valuation-1175)
 
-## Reconciliation worksheet
+## Denominator and asset base
 
-| Component | Question to ask |
-|---|---|
-| Treasury | Is the full balance spendable now? |
-| Holdings | What price and timestamp value each holding? |
-| Receivables | Are repayments or contracts counted before settlement? |
-| Liabilities | Are principal, accrued charges, and pending payments deducted? |
-| Control interests | How are subsidiaries represented? |
-| Share count | Is the figure organization-wide or per issued share? |
+`S = max(1, issued shares − treasury shares)`. Treasury shares therefore do not dilute the per-share denominator while they remain in treasury.
 
-Record the displayed total and its components from the same refresh. If a component cannot be reconciled, label the difference rather than forcing an invented residual. Pair the result with [Shares and the share pool](/wiki/shares-and-share-pool/) before quoting a per-share figure.
+The adjusted asset base is `treasury + issued-loan principal + 0.82 × equity holdings − borrowed principal`. Backlog liability is deducted at 35% before the nonnegative balance value is divided by `S`.
 
-> **Needs verification:** The exact valuation formula, mark-to-market source, treatment of illiquid holdings, subsidiary consolidation, loan-loss assumptions, and rounding are not established by current evidence.
+## Per-share components
+
+| Component | Contribution |
+|---|---:|
+| Adjusted balance value | `max(0, asset base − 0.35 × backlog liability) / S` |
+| Positive net income, trailing 7 days | `4 × max(0, income) / S` |
+| Backlog | `0.5 × max(0, backlog) / S` |
+| Reinvestment | `0.65 × sum of track levels` |
+| Equity holdings bonus | `0.38 × holdings / S` |
+| Backlog-liability penalty | `0.28 × liability / S` |
+| Daily interest due penalty | `2.1 × interest due / S` |
+| Daily interest receivable bonus | `1.45 × receivable / S` |
+| Scheduled dividend-income bonus | `1.8 × (30-day income / 30) / S` |
+| Liquidity bonus | `1.2 × liquidity score` |
+| Recent-default penalty | `0.35 × recent defaults` |
+
+Sell pressure and dilution subtract `0.08 × recent dilution percent + 0.06 × shares-for-sale percent`. Ownership concentration above 55% subtracts `0.015` per percentage point.
+
+## Macro adjustment and rounding
+
+The subtotal is multiplied by `clamp(0.94 + 0.24 × (purchasing-power index − 1) − 0.18 × war-disruption fraction + 0.10 × clamp(catalyst pressure, −1, 1), 0.68, 1.34)`.
+
+The result is rounded to two decimals with a minimum of 1 Noctmark. If it is effectively zero, the fallback is the lower of last trade price and seed-anchored price, also with a minimum of 1. [Evidence](#evidence-organization-valuation-1175)
+
+Use fair value as a decomposition tool. A rising market price with flat fair value is demand, not automatically improved fundamentals. Compare it with [Treasury and holdings](/wiki/treasury-and-holdings/) and the actual order book before trading.
 
 ### Shares and the share pool
 
 Canonical page: [/wiki/shares-and-share-pool/](https://riftbornewiki.317society.com/wiki/shares-and-share-pool/)
 
-Share records describe ownership at a point in time. Separate shares already held by owners from any share-pool capacity the organization may allocate through a later action. [Evidence](#evidence-live-world-1175)
+The current organization model distinguishes authorized, issued, treasury, outstanding, held, and reserved shares. All are whole shares. [Evidence](#evidence-organization-capital-actions-1175)
 
-## Ownership ledger
-
-| Field | Record separately |
+| Field | Meaning |
 |---|---|
-| Issued shares | Shares currently assigned to holders |
-| Share pool | Unallocated or organization-held capacity shown by the client |
-| Holder stake | Count and displayed percentage |
-| Pending action | Proposed issue, transfer, sale, or repurchase |
-| Post-action stake | Confirmation-screen projection, if shown |
+| Authorized shares | Capacity tracked by the organization; follow-on funding increases it |
+| Issued shares | Total created, including shares held in treasury |
+| Treasury shares | Issued shares held by the organization rather than an outside holder |
+| Outstanding shares | `max(1, issued shares) − treasury shares`, clamped nonnegative |
+| Holder shares | Direct player shares or shares held by another organization |
+| Reserved shares | Existing or treasury shares committed to an active sell order |
 
-Never assume that pool shares have the same economic or voting treatment as issued shares. For a transfer between current owners, use [Existing-share sales](/wiki/existing-share-sales/). For newly allocated ownership, use [Follow-on funding and dilution](/wiki/follow-on-funding-and-dilution/).
+Displayed stake is held shares divided by outstanding shares. Snapshot labels are Majority at 50% or more, Blocking at 25%, Influence at 10%, Stake at 5%, and Minor below 5%. These labels describe stake size; operational control follows the effective largest-holder rule. [Evidence](#evidence-organization-valuation-1175)
 
-> **Needs verification:** Authorized-versus-issued terminology, voting rights, fractional shares, pool replenishment, transfer restrictions, and the denominator used for displayed percentages must be confirmed in the active world.
+An active sell order locks its quantity from other sales. A bid locks the buyer’s Noctmarks in escrow. Treasury shares receive no dividend because dividends iterate current player and organization holders only.
 
 ### Existing-share sales
 
 Canonical page: [/wiki/existing-share-sales/](https://riftbornewiki.317society.com/wiki/existing-share-sales/)
 
-An existing-share sale should be read from its confirmation screen as a transfer between named parties. Do not assume the organization receives proceeds unless the interface explicitly says so. [Evidence](#evidence-live-world-1175)
+An existing-share sale transfers ownership and pays the seller; it does not fund the organization whose shares are traded. Players may trade personally or through an organization they control. [Evidence](#evidence-organization-capital-actions-1175)
 
-## Before confirming
+## Orders
 
-| Check | Record |
-|---|---|
-| Seller | Current holder and shares available |
-| Buyer | Eligible recipient |
-| Quantity | Shares transferred |
-| Consideration | Amount, units, and payer |
-| Fees | Who pays and when |
-| Ownership result | Both parties’ projected percentages |
-| Treasury result | Explicit organization balance change, if any |
+- A sell order reserves the full listed share quantity. The price is floored to a whole Noctmark with a minimum of 1.
+- A bid immediately escrows `quantity × price` from the personal balance or selected controlled treasury.
+- A player cannot buy their own sell order or sell into their own bid.
+- An organization cannot buy its own stock through an ordinary bid; it must use a [Buyback](/wiki/buybacks/).
+- A sole controlling holder with no public co-holder must use treasury issuance to open the first public shares.
 
-Compare this with [Follow-on funding and dilution](/wiki/follow-on-funding-and-dilution/): a secondary sale usually changes who owns an existing claim, while follow-on funding may create or allocate a claim and change the denominator. The exact client wording controls.
+Current orders fill as a complete listed quantity in the exposed transaction path, then close. When a holder sells, proceeds go to that holder’s personal balance or selling organization treasury. When treasury shares are sold, proceeds go to the issuing organization treasury.
 
-> **Needs verification:** Settlement timing, cancellation, price limits, taxes or fees, buyer eligibility, and whether any sale type routes proceeds to the treasury.
+Cancelling a sell order unlocks shares. Cancelling a bid returns its remaining escrow to the account that funded it. The audited path applies no share-trade fee. Always reopen the ownership screen after settlement because control is recalculated.
 
 ### Follow-on funding and dilution
 
 Canonical page: [/wiki/follow-on-funding-and-dilution/](https://riftbornewiki.317society.com/wiki/follow-on-funding-and-dilution/)
 
-Follow-on funding can change both organization liquidity and ownership. Use the confirmation screen’s projected post-action ledger instead of applying an assumed finance formula. [Evidence](#evidence-live-world-1175)
+Follow-on funding creates new shares and lists them from treasury. Only the controlling player can launch it. Quantity must be positive; ask price is floored to a whole number with a minimum of 1 Noctmark. [Evidence](#evidence-organization-capital-actions-1175)
 
-## Funding worksheet
-
-| Before | Transaction | After |
+| Before sale | Launch | When bought |
 |---|---|---|
-| Issued shares | New or pool shares allocated | New issued total |
-| Holder counts | Contributor and amount | New holder counts |
-| Ownership percentages | Displayed price or terms | Recalculated percentages |
-| Treasury balance | Funding inflow and fees | Spendable post-settlement balance |
-| Control | Current controller | Projected controller |
+| Authorized share count | Increases by quantity | Unchanged |
+| Issued share count | Increases by quantity | Unchanged |
+| Treasury shares | Increases by quantity | Decreases by shares sold |
+| Outstanding shares | Initially unchanged | Increases by shares sold |
+| Treasury Noctmarks | No immediate proceeds | Receives price × quantity |
 
-Dilution means an existing holder’s percentage can fall even if their share count does not. Check the new denominator and control result separately. Link the capital effect to [Treasury and holdings](/wiki/treasury-and-holdings/) and the governance effect to [Subsidiaries and control](/wiki/subsidiaries-and-control/).
+Creating treasury shares does not immediately dilute holders because treasury shares are excluded from outstanding shares. Dilution occurs as buyers take shares out of treasury. An unchanged 60-share holding is 60% of 100 outstanding shares, but 50% after 20 new shares are sold and the denominator becomes 120.
 
-> **Needs verification:** Pricing rules, pool consumption, approval thresholds, pre-emption rights, minimum investment, fee treatment, and the exact control test.
+The client records recent dilution as `new quantity / pre-launch outstanding shares × 100`, which can depress [Fair value](/wiki/organization-fair-value/). No pre-emption right or transaction fee appears in this core path. Recalculate control after each fill because it follows the effective largest stake, not a fixed majority threshold. [Evidence](#evidence-organization-valuation-1175)
 
 ### Treasury and holdings
 
 Canonical page: [/wiki/treasury-and-holdings/](https://riftbornewiki.317society.com/wiki/treasury-and-holdings/)
 
-Treasury is useful only to the extent the active interface permits it to be spent. Keep cash-like balance distinct from holdings, receivables, and amounts reserved for pending actions. [Evidence](#evidence-live-world-1175)
+Treasury is the organization’s Noctmark balance. The action being taken determines whether capital remains liquid, moves to escrow, becomes a holding, or leaves the organization. [Evidence](#evidence-organization-capital-actions-1175)
 
-## Liquidity view
-
-| Bucket | Operational question |
+| Action | Immediate treasury effect |
 |---|---|
-| Available treasury | Can it fund an action immediately? |
-| Reserved or pending | Which confirmation or contract claims it? |
-| Holdings | What asset is owned and how is it valued? |
-| Receivables | When and under what condition does it settle? |
-| Debt service | What payment is due before discretionary spending? |
-| Distribution capacity | What does the dividend or buyback screen allow? |
+| Treasury-share or follow-on listing | None until a buyer pays |
+| Sale of treasury shares | Buyer payment enters treasury |
+| Organization share bid | Full bid value leaves treasury for escrow |
+| Cancelled organization bid | Remaining escrow returns to treasury |
+| Buyback authorization | Buyback value leaves treasury for escrow |
+| Contract posting | Full payout leaves treasury for contract escrow |
+| Contract cancellation | Remaining escrow returns |
+| Loan issued | Principal leaves lender treasury immediately |
+| Loan borrowed into organization | Principal enters borrower treasury immediately |
+| Principal or interest payment | Leaves borrower and enters lender treasury |
+| Dividend interval | Full holder payout leaves treasury, or the interval is skipped |
 
-Take all figures from one timestamp, then reconcile them with [Loans and the credit book](/wiki/loans-and-credit-book/) and [Contracts](/wiki/contracts/). A high fair value does not prove high immediate liquidity.
+Shares bought through an organization become that organization’s equity holdings. Their reference valuation combines fair value and last trade price when both exist: 65% fair value and 35% last price. The separate fair-value model applies an additional holdings weight rather than treating every holding as instantly spendable cash.
 
-> **Needs verification:** Currency units, reservation order, negative balances, holding valuation, settlement latency, and which roles can commit treasury funds.
+For safe liquidity, subtract all bid, buyback, and contract escrow already committed, then reserve the next loan interest and maturity principal. A high [Fair value](/wiki/organization-fair-value/) does not prove that treasury can cover an immediate action.
 
 ### Loans and the credit book
 
 Canonical page: [/wiki/loans-and-credit-book/](https://riftbornewiki.317society.com/wiki/loans-and-credit-book/)
 
-The credit book is a dated record of claims and obligations. Read each loan’s displayed parties, principal, status, schedule, and settlement state rather than inferring terms from the headline balance. [Evidence](#evidence-live-world-1175)
+The credit book records organization-funded loans to players or organizations. Principal moves immediately from lender treasury to the selected borrower destination. Duration is limited to 1–7 days, and an organization cannot borrow from itself. [Evidence](#evidence-organization-credit-1175)
 
-## Loan ledger
+## Offers and interest
 
-| Field | Lender view | Borrower view |
-|---|---|---|
-| Counterparty | Who owes | Who is owed |
-| Principal | Amount exposed | Amount received or outstanding |
-| Price of credit | Return shown | Charge shown |
-| Schedule | Expected receipt | Required payment |
-| Status | Current, pending, late, closed | Current, pending, late, closed |
-| Recovery | Client-described remedy | Client-described consequence |
+A controlling player configures an offer from organization treasury, chooses a daily rate greater than 0% and no more than 100%, and may require a minimum credit grade. Active offers cannot collectively make more Noctmarks available than current treasury.
 
-Use [Borrowing and repayment](/wiki/borrowing-and-repayment/) before accepting or paying a loan. Use [Credit ratings and factors](/wiki/credit-ratings/) only as an observed indicator, not a substitute for the loan ledger.
+Daily interest is simple, not added to principal: `ceil(outstanding principal × daily rate / 100)`. Because it uses outstanding principal, an early partial principal payment reduces later daily charges. Interest is attempted once per elapsed day through maturity and transfers to lender treasury and retained earnings.
 
-> **Needs verification:** Interest calculation, compounding, grace periods, default remedies, early repayment, collateral, write-offs, and whether obligations survive ownership changes.
+## Default
+
+There is no grace period in the audited core path. Missing scheduled interest causes immediate default for principal plus that interest. Reaching maturity with principal outstanding causes default for that principal. The system seizes as much as is currently available from the borrower, closes the loan, records any unrecovered balance, applies the credit penalty, and creates a temporary retaliation record. [Evidence](#evidence-organization-credit-1175)
+
+| Borrower should track | Lender should track |
+|---|---|
+| Outstanding principal | Principal exposed |
+| Daily interest and next collection | Daily receivable |
+| Maturity | Maturity concentration |
+| Spendable balance after other actions | Offer amount still backed by treasury |
+| Credit score and qualifying-payment history | Recent defaults and unrecovered amounts |
+
+Loan records remain obligations of their borrower entity when organization control changes; a share transaction does not cancel debt.
 
 ### Borrowing and repayment
 
 Canonical page: [/wiki/borrowing-and-repayment/](https://riftbornewiki.317society.com/wiki/borrowing-and-repayment/)
 
-Borrow only from the exact terms shown in the active confirmation flow. Projected proceeds are not the same as net spendable treasury, and a displayed due amount may change with settlement or timing. [Evidence](#evidence-live-world-1175)
-
-## Decision table
+Borrowing transfers the chosen principal immediately and starts a daily interest schedule one day later. The loan matures after the selected 1–7-day term. [Evidence](#evidence-organization-credit-1175)
 
 | Stage | Confirm |
 |---|---|
-| Offer | lender, principal, total obligation, due timing |
-| Acceptance | net treasury received, fees, rating effect |
-| During term | next payment, available treasury, competing obligations |
-| Repayment | amount applied, remaining principal, status after payment |
-| Closure | zero balance and closed state on both ledgers |
+| Offer | lender, available principal, daily rate, minimum credit grade |
+| Acceptance | personal or controlled-organization destination, principal, 1–7-day term |
+| During term | `ceil(outstanding principal × rate / 100)`, next collection, maturity, available balance |
+| Repayment | partial or full principal amount and resulting daily interest |
+| Closure | zero principal, closed state, and whether it qualified as a seasoned repayment |
 
-Keep a repayment reserve separate from discretionary [Dividends](/wiki/dividends/) and [Buybacks](/wiki/buybacks/). Capture before-and-after screenshots or transcripts so a rounding or settlement difference can be diagnosed.
+Principal repayment may be partial and moves directly to lender treasury. A full early repayment closes the loan. It does not prepay future interest; the credit-history bonus for a seasoned repayment requires that positive interest was already paid. [Evidence](#evidence-organization-credit-1175)
 
-> **Needs verification:** Partial payments, automatic collection, payment priority, early-payment treatment, late penalties, default behavior, and whether repayment consumes reserved funds.
+## Safe reserve
+
+Reserve at least the next daily interest plus remaining principal before discretionary spending. For a 1,000-Noctmark loan at 2.5% daily, the first charge is 25. Repaying 400 principal before the next collection lowers the following charge to `ceil(600 × 0.025) = 15`.
+
+Do not empty the account for [Dividends](/wiki/dividends/), share bids, or other actions while interest is due. Collection is automatic and default is immediate if the selected borrower balance cannot cover it.
 
 ### Credit ratings and factors
 
 Canonical page: [/wiki/credit-ratings/](https://riftbornewiki.317society.com/wiki/credit-ratings/)
 
-A credit rating is an observed client output. Record the rating and every factor the same screen displays; do not reverse-engineer a universal score from a small sample. [Evidence](#evidence-live-world-1175)
+A credit score begins at 74 and is recalculated from business activity, good payments, active debt, and defaults. The final score is clamped from 0 to 100. [Evidence](#evidence-organization-credit-1175)
 
-## Rating log
+## Formula
 
-| Field | Record |
+`score = clamp(74 + activity + good payments − active-debt penalty − recent-default penalty, 0, 100)`
+
+| Input | Rule |
 |---|---|
-| Rating | Exact grade, score, or label |
-| Factors | Names, direction, and values shown |
-| Debt | Outstanding and newly requested amount |
-| Liquidity | Treasury figure shown at the same time |
-| History | Recent repayments, late states, or defaults visible |
-| Change event | Action immediately preceding a rating update |
+| Organization activity | Up to 6 recorded economic-reliability events |
+| Personal activity | Marketplace trades, contracts, and share trades; each count is capped at 5 and multiplied by 0.4, with 6 points total maximum |
+| On-time streak | Up to 8 points |
+| Seasoned loans repaid | Up to 3 loans at 4 points each |
+| Active debt | Up to 8 points: outstanding/original principal × 5, plus 1 for each active loan beyond the first |
+| Recent defaults | 30 points each, capped at 60, during the previous 30 days |
 
-Compare repeated observations from the same world and build. A correlation between treasury or repayment history and a rating change is useful evidence, but it is not proof of weighting.
+Good-payment credit is capped at 20. A loan must have original principal of at least 80 Noctmarks to qualify. An on-time scheduled payment counts only when interest is positive. A seasoned repayment requires positive interest paid and full principal repayment no later than maturity. Default resets the on-time streak to zero. [Evidence](#evidence-organization-credit-1175)
 
-> **Needs verification:** Factor weights, update cadence, hidden inputs, history window, subsidiary effects, caps, decay, and how the rating changes loan availability or terms.
+## Grades
+
+| Minimum score | Grade |
+|---:|---|
+| 88 | AAA |
+| 80 | AA |
+| 71 | A |
+| 61 | BBB |
+| 49 | BB |
+| 37 | B |
+| 0 | CCC |
+
+Loan offers may specify a minimum acceptable grade. Recovery after default is slow by design: avoid another default, reduce active exposure, generate legitimate activity, and complete qualifying interest-bearing loans on time.
 
 ### Dividends
 
 Canonical page: [/wiki/dividends/](https://riftbornewiki.317society.com/wiki/dividends/)
 
-A dividend converts organization treasury into holder distributions according to the active confirmation screen. Record the entitlement snapshot and projected treasury change before approval. [Evidence](#evidence-live-world-1175)
+A controlling player can schedule a recurring cash dividend as an amount per share unit and an interval in hours. The client verifies that treasury can cover the next complete payout before accepting the schedule. [Evidence](#evidence-organization-capital-actions-1175)
 
-## Distribution worksheet
+For each current player or organization holder, payout is `floor(shares held × amount per unit / shares per unit)`. A schedule is rejected if no current holder would receive at least one whole Noctmark. Treasury shares receive nothing. Organization holders receive their payout into their own treasury; players receive it personally.
 
-| Field | Confirm |
-|---|---|
-| Basis | Total distribution or amount per eligible share |
-| Eligible shares | Which issued shares count |
-| Recipients | Holder list and projected receipts |
-| Organization cost | Gross outflow plus any fees |
-| Timing | Declaration, record, and settlement state shown |
-| Remaining headroom | Treasury after debt and contracts |
+At each interval, the full current-holder requirement is recalculated. If treasury covers it, treasury and retained earnings fall by the total and recipients are paid. If treasury is short, the entire interval is skipped and the next interval is scheduled; there is no partial pro-rata distribution.
 
-Reconcile recipient totals to the organization outflow. Check [Shares and the share pool](/wiki/shares-and-share-pool/) for the relevant denominator and [Treasury and holdings](/wiki/treasury-and-holdings/) for liquidity.
-
-> **Needs verification:** Eligibility timing, treatment of pool or organization-held shares, rounding residuals, minimum distribution, approval permissions, fees, and cancellation.
+Setting the amount to zero or interval to zero cancels the schedule. Amounts are normalized to four decimal places. Before enabling a dividend, reserve loan interest and contract commitments: the initial coverage check does not guarantee funds will still exist at payment time.
 
 ### Buybacks
 
 Canonical page: [/wiki/buybacks/](https://riftbornewiki.317society.com/wiki/buybacks/)
 
-A buyback spends organization resources to repurchase ownership from a holder. Use the projected post-action ledger because the destination and treatment of repurchased shares determine the result. [Evidence](#evidence-live-world-1175)
+A buyback is a treasury-funded bid for the organization’s own shares. Only the controlling player can authorize it. [Evidence](#evidence-organization-capital-actions-1175)
 
-## Buyback checklist
+The bid price is floored to a whole Noctmark with a minimum of 1. The requested budget must buy at least one share and treasury must cover it. The system computes `floor(budget / bid price)` shares, escrows exactly `shares × bid price`, subtracts that amount from treasury and retained earnings, and places a treasury bid.
 
-| Field | Record |
-|---|---|
-| Seller | Holder and shares offered |
-| Price | Total and per-share display, if present |
-| Treasury cost | Purchase amount plus fees |
-| Share destination | Pool, organization-held, retired, or other label |
-| Ownership result | Remaining holders’ projected percentages |
-| Control result | Any projected controller change |
+When a holder sells into it, the holder receives the escrowed price and the purchased shares become treasury shares. Treasury shares leave the outstanding-share denominator, so the remaining outside holders’ percentages rise even though their counts do not.
 
-Do not equate a buyback with a [Dividend](/wiki/dividends/): both use treasury, but one purchases a specific ownership claim while the other distributes value under the client’s eligibility rule.
-
-> **Needs verification:** Pricing limits, seller consent, approval thresholds, repurchased-share destination, percentage denominator, fee treatment, and whether debt or contracts block a buyback.
+Cancelling an unfilled treasury bid returns remaining escrow to treasury and retained earnings. No separate fee, debt block, contract block, or seller compulsion appears in the audited core method: a seller must choose to fill the bid. Compare the ownership effect with [Dividends](/wiki/dividends/), which distribute cash without changing share counts.
 
 ### Subsidiaries and control
 
 Canonical page: [/wiki/subsidiaries-and-control/](https://riftbornewiki.317society.com/wiki/subsidiaries-and-control/)
 
-Control should be taken from the active organization screen, not inferred from a familiar real-world corporate threshold. Ownership percentages and displayed control are related observations but may not be identical. [Evidence](#evidence-live-world-1175)
+Operational control belongs to the player with the largest effective ownership stake. It does not require 50%: a 40/35/25 split gives control to the 40-share effective holder. [Evidence](#evidence-organization-valuation-1175)
 
-## Control map
+Direct player shares count toward that player. Shares held by another organization are attributed through that organization’s effective controller when resolving the target’s control, with recursion protected against ownership cycles. The controller is refreshed after ownership-changing transactions.
 
-| Entity | Direct owner | Stake shown | Controller shown | Timestamp |
-|---|---|---:|---|---|
-| Parent | Record from screen | Record | Record | Record |
-| Subsidiary | Record from screen | Record | Record | Record |
-| Lower-tier entity | Record from screen | Record | Record | Record |
+## Tie rule
 
-Trace each link separately. After a share sale, funding round, or buyback, re-open every affected entity and record the new controller. Keep [Fair value](/wiki/organization-fair-value/) separate from the control map unless the client explicitly consolidates subsidiaries.
+If several players share the largest effective stake, the current controller keeps control when included in the tie. Otherwise the founder wins when included. If neither applies, the deterministic identifier ordering breaks the tie. This means matching the leader’s count may not be enough to take control.
 
-> **Needs verification:** The control threshold, tie handling, indirect ownership, voting versus economic rights, maximum depth, circular ownership prevention, consolidation, and controller permissions.
+## Subsidiary label
+
+The statistics model counts another organization as a controlled subsidiary only when the holder organization owns strictly more than half of the target’s outstanding shares: `held shares × 2 > outstanding shares`. That reporting threshold is distinct from the operational largest-stake controller rule.
+
+After issuance, follow-on funding, a trade, or a buyback, check both direct ownership and the effective chain. A parent’s controller may indirectly control assets held by that parent even when no personal share line appears on the target.
 
 ### Contracts
 
 Canonical page: [/wiki/contracts/](https://riftbornewiki.317society.com/wiki/contracts/)
 
-Contracts are active-world obligations. Preserve the exact offer and confirmation text because a title or summary may omit conditions that determine settlement. [Evidence](#evidence-live-world-1175)
+Contracts let a controlled organization fund a measurable action against another player. Posting removes the payout from treasury and retained earnings immediately and holds it in contract escrow. [Evidence](#evidence-organization-contracts-1175)
 
-## Contract ledger
-
-| Field | Record |
+| Type | Current validation at posting |
 |---|---|
-| Parties | Every organization or player bound |
-| Consideration | What each party commits |
-| Trigger | Event or time that activates performance |
-| Deadline | Client-displayed due time and timezone |
-| Settlement | Automatic or manual action shown |
-| Failure state | Client-described consequence |
-| Authority | Role or account that may accept, alter, or cancel |
+| Destroy base | Target has a non-spawn base; target value fixed to 1 |
+| Destroy building levels | Building type required; at least 1 level; target currently owns that building |
+| Destroy ship Astra | At least 10 Astra of ship destruction |
+| Destroy mining outpost | Target has a mining outpost; target value fixed to 1 |
+| Break ion-shield integrity | At least 10 integrity and target has a shield |
+| Raid resources total | At least 100 total resources |
+| Raid one resource | At least 50 of the selected resource |
+| Raid Astra total | At least 40 Astra |
 
-Reserve any promised treasury or holdings in the organization’s operational plan even if the main balance still displays them. Cross-check lending-like terms against [Loans and the credit book](/wiki/loans-and-credit-book/).
+The creator cannot target themself. A contract starts pending; a different player may accept it and choose personal settlement or the treasury of an organization they control. Completed progress and payout are then tracked against the accepted contract.
 
-> **Needs verification:** Supported contract types, escrow, amendments, cancellation, breach remedies, visibility, transferability, recurring obligations, and settlement order.
+Cancellation closes the contract and returns remaining escrow to the posting organization’s treasury and retained earnings. It does not pay the accepter. Closed contracts cannot be cancelled again. Before posting, treat the full payout as unavailable even if another summary has not refreshed yet.
+
+Contracts are operational incentives, not loans: there is no principal repayment. Check target feasibility, current war state, and the exact settlement destination before acceptance.
 
 ### Organization progression and limits
 

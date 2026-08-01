@@ -1,42 +1,35 @@
 ---
 title: Borrowing and repayment
 slug: borrowing-and-repayment
-summary: A confirmation checklist for taking organization credit, scheduling repayment, and preserving treasury headroom.
+summary: A practical borrowing workflow with exact interest timing, partial principal repayment, maturity, reserves, and default avoidance.
 category: Multiplayer
 pageType: guide
 patch: '11.75'
-verification: observed
-lastReviewed: '2026-07-30'
+verification: confirmed
+lastReviewed: '2026-08-01'
 order: 86
-aliases:
-  - repay loan
-  - organization borrowing
-relatedPages:
-  - loans-and-credit-book
-  - credit-ratings
-  - treasury-and-holdings
-  - organization-screen
+aliases: [repay loan, organization borrowing, partial loan payment]
+relatedPages: [loans-and-credit-book, credit-ratings, treasury-and-holdings, organization-screen]
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
-ruleset: live-world
-evidence:
-  - client-build-1175
-  - live-world-1175
+ruleset: core
+evidence: [client-build-1175, organization-credit-1175]
 mechanicDependencies: []
 ---
-Borrow only from the exact terms shown in the active confirmation flow. Projected proceeds are not the same as net spendable treasury, and a displayed due amount may change with settlement or timing. [Evidence](#evidence-live-world-1175)
-
-## Decision table
+Borrowing transfers the chosen principal immediately and starts a daily interest schedule one day later. The loan matures after the selected 1–7-day term. [Evidence](#evidence-organization-credit-1175)
 
 | Stage | Confirm |
 |---|---|
-| Offer | lender, principal, total obligation, due timing |
-| Acceptance | net treasury received, fees, rating effect |
-| During term | next payment, available treasury, competing obligations |
-| Repayment | amount applied, remaining principal, status after payment |
-| Closure | zero balance and closed state on both ledgers |
+| Offer | lender, available principal, daily rate, minimum credit grade |
+| Acceptance | personal or controlled-organization destination, principal, 1–7-day term |
+| During term | `ceil(outstanding principal × rate / 100)`, next collection, maturity, available balance |
+| Repayment | partial or full principal amount and resulting daily interest |
+| Closure | zero principal, closed state, and whether it qualified as a seasoned repayment |
 
-Keep a repayment reserve separate from discretionary [Dividends](/wiki/dividends/) and [Buybacks](/wiki/buybacks/). Capture before-and-after screenshots or transcripts so a rounding or settlement difference can be diagnosed.
+Principal repayment may be partial and moves directly to lender treasury. A full early repayment closes the loan. It does not prepay future interest; the credit-history bonus for a seasoned repayment requires that positive interest was already paid. [Evidence](#evidence-organization-credit-1175)
 
-> **Needs verification:** Partial payments, automatic collection, payment priority, early-payment treatment, late penalties, default behavior, and whether repayment consumes reserved funds.
+## Safe reserve
 
+Reserve at least the next daily interest plus remaining principal before discretionary spending. For a 1,000-Noctmark loan at 2.5% daily, the first charge is 25. Repaying 400 principal before the next collection lowers the following charge to `ceil(600 × 0.025) = 15`.
+
+Do not empty the account for [Dividends](/wiki/dividends/), share bids, or other actions while interest is due. Collection is automatic and default is immediate if the selected borrower balance cannot cover it.

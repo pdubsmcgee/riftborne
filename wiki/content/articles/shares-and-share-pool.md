@@ -1,43 +1,32 @@
 ---
 title: Shares and the share pool
 slug: shares-and-share-pool
-summary: How to distinguish issued ownership, unallocated share-pool capacity, percentages, and pending share actions.
+summary: Exact authorized, issued, treasury, outstanding, reserved, and holder-share concepts used by organizations in 11.75.
 category: Multiplayer
 pageType: reference
 patch: '11.75'
-verification: observed
-lastReviewed: '2026-07-30'
+verification: confirmed
+lastReviewed: '2026-08-01'
 order: 81
-aliases:
-  - organization shares
-  - share pool
-relatedPages:
-  - organizations
-  - existing-share-sales
-  - follow-on-funding-and-dilution
-  - dividends
-  - buybacks
+aliases: [organization shares, share pool, treasury shares, outstanding shares]
+relatedPages: [organizations, existing-share-sales, follow-on-funding-and-dilution, dividends, buybacks]
 verifiedBuild: a7b5c7c
 verifiedAt: '2026-07-30'
-ruleset: live-world
-evidence:
-  - client-build-1175
-  - live-world-1175
+ruleset: core
+evidence: [client-build-1175, organization-capital-actions-1175, organization-valuation-1175]
 mechanicDependencies: []
 ---
-Share records describe ownership at a point in time. Separate shares already held by owners from any share-pool capacity the organization may allocate through a later action. [Evidence](#evidence-live-world-1175)
+The current organization model distinguishes authorized, issued, treasury, outstanding, held, and reserved shares. All are whole shares. [Evidence](#evidence-organization-capital-actions-1175)
 
-## Ownership ledger
-
-| Field | Record separately |
+| Field | Meaning |
 |---|---|
-| Issued shares | Shares currently assigned to holders |
-| Share pool | Unallocated or organization-held capacity shown by the client |
-| Holder stake | Count and displayed percentage |
-| Pending action | Proposed issue, transfer, sale, or repurchase |
-| Post-action stake | Confirmation-screen projection, if shown |
+| Authorized shares | Capacity tracked by the organization; follow-on funding increases it |
+| Issued shares | Total created, including shares held in treasury |
+| Treasury shares | Issued shares held by the organization rather than an outside holder |
+| Outstanding shares | `max(1, issued shares) − treasury shares`, clamped nonnegative |
+| Holder shares | Direct player shares or shares held by another organization |
+| Reserved shares | Existing or treasury shares committed to an active sell order |
 
-Never assume that pool shares have the same economic or voting treatment as issued shares. For a transfer between current owners, use [Existing-share sales](/wiki/existing-share-sales/). For newly allocated ownership, use [Follow-on funding and dilution](/wiki/follow-on-funding-and-dilution/).
+Displayed stake is held shares divided by outstanding shares. Snapshot labels are Majority at 50% or more, Blocking at 25%, Influence at 10%, Stake at 5%, and Minor below 5%. These labels describe stake size; operational control follows the effective largest-holder rule. [Evidence](#evidence-organization-valuation-1175)
 
-> **Needs verification:** Authorized-versus-issued terminology, voting rights, fractional shares, pool replenishment, transfer restrictions, and the denominator used for displayed percentages must be confirmed in the active world.
-
+An active sell order locks its quantity from other sales. A bid locks the buyer’s Noctmarks in escrow. Treasury shares receive no dividend because dividends iterate current player and organization holders only.
